@@ -1,5 +1,5 @@
 using Clinically.Kinde.Authentication.ManagementApi;
-using Clinically.Kinde.Authentication.ManagementApi.Model;
+using Kinde.Api.Model;
 using Clinically.Kinde.Authentication.Types;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;

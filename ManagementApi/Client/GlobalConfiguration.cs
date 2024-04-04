@@ -9,7 +9,9 @@
  */
 
 
-namespace Clinically.Kinde.Authentication.ManagementApi.Client
+using System.Collections.Generic;
+
+namespace Kinde.Api.Client
 {
     /// <summary>
     /// <see cref="GlobalConfiguration"/> provides a compile-time extension point for globally configuring

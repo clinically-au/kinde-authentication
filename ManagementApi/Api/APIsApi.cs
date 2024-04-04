@@ -9,10 +9,17 @@
  */
 
 
-using Clinically.Kinde.Authentication.ManagementApi.Client;
-using Clinically.Kinde.Authentication.ManagementApi.Model;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Mime;
+using Kinde.Api.Client;
+using Kinde.Api.Model;
 
-namespace Clinically.Kinde.Authentication.ManagementApi.Api
+namespace Kinde.Api.Api
 {
 
     /// <summary>
@@ -27,7 +34,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Add APIs. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="addAPIsRequest">API details.</param>
         /// <returns>SuccessResponse</returns>
         SuccessResponse AddAPIs(AddAPIsRequest addAPIsRequest);
@@ -38,7 +45,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Add APIs. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="addAPIsRequest">API details.</param>
         /// <returns>ApiResponse of SuccessResponse</returns>
         ApiResponse<SuccessResponse> AddAPIsWithHttpInfo(AddAPIsRequest addAPIsRequest);
@@ -48,7 +55,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Deletes API. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiId">The API&#39;s id.</param>
         /// <returns>SuccessResponse</returns>
         SuccessResponse DeleteAPI(string apiId);
@@ -59,7 +66,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Deletes API. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiId">The API&#39;s id.</param>
         /// <returns>ApiResponse of SuccessResponse</returns>
         ApiResponse<SuccessResponse> DeleteAPIWithHttpInfo(string apiId);
@@ -69,9 +76,9 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Returns the details of the API. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiId">The API&#39;s id.</param>
-        /// <returns>Api</returns>
+        /// <returns>ApiModel</returns>
         ApiModel GetAPI(string apiId);
 
         /// <summary>
@@ -80,9 +87,9 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Returns the details of the API. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiId">The API&#39;s id.</param>
-        /// <returns>ApiResponse of Api</returns>
+        /// <returns>ApiResponse of ApiModel</returns>
         ApiResponse<ApiModel> GetAPIWithHttpInfo(string apiId);
         /// <summary>
         /// List APIs
@@ -90,7 +97,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Returns a list of APIs. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Apis</returns>
         Apis GetAPIs();
 
@@ -100,7 +107,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Returns a list of APIs. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of Apis</returns>
         ApiResponse<Apis> GetAPIsWithHttpInfo();
         /// <summary>
@@ -109,7 +116,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Update the applications under that API. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiId">The identifier for the API.</param>
         /// <param name="updateAPIApplicationsRequest">The applications you want to connect or disconnect.</param>
         /// <returns>SuccessResponse</returns>
@@ -121,7 +128,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Update the applications under that API. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiId">The identifier for the API.</param>
         /// <param name="updateAPIApplicationsRequest">The applications you want to connect or disconnect.</param>
         /// <returns>ApiResponse of SuccessResponse</returns>
@@ -141,7 +148,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Add APIs. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="addAPIsRequest">API details.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SuccessResponse</returns>
@@ -153,7 +160,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Add APIs. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="addAPIsRequest">API details.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
@@ -164,7 +171,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Deletes API. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiId">The API&#39;s id.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SuccessResponse</returns>
@@ -176,7 +183,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Deletes API. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiId">The API&#39;s id.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
@@ -187,10 +194,10 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Returns the details of the API. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiId">The API&#39;s id.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Api</returns>
+        /// <returns>Task of ApiModel</returns>
         System.Threading.Tasks.Task<ApiModel> GetAPIAsync(string apiId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
@@ -199,10 +206,10 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Returns the details of the API. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiId">The API&#39;s id.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Api)</returns>
+        /// <returns>Task of ApiResponse (ApiModel)</returns>
         System.Threading.Tasks.Task<ApiResponse<ApiModel>> GetAPIWithHttpInfoAsync(string apiId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// List APIs
@@ -210,7 +217,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Returns a list of APIs. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Apis</returns>
         System.Threading.Tasks.Task<Apis> GetAPIsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -221,7 +228,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Returns a list of APIs. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Apis)</returns>
         System.Threading.Tasks.Task<ApiResponse<Apis>> GetAPIsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -231,7 +238,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Update the applications under that API. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiId">The identifier for the API.</param>
         /// <param name="updateAPIApplicationsRequest">The applications you want to connect or disconnect.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -244,7 +251,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Update the applications under that API. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiId">The identifier for the API.</param>
         /// <param name="updateAPIApplicationsRequest">The applications you want to connect or disconnect.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -266,7 +273,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
     /// </summary>
     public partial class APIsApi : IDisposable, IAPIsApi
     {
-        private ExceptionFactory _exceptionFactory = (name, response) => null;
+        private Kinde.Api.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="APIsApi"/> class.
@@ -288,14 +295,14 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <returns></returns>
         public APIsApi(string basePath)
         {
-            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
-                GlobalConfiguration.Instance,
-                new Configuration { BasePath = basePath }
+            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
+                Kinde.Api.Client.GlobalConfiguration.Instance,
+                new Kinde.Api.Client.Configuration { BasePath = basePath }
             );
-            this.ApiClient = new ApiClient(this.Configuration.BasePath);
+            this.ApiClient = new Kinde.Api.Client.ApiClient(this.Configuration.BasePath);
             this.Client =  this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            this.ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -306,18 +313,18 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <param name="configuration">An instance of Configuration.</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <returns></returns>
-        public APIsApi(Configuration configuration)
+        public APIsApi(Kinde.Api.Client.Configuration configuration)
         {
             if (configuration == null) throw new ArgumentNullException("configuration");
 
-            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
-                GlobalConfiguration.Instance,
+            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
+                Kinde.Api.Client.GlobalConfiguration.Instance,
                 configuration
             );
-            this.ApiClient = new ApiClient(this.Configuration.BasePath);
+            this.ApiClient = new Kinde.Api.Client.ApiClient(this.Configuration.BasePath);
             this.Client = this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
+            ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -352,14 +359,14 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         {
             if (client == null) throw new ArgumentNullException("client");
 
-            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
-                GlobalConfiguration.Instance,
-                new Configuration { BasePath = basePath }
+            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
+                Kinde.Api.Client.GlobalConfiguration.Instance,
+                new Kinde.Api.Client.Configuration { BasePath = basePath }
             );
-            this.ApiClient = new ApiClient(client, this.Configuration.BasePath, handler);
+            this.ApiClient = new Kinde.Api.Client.ApiClient(client, this.Configuration.BasePath, handler);
             this.Client =  this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            this.ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -374,19 +381,19 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// Some configuration settings will not be applied without passing an HttpClientHandler.
         /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
         /// </remarks>
-        public APIsApi(HttpClient client, Configuration configuration, HttpClientHandler handler = null)
+        public APIsApi(HttpClient client, Kinde.Api.Client.Configuration configuration, HttpClientHandler handler = null)
         {
             if (configuration == null) throw new ArgumentNullException("configuration");
             if (client == null) throw new ArgumentNullException("client");
 
-            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
-                GlobalConfiguration.Instance,
+            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
+                Kinde.Api.Client.GlobalConfiguration.Instance,
                 configuration
             );
-            this.ApiClient = new ApiClient(client, this.Configuration.BasePath, handler);
+            this.ApiClient = new Kinde.Api.Client.ApiClient(client, this.Configuration.BasePath, handler);
             this.Client = this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
+            ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -397,7 +404,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
         /// <exception cref="ArgumentNullException"></exception>
-        public APIsApi(ISynchronousClient client, IAsynchronousClient asyncClient, IReadableConfiguration configuration)
+        public APIsApi(Kinde.Api.Client.ISynchronousClient client, Kinde.Api.Client.IAsynchronousClient asyncClient, Kinde.Api.Client.IReadableConfiguration configuration)
         {
             if (client == null) throw new ArgumentNullException("client");
             if (asyncClient == null) throw new ArgumentNullException("asyncClient");
@@ -406,7 +413,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
             this.Client = client;
             this.AsynchronousClient = asyncClient;
             this.Configuration = configuration;
-            this.ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -420,17 +427,17 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Holds the ApiClient if created
         /// </summary>
-        public ApiClient ApiClient { get; set; } = null;
+        public Kinde.Api.Client.ApiClient ApiClient { get; set; } = null;
 
         /// <summary>
         /// The client for accessing this underlying API asynchronously.
         /// </summary>
-        public IAsynchronousClient AsynchronousClient { get; set; }
+        public Kinde.Api.Client.IAsynchronousClient AsynchronousClient { get; set; }
 
         /// <summary>
         /// The client for accessing this underlying API synchronously.
         /// </summary>
-        public ISynchronousClient Client { get; set; }
+        public Kinde.Api.Client.ISynchronousClient Client { get; set; }
 
         /// <summary>
         /// Gets the base path of the API client.
@@ -445,12 +452,12 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// Gets or sets the configuration object
         /// </summary>
         /// <value>An instance of the Configuration</value>
-        public IReadableConfiguration Configuration { get; set; }
+        public Kinde.Api.Client.IReadableConfiguration Configuration { get; set; }
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
         /// </summary>
-        public ExceptionFactory ExceptionFactory
+        public Kinde.Api.Client.ExceptionFactory ExceptionFactory
         {
             get
             {
@@ -466,28 +473,28 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Add APIs Add APIs. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="addAPIsRequest">API details.</param>
         /// <returns>SuccessResponse</returns>
         public SuccessResponse AddAPIs(AddAPIsRequest addAPIsRequest)
         {
-            ApiResponse<SuccessResponse> localVarResponse = AddAPIsWithHttpInfo(addAPIsRequest);
+            Kinde.Api.Client.ApiResponse<SuccessResponse> localVarResponse = AddAPIsWithHttpInfo(addAPIsRequest);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Add APIs Add APIs. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="addAPIsRequest">API details.</param>
         /// <returns>ApiResponse of SuccessResponse</returns>
-        public ApiResponse<SuccessResponse> AddAPIsWithHttpInfo(AddAPIsRequest addAPIsRequest)
+        public Kinde.Api.Client.ApiResponse<SuccessResponse> AddAPIsWithHttpInfo(AddAPIsRequest addAPIsRequest)
         {
             // verify the required parameter 'addAPIsRequest' is set
             if (addAPIsRequest == null)
-                throw new ApiException(400, "Missing required parameter 'addAPIsRequest' when calling APIsApi->AddAPIs");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'addAPIsRequest' when calling APIsApi->AddAPIs");
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/json"
@@ -499,10 +506,10 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
                 "application/json"
             };
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.Data = addAPIsRequest;
@@ -529,31 +536,31 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Add APIs Add APIs. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="addAPIsRequest">API details.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SuccessResponse</returns>
         public async System.Threading.Tasks.Task<SuccessResponse> AddAPIsAsync(AddAPIsRequest addAPIsRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            ApiResponse<SuccessResponse> localVarResponse = await AddAPIsWithHttpInfoAsync(addAPIsRequest, cancellationToken).ConfigureAwait(false);
+            Kinde.Api.Client.ApiResponse<SuccessResponse> localVarResponse = await AddAPIsWithHttpInfoAsync(addAPIsRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Add APIs Add APIs. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="addAPIsRequest">API details.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<SuccessResponse>> AddAPIsWithHttpInfoAsync(AddAPIsRequest addAPIsRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<SuccessResponse>> AddAPIsWithHttpInfoAsync(AddAPIsRequest addAPIsRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'addAPIsRequest' is set
             if (addAPIsRequest == null)
-                throw new ApiException(400, "Missing required parameter 'addAPIsRequest' when calling APIsApi->AddAPIs");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'addAPIsRequest' when calling APIsApi->AddAPIs");
 
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/json"
@@ -566,10 +573,10 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
             };
 
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.Data = addAPIsRequest;
@@ -597,28 +604,28 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Delete API Deletes API. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiId">The API&#39;s id.</param>
         /// <returns>SuccessResponse</returns>
         public SuccessResponse DeleteAPI(string apiId)
         {
-            ApiResponse<SuccessResponse> localVarResponse = DeleteAPIWithHttpInfo(apiId);
+            Kinde.Api.Client.ApiResponse<SuccessResponse> localVarResponse = DeleteAPIWithHttpInfo(apiId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Delete API Deletes API. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiId">The API&#39;s id.</param>
         /// <returns>ApiResponse of SuccessResponse</returns>
-        public ApiResponse<SuccessResponse> DeleteAPIWithHttpInfo(string apiId)
+        public Kinde.Api.Client.ApiResponse<SuccessResponse> DeleteAPIWithHttpInfo(string apiId)
         {
             // verify the required parameter 'apiId' is set
             if (apiId == null)
-                throw new ApiException(400, "Missing required parameter 'apiId' when calling APIsApi->DeleteAPI");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'apiId' when calling APIsApi->DeleteAPI");
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -629,13 +636,13 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
                 "application/json"
             };
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("api_id", ClientUtils.ParameterToString(apiId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("api_id", Kinde.Api.Client.ClientUtils.ParameterToString(apiId)); // path parameter
 
             // authentication (kindeBearerAuth) required
             // bearer authentication required
@@ -659,31 +666,31 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Delete API Deletes API. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiId">The API&#39;s id.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SuccessResponse</returns>
         public async System.Threading.Tasks.Task<SuccessResponse> DeleteAPIAsync(string apiId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            ApiResponse<SuccessResponse> localVarResponse = await DeleteAPIWithHttpInfoAsync(apiId, cancellationToken).ConfigureAwait(false);
+            Kinde.Api.Client.ApiResponse<SuccessResponse> localVarResponse = await DeleteAPIWithHttpInfoAsync(apiId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Delete API Deletes API. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiId">The API&#39;s id.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<SuccessResponse>> DeleteAPIWithHttpInfoAsync(string apiId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<SuccessResponse>> DeleteAPIWithHttpInfoAsync(string apiId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'apiId' is set
             if (apiId == null)
-                throw new ApiException(400, "Missing required parameter 'apiId' when calling APIsApi->DeleteAPI");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'apiId' when calling APIsApi->DeleteAPI");
 
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -695,13 +702,13 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
             };
 
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("api_id", ClientUtils.ParameterToString(apiId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("api_id", Kinde.Api.Client.ClientUtils.ParameterToString(apiId)); // path parameter
 
             // authentication (kindeBearerAuth) required
             // bearer authentication required
@@ -726,28 +733,28 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// List API details Returns the details of the API. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiId">The API&#39;s id.</param>
-        /// <returns>Api</returns>
+        /// <returns>ApiModel</returns>
         public ApiModel GetAPI(string apiId)
         {
-            ApiResponse<ApiModel> localVarResponse = GetAPIWithHttpInfo(apiId);
+            Kinde.Api.Client.ApiResponse<ApiModel> localVarResponse = GetAPIWithHttpInfo(apiId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List API details Returns the details of the API. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiId">The API&#39;s id.</param>
-        /// <returns>ApiResponse of Api</returns>
-        public ApiResponse<ApiModel> GetAPIWithHttpInfo(string apiId)
+        /// <returns>ApiResponse of ApiModel</returns>
+        public Kinde.Api.Client.ApiResponse<ApiModel> GetAPIWithHttpInfo(string apiId)
         {
             // verify the required parameter 'apiId' is set
             if (apiId == null)
-                throw new ApiException(400, "Missing required parameter 'apiId' when calling APIsApi->GetAPI");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'apiId' when calling APIsApi->GetAPI");
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -758,13 +765,13 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
                 "application/json"
             };
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("api_id", ClientUtils.ParameterToString(apiId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("api_id", Kinde.Api.Client.ClientUtils.ParameterToString(apiId)); // path parameter
 
             // authentication (kindeBearerAuth) required
             // bearer authentication required
@@ -788,31 +795,31 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// List API details Returns the details of the API. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiId">The API&#39;s id.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of Api</returns>
+        /// <returns>Task of ApiModel</returns>
         public async System.Threading.Tasks.Task<ApiModel> GetAPIAsync(string apiId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            ApiResponse<ApiModel> localVarResponse = await GetAPIWithHttpInfoAsync(apiId, cancellationToken).ConfigureAwait(false);
+            Kinde.Api.Client.ApiResponse<ApiModel> localVarResponse = await GetAPIWithHttpInfoAsync(apiId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List API details Returns the details of the API. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiId">The API&#39;s id.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (Api)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<ApiModel>> GetAPIWithHttpInfoAsync(string apiId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (ApiModel)</returns>
+        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<ApiModel>> GetAPIWithHttpInfoAsync(string apiId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'apiId' is set
             if (apiId == null)
-                throw new ApiException(400, "Missing required parameter 'apiId' when calling APIsApi->GetAPI");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'apiId' when calling APIsApi->GetAPI");
 
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -824,13 +831,13 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
             };
 
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("api_id", ClientUtils.ParameterToString(apiId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("api_id", Kinde.Api.Client.ClientUtils.ParameterToString(apiId)); // path parameter
 
             // authentication (kindeBearerAuth) required
             // bearer authentication required
@@ -855,22 +862,22 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// List APIs Returns a list of APIs. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>Apis</returns>
         public Apis GetAPIs()
         {
-            ApiResponse<Apis> localVarResponse = GetAPIsWithHttpInfo();
+            Kinde.Api.Client.ApiResponse<Apis> localVarResponse = GetAPIsWithHttpInfo();
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List APIs Returns a list of APIs. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of Apis</returns>
-        public ApiResponse<Apis> GetAPIsWithHttpInfo()
+        public Kinde.Api.Client.ApiResponse<Apis> GetAPIsWithHttpInfo()
         {
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -881,10 +888,10 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
                 "application/json"
             };
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
@@ -910,25 +917,25 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// List APIs Returns a list of APIs. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of Apis</returns>
         public async System.Threading.Tasks.Task<Apis> GetAPIsAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            ApiResponse<Apis> localVarResponse = await GetAPIsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            Kinde.Api.Client.ApiResponse<Apis> localVarResponse = await GetAPIsWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List APIs Returns a list of APIs. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Apis)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<Apis>> GetAPIsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<Apis>> GetAPIsWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -940,10 +947,10 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
             };
 
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
@@ -970,34 +977,34 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Update API Applications Update the applications under that API. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiId">The identifier for the API.</param>
         /// <param name="updateAPIApplicationsRequest">The applications you want to connect or disconnect.</param>
         /// <returns>SuccessResponse</returns>
         public SuccessResponse UpdateAPIApplications(string apiId, UpdateAPIApplicationsRequest updateAPIApplicationsRequest)
         {
-            ApiResponse<SuccessResponse> localVarResponse = UpdateAPIApplicationsWithHttpInfo(apiId, updateAPIApplicationsRequest);
+            Kinde.Api.Client.ApiResponse<SuccessResponse> localVarResponse = UpdateAPIApplicationsWithHttpInfo(apiId, updateAPIApplicationsRequest);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Update API Applications Update the applications under that API. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiId">The identifier for the API.</param>
         /// <param name="updateAPIApplicationsRequest">The applications you want to connect or disconnect.</param>
         /// <returns>ApiResponse of SuccessResponse</returns>
-        public ApiResponse<SuccessResponse> UpdateAPIApplicationsWithHttpInfo(string apiId, UpdateAPIApplicationsRequest updateAPIApplicationsRequest)
+        public Kinde.Api.Client.ApiResponse<SuccessResponse> UpdateAPIApplicationsWithHttpInfo(string apiId, UpdateAPIApplicationsRequest updateAPIApplicationsRequest)
         {
             // verify the required parameter 'apiId' is set
             if (apiId == null)
-                throw new ApiException(400, "Missing required parameter 'apiId' when calling APIsApi->UpdateAPIApplications");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'apiId' when calling APIsApi->UpdateAPIApplications");
 
             // verify the required parameter 'updateAPIApplicationsRequest' is set
             if (updateAPIApplicationsRequest == null)
-                throw new ApiException(400, "Missing required parameter 'updateAPIApplicationsRequest' when calling APIsApi->UpdateAPIApplications");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'updateAPIApplicationsRequest' when calling APIsApi->UpdateAPIApplications");
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/json"
@@ -1009,13 +1016,13 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
                 "application/json"
             };
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("api_id", ClientUtils.ParameterToString(apiId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("api_id", Kinde.Api.Client.ClientUtils.ParameterToString(apiId)); // path parameter
             localVarRequestOptions.Data = updateAPIApplicationsRequest;
 
             // authentication (kindeBearerAuth) required
@@ -1040,37 +1047,37 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Update API Applications Update the applications under that API. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiId">The identifier for the API.</param>
         /// <param name="updateAPIApplicationsRequest">The applications you want to connect or disconnect.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SuccessResponse</returns>
         public async System.Threading.Tasks.Task<SuccessResponse> UpdateAPIApplicationsAsync(string apiId, UpdateAPIApplicationsRequest updateAPIApplicationsRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            ApiResponse<SuccessResponse> localVarResponse = await UpdateAPIApplicationsWithHttpInfoAsync(apiId, updateAPIApplicationsRequest, cancellationToken).ConfigureAwait(false);
+            Kinde.Api.Client.ApiResponse<SuccessResponse> localVarResponse = await UpdateAPIApplicationsWithHttpInfoAsync(apiId, updateAPIApplicationsRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Update API Applications Update the applications under that API. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="apiId">The identifier for the API.</param>
         /// <param name="updateAPIApplicationsRequest">The applications you want to connect or disconnect.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<SuccessResponse>> UpdateAPIApplicationsWithHttpInfoAsync(string apiId, UpdateAPIApplicationsRequest updateAPIApplicationsRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<SuccessResponse>> UpdateAPIApplicationsWithHttpInfoAsync(string apiId, UpdateAPIApplicationsRequest updateAPIApplicationsRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'apiId' is set
             if (apiId == null)
-                throw new ApiException(400, "Missing required parameter 'apiId' when calling APIsApi->UpdateAPIApplications");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'apiId' when calling APIsApi->UpdateAPIApplications");
 
             // verify the required parameter 'updateAPIApplicationsRequest' is set
             if (updateAPIApplicationsRequest == null)
-                throw new ApiException(400, "Missing required parameter 'updateAPIApplicationsRequest' when calling APIsApi->UpdateAPIApplications");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'updateAPIApplicationsRequest' when calling APIsApi->UpdateAPIApplications");
 
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/json"
@@ -1083,13 +1090,13 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
             };
 
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("api_id", ClientUtils.ParameterToString(apiId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("api_id", Kinde.Api.Client.ClientUtils.ParameterToString(apiId)); // path parameter
             localVarRequestOptions.Data = updateAPIApplicationsRequest;
 
             // authentication (kindeBearerAuth) required

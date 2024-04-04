@@ -10,8 +10,9 @@
 
 
 using Polly;
+using System.Net.Http;
 
-namespace Clinically.Kinde.Authentication.ManagementApi.Client
+namespace Kinde.Api.Client
 {
     /// <summary>
     /// Configuration class to set the polly retry policies to be applied to the requests.

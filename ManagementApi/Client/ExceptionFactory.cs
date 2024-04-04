@@ -9,7 +9,9 @@
  */
 
 
-namespace Clinically.Kinde.Authentication.ManagementApi.Client
+using System;
+
+namespace Kinde.Api.Client
 {
     /// <summary>
     /// A delegate to ExceptionFactory method

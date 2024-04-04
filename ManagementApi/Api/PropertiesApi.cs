@@ -9,10 +9,17 @@
  */
 
 
-using Clinically.Kinde.Authentication.ManagementApi.Client;
-using Clinically.Kinde.Authentication.ManagementApi.Model;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Mime;
+using Kinde.Api.Client;
+using Kinde.Api.Model;
 
-namespace Clinically.Kinde.Authentication.ManagementApi.Api
+namespace Kinde.Api.Api
 {
 
     /// <summary>
@@ -27,7 +34,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Create property.
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPropertyRequest">Property details.</param>
         /// <returns>CreatePropertyResponse</returns>
         CreatePropertyResponse CreateProperty(CreatePropertyRequest createPropertyRequest);
@@ -38,7 +45,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Create property.
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPropertyRequest">Property details.</param>
         /// <returns>ApiResponse of CreatePropertyResponse</returns>
         ApiResponse<CreatePropertyResponse> CreatePropertyWithHttpInfo(CreatePropertyRequest createPropertyRequest);
@@ -48,7 +55,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Returns a list of properties 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="startingAfter">The ID of the property to start after. (optional)</param>
         /// <param name="endingBefore">The ID of the property to end before. (optional)</param>
@@ -62,7 +69,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Returns a list of properties 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="startingAfter">The ID of the property to start after. (optional)</param>
         /// <param name="endingBefore">The ID of the property to end before. (optional)</param>
@@ -75,7 +82,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Update property.
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">The unique identifier for the property.</param>
         /// <param name="updatePropertyRequest">The fields of the property to update.</param>
         /// <returns>SuccessResponse</returns>
@@ -87,7 +94,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Update property.
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">The unique identifier for the property.</param>
         /// <param name="updatePropertyRequest">The fields of the property to update.</param>
         /// <returns>ApiResponse of SuccessResponse</returns>
@@ -107,7 +114,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Create property.
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPropertyRequest">Property details.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreatePropertyResponse</returns>
@@ -119,7 +126,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Create property.
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPropertyRequest">Property details.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreatePropertyResponse)</returns>
@@ -130,7 +137,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Returns a list of properties 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="startingAfter">The ID of the property to start after. (optional)</param>
         /// <param name="endingBefore">The ID of the property to end before. (optional)</param>
@@ -145,7 +152,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Returns a list of properties 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="startingAfter">The ID of the property to start after. (optional)</param>
         /// <param name="endingBefore">The ID of the property to end before. (optional)</param>
@@ -159,7 +166,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Update property.
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">The unique identifier for the property.</param>
         /// <param name="updatePropertyRequest">The fields of the property to update.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -172,7 +179,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Update property.
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">The unique identifier for the property.</param>
         /// <param name="updatePropertyRequest">The fields of the property to update.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -194,7 +201,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
     /// </summary>
     public partial class PropertiesApi : IDisposable, IPropertiesApi
     {
-        private ExceptionFactory _exceptionFactory = (name, response) => null;
+        private Kinde.Api.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PropertiesApi"/> class.
@@ -216,14 +223,14 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <returns></returns>
         public PropertiesApi(string basePath)
         {
-            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
-                GlobalConfiguration.Instance,
-                new Configuration { BasePath = basePath }
+            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
+                Kinde.Api.Client.GlobalConfiguration.Instance,
+                new Kinde.Api.Client.Configuration { BasePath = basePath }
             );
-            this.ApiClient = new ApiClient(this.Configuration.BasePath);
+            this.ApiClient = new Kinde.Api.Client.ApiClient(this.Configuration.BasePath);
             this.Client =  this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            this.ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -234,18 +241,18 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <param name="configuration">An instance of Configuration.</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <returns></returns>
-        public PropertiesApi(Configuration configuration)
+        public PropertiesApi(Kinde.Api.Client.Configuration configuration)
         {
             if (configuration == null) throw new ArgumentNullException("configuration");
 
-            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
-                GlobalConfiguration.Instance,
+            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
+                Kinde.Api.Client.GlobalConfiguration.Instance,
                 configuration
             );
-            this.ApiClient = new ApiClient(this.Configuration.BasePath);
+            this.ApiClient = new Kinde.Api.Client.ApiClient(this.Configuration.BasePath);
             this.Client = this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
+            ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -280,14 +287,14 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         {
             if (client == null) throw new ArgumentNullException("client");
 
-            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
-                GlobalConfiguration.Instance,
-                new Configuration { BasePath = basePath }
+            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
+                Kinde.Api.Client.GlobalConfiguration.Instance,
+                new Kinde.Api.Client.Configuration { BasePath = basePath }
             );
-            this.ApiClient = new ApiClient(client, this.Configuration.BasePath, handler);
+            this.ApiClient = new Kinde.Api.Client.ApiClient(client, this.Configuration.BasePath, handler);
             this.Client =  this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            this.ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -302,19 +309,19 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// Some configuration settings will not be applied without passing an HttpClientHandler.
         /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
         /// </remarks>
-        public PropertiesApi(HttpClient client, Configuration configuration, HttpClientHandler handler = null)
+        public PropertiesApi(HttpClient client, Kinde.Api.Client.Configuration configuration, HttpClientHandler handler = null)
         {
             if (configuration == null) throw new ArgumentNullException("configuration");
             if (client == null) throw new ArgumentNullException("client");
 
-            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
-                GlobalConfiguration.Instance,
+            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
+                Kinde.Api.Client.GlobalConfiguration.Instance,
                 configuration
             );
-            this.ApiClient = new ApiClient(client, this.Configuration.BasePath, handler);
+            this.ApiClient = new Kinde.Api.Client.ApiClient(client, this.Configuration.BasePath, handler);
             this.Client = this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
+            ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -325,7 +332,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
         /// <exception cref="ArgumentNullException"></exception>
-        public PropertiesApi(ISynchronousClient client, IAsynchronousClient asyncClient, IReadableConfiguration configuration)
+        public PropertiesApi(Kinde.Api.Client.ISynchronousClient client, Kinde.Api.Client.IAsynchronousClient asyncClient, Kinde.Api.Client.IReadableConfiguration configuration)
         {
             if (client == null) throw new ArgumentNullException("client");
             if (asyncClient == null) throw new ArgumentNullException("asyncClient");
@@ -334,7 +341,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
             this.Client = client;
             this.AsynchronousClient = asyncClient;
             this.Configuration = configuration;
-            this.ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -348,17 +355,17 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Holds the ApiClient if created
         /// </summary>
-        public ApiClient ApiClient { get; set; } = null;
+        public Kinde.Api.Client.ApiClient ApiClient { get; set; } = null;
 
         /// <summary>
         /// The client for accessing this underlying API asynchronously.
         /// </summary>
-        public IAsynchronousClient AsynchronousClient { get; set; }
+        public Kinde.Api.Client.IAsynchronousClient AsynchronousClient { get; set; }
 
         /// <summary>
         /// The client for accessing this underlying API synchronously.
         /// </summary>
-        public ISynchronousClient Client { get; set; }
+        public Kinde.Api.Client.ISynchronousClient Client { get; set; }
 
         /// <summary>
         /// Gets the base path of the API client.
@@ -373,12 +380,12 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// Gets or sets the configuration object
         /// </summary>
         /// <value>An instance of the Configuration</value>
-        public IReadableConfiguration Configuration { get; set; }
+        public Kinde.Api.Client.IReadableConfiguration Configuration { get; set; }
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
         /// </summary>
-        public ExceptionFactory ExceptionFactory
+        public Kinde.Api.Client.ExceptionFactory ExceptionFactory
         {
             get
             {
@@ -394,28 +401,28 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Create Property Create property.
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPropertyRequest">Property details.</param>
         /// <returns>CreatePropertyResponse</returns>
         public CreatePropertyResponse CreateProperty(CreatePropertyRequest createPropertyRequest)
         {
-            ApiResponse<CreatePropertyResponse> localVarResponse = CreatePropertyWithHttpInfo(createPropertyRequest);
+            Kinde.Api.Client.ApiResponse<CreatePropertyResponse> localVarResponse = CreatePropertyWithHttpInfo(createPropertyRequest);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Create Property Create property.
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPropertyRequest">Property details.</param>
         /// <returns>ApiResponse of CreatePropertyResponse</returns>
-        public ApiResponse<CreatePropertyResponse> CreatePropertyWithHttpInfo(CreatePropertyRequest createPropertyRequest)
+        public Kinde.Api.Client.ApiResponse<CreatePropertyResponse> CreatePropertyWithHttpInfo(CreatePropertyRequest createPropertyRequest)
         {
             // verify the required parameter 'createPropertyRequest' is set
             if (createPropertyRequest == null)
-                throw new ApiException(400, "Missing required parameter 'createPropertyRequest' when calling PropertiesApi->CreateProperty");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'createPropertyRequest' when calling PropertiesApi->CreateProperty");
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/json"
@@ -427,10 +434,10 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
                 "application/json; charset=utf-8"
             };
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.Data = createPropertyRequest;
@@ -457,31 +464,31 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Create Property Create property.
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPropertyRequest">Property details.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreatePropertyResponse</returns>
         public async System.Threading.Tasks.Task<CreatePropertyResponse> CreatePropertyAsync(CreatePropertyRequest createPropertyRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            ApiResponse<CreatePropertyResponse> localVarResponse = await CreatePropertyWithHttpInfoAsync(createPropertyRequest, cancellationToken).ConfigureAwait(false);
+            Kinde.Api.Client.ApiResponse<CreatePropertyResponse> localVarResponse = await CreatePropertyWithHttpInfoAsync(createPropertyRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Create Property Create property.
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createPropertyRequest">Property details.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreatePropertyResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<CreatePropertyResponse>> CreatePropertyWithHttpInfoAsync(CreatePropertyRequest createPropertyRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<CreatePropertyResponse>> CreatePropertyWithHttpInfoAsync(CreatePropertyRequest createPropertyRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'createPropertyRequest' is set
             if (createPropertyRequest == null)
-                throw new ApiException(400, "Missing required parameter 'createPropertyRequest' when calling PropertiesApi->CreateProperty");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'createPropertyRequest' when calling PropertiesApi->CreateProperty");
 
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/json"
@@ -494,10 +501,10 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
             };
 
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.Data = createPropertyRequest;
@@ -525,7 +532,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// List properties Returns a list of properties 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="startingAfter">The ID of the property to start after. (optional)</param>
         /// <param name="endingBefore">The ID of the property to end before. (optional)</param>
@@ -533,22 +540,22 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <returns>GetPropertiesResponse</returns>
         public GetPropertiesResponse GetProperties(int? pageSize = default(int?), string? startingAfter = default(string?), string? endingBefore = default(string?), string? context = default(string?))
         {
-            ApiResponse<GetPropertiesResponse> localVarResponse = GetPropertiesWithHttpInfo(pageSize, startingAfter, endingBefore, context);
+            Kinde.Api.Client.ApiResponse<GetPropertiesResponse> localVarResponse = GetPropertiesWithHttpInfo(pageSize, startingAfter, endingBefore, context);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List properties Returns a list of properties 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="startingAfter">The ID of the property to start after. (optional)</param>
         /// <param name="endingBefore">The ID of the property to end before. (optional)</param>
         /// <param name="context">Filter results by User or Organization context (optional)</param>
         /// <returns>ApiResponse of GetPropertiesResponse</returns>
-        public ApiResponse<GetPropertiesResponse> GetPropertiesWithHttpInfo(int? pageSize = default(int?), string? startingAfter = default(string?), string? endingBefore = default(string?), string? context = default(string?))
+        public Kinde.Api.Client.ApiResponse<GetPropertiesResponse> GetPropertiesWithHttpInfo(int? pageSize = default(int?), string? startingAfter = default(string?), string? endingBefore = default(string?), string? context = default(string?))
         {
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -559,27 +566,27 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
                 "application/json"
             };
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             if (pageSize != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page_size", pageSize));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "page_size", pageSize));
             }
             if (startingAfter != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "starting_after", startingAfter));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "starting_after", startingAfter));
             }
             if (endingBefore != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "ending_before", endingBefore));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "ending_before", endingBefore));
             }
             if (context != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "context", context));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "context", context));
             }
 
             // authentication (kindeBearerAuth) required
@@ -604,7 +611,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// List properties Returns a list of properties 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="startingAfter">The ID of the property to start after. (optional)</param>
         /// <param name="endingBefore">The ID of the property to end before. (optional)</param>
@@ -613,24 +620,24 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <returns>Task of GetPropertiesResponse</returns>
         public async System.Threading.Tasks.Task<GetPropertiesResponse> GetPropertiesAsync(int? pageSize = default(int?), string? startingAfter = default(string?), string? endingBefore = default(string?), string? context = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            ApiResponse<GetPropertiesResponse> localVarResponse = await GetPropertiesWithHttpInfoAsync(pageSize, startingAfter, endingBefore, context, cancellationToken).ConfigureAwait(false);
+            Kinde.Api.Client.ApiResponse<GetPropertiesResponse> localVarResponse = await GetPropertiesWithHttpInfoAsync(pageSize, startingAfter, endingBefore, context, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List properties Returns a list of properties 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="startingAfter">The ID of the property to start after. (optional)</param>
         /// <param name="endingBefore">The ID of the property to end before. (optional)</param>
         /// <param name="context">Filter results by User or Organization context (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetPropertiesResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<GetPropertiesResponse>> GetPropertiesWithHttpInfoAsync(int? pageSize = default(int?), string? startingAfter = default(string?), string? endingBefore = default(string?), string? context = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<GetPropertiesResponse>> GetPropertiesWithHttpInfoAsync(int? pageSize = default(int?), string? startingAfter = default(string?), string? endingBefore = default(string?), string? context = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -642,27 +649,27 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
             };
 
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             if (pageSize != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page_size", pageSize));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "page_size", pageSize));
             }
             if (startingAfter != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "starting_after", startingAfter));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "starting_after", startingAfter));
             }
             if (endingBefore != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "ending_before", endingBefore));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "ending_before", endingBefore));
             }
             if (context != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "context", context));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "context", context));
             }
 
             // authentication (kindeBearerAuth) required
@@ -688,34 +695,34 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Update Property Update property.
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">The unique identifier for the property.</param>
         /// <param name="updatePropertyRequest">The fields of the property to update.</param>
         /// <returns>SuccessResponse</returns>
         public SuccessResponse UpdateProperty(string propertyId, UpdatePropertyRequest updatePropertyRequest)
         {
-            ApiResponse<SuccessResponse> localVarResponse = UpdatePropertyWithHttpInfo(propertyId, updatePropertyRequest);
+            Kinde.Api.Client.ApiResponse<SuccessResponse> localVarResponse = UpdatePropertyWithHttpInfo(propertyId, updatePropertyRequest);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Update Property Update property.
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">The unique identifier for the property.</param>
         /// <param name="updatePropertyRequest">The fields of the property to update.</param>
         /// <returns>ApiResponse of SuccessResponse</returns>
-        public ApiResponse<SuccessResponse> UpdatePropertyWithHttpInfo(string propertyId, UpdatePropertyRequest updatePropertyRequest)
+        public Kinde.Api.Client.ApiResponse<SuccessResponse> UpdatePropertyWithHttpInfo(string propertyId, UpdatePropertyRequest updatePropertyRequest)
         {
             // verify the required parameter 'propertyId' is set
             if (propertyId == null)
-                throw new ApiException(400, "Missing required parameter 'propertyId' when calling PropertiesApi->UpdateProperty");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'propertyId' when calling PropertiesApi->UpdateProperty");
 
             // verify the required parameter 'updatePropertyRequest' is set
             if (updatePropertyRequest == null)
-                throw new ApiException(400, "Missing required parameter 'updatePropertyRequest' when calling PropertiesApi->UpdateProperty");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'updatePropertyRequest' when calling PropertiesApi->UpdateProperty");
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/json"
@@ -727,13 +734,13 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
                 "application/json; charset=utf-8"
             };
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("property_id", ClientUtils.ParameterToString(propertyId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("property_id", Kinde.Api.Client.ClientUtils.ParameterToString(propertyId)); // path parameter
             localVarRequestOptions.Data = updatePropertyRequest;
 
             // authentication (kindeBearerAuth) required
@@ -758,37 +765,37 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Update Property Update property.
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">The unique identifier for the property.</param>
         /// <param name="updatePropertyRequest">The fields of the property to update.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SuccessResponse</returns>
         public async System.Threading.Tasks.Task<SuccessResponse> UpdatePropertyAsync(string propertyId, UpdatePropertyRequest updatePropertyRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            ApiResponse<SuccessResponse> localVarResponse = await UpdatePropertyWithHttpInfoAsync(propertyId, updatePropertyRequest, cancellationToken).ConfigureAwait(false);
+            Kinde.Api.Client.ApiResponse<SuccessResponse> localVarResponse = await UpdatePropertyWithHttpInfoAsync(propertyId, updatePropertyRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Update Property Update property.
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="propertyId">The unique identifier for the property.</param>
         /// <param name="updatePropertyRequest">The fields of the property to update.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<SuccessResponse>> UpdatePropertyWithHttpInfoAsync(string propertyId, UpdatePropertyRequest updatePropertyRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<SuccessResponse>> UpdatePropertyWithHttpInfoAsync(string propertyId, UpdatePropertyRequest updatePropertyRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'propertyId' is set
             if (propertyId == null)
-                throw new ApiException(400, "Missing required parameter 'propertyId' when calling PropertiesApi->UpdateProperty");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'propertyId' when calling PropertiesApi->UpdateProperty");
 
             // verify the required parameter 'updatePropertyRequest' is set
             if (updatePropertyRequest == null)
-                throw new ApiException(400, "Missing required parameter 'updatePropertyRequest' when calling PropertiesApi->UpdateProperty");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'updatePropertyRequest' when calling PropertiesApi->UpdateProperty");
 
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/json"
@@ -801,13 +808,13 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
             };
 
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("property_id", ClientUtils.ParameterToString(propertyId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("property_id", Kinde.Api.Client.ClientUtils.ParameterToString(propertyId)); // path parameter
             localVarRequestOptions.Data = updatePropertyRequest;
 
             // authentication (kindeBearerAuth) required

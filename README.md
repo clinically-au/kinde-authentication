@@ -1,11 +1,9 @@
 # Integrating Kinde Auth with .NET8 Blazor Apps
 
-This is a quick sample of integrating Kinde Authentication with Blazor apps using AspNet core identity
+This library assists with integrating Kinde with .NET applications. It is still in development but usable.
 
-Either fork the repo and use it, or add the following NuGet package:
+Add the following NuGet package:
 ```Clinically.Kinde.Authentication```
-
-It needs lots of improvements, but is a reasonable starting point.
 
 The following needs to be in your ```appSettings.json``` on the server:
 

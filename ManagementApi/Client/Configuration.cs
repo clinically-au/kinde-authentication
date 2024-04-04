@@ -9,12 +9,19 @@
  */
 
 
+using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Net;
-using System.Net.Security;
+using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Net.Http;
+using System.Net.Security;
 
-namespace Clinically.Kinde.Authentication.ManagementApi.Client
+namespace Kinde.Api.Client
 {
     /// <summary>
     /// Represents a set of configuration settings
@@ -27,7 +34,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Client
         /// Version of the package.
         /// </summary>
         /// <value>Version of the package.</value>
-        public const string Version = "1.0.0";
+        public const string Version = "1.2.5";
 
         /// <summary>
         /// Identifier for ISO 8601 DateTime Format
@@ -111,7 +118,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Client
         public Configuration()
         {
             Proxy = null;
-            UserAgent = WebUtility.UrlEncode("OpenAPI-Generator/1.0.0/csharp");
+            UserAgent = WebUtility.UrlEncode("OpenAPI-Generator/1.2.5/csharp");
             BasePath = "https://app.kinde.com";
             DefaultHeaders = new ConcurrentDictionary<string, string>();
             ApiKey = new ConcurrentDictionary<string, string>();
@@ -540,11 +547,11 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Client
         /// </summary>
         public static string ToDebugReport()
         {
-            string report = "C# SDK (Kinde.ManagementApi) Debug Report:\n";
+            string report = "C# SDK (Kinde.Api) Debug Report:\n";
             report += "    OS: " + System.Environment.OSVersion + "\n";
             report += "    .NET Framework Version: " + System.Environment.Version  + "\n";
             report += "    Version of the API: 1\n";
-            report += "    SDK Package Version: 1.0.0\n";
+            report += "    SDK Package Version: 1.2.5\n";
 
             return report;
         }

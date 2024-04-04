@@ -9,20 +9,32 @@
  */
 
 
-using System.ComponentModel.DataAnnotations;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.IO;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Text.RegularExpressions;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
+using System.ComponentModel.DataAnnotations;
+using FileParameter = Kinde.Api.Client.FileParameter;
+using OpenAPIDateConverter = Kinde.Api.Client.OpenAPIDateConverter;
 
-namespace Clinically.Kinde.Authentication.ManagementApi.Model
+namespace Kinde.Api.Model
 {
     /// <summary>
-    /// Api
+    /// ApiModel
     /// </summary>
     [DataContract(Name = "api")]
     public partial class ApiModel : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Api" /> class.
+        /// Initializes a new instance of the <see cref="ApiModel" /> class.
         /// </summary>
         /// <param name="id">The API&#39;s unique identifier..</param>
         /// <param name="code">Response code..</param>
@@ -88,7 +100,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class Api {\n");
+            sb.Append("class ApiModel {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Code: ").Append(Code).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");

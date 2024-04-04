@@ -9,10 +9,17 @@
  */
 
 
-using Clinically.Kinde.Authentication.ManagementApi.Client;
-using Clinically.Kinde.Authentication.ManagementApi.Model;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Mime;
+using Kinde.Api.Client;
+using Kinde.Api.Model;
 
-namespace Clinically.Kinde.Authentication.ManagementApi.Api
+namespace Kinde.Api.Api
 {
 
     /// <summary>
@@ -27,7 +34,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Creates a user record and optionally zero or more identities for the user. An example identity could be the email address of the user. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createUserRequest">The details of the user to create. (optional)</param>
         /// <returns>CreateUserResponse</returns>
         CreateUserResponse CreateUser(CreateUserRequest? createUserRequest = default(CreateUserRequest?));
@@ -38,7 +45,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Creates a user record and optionally zero or more identities for the user. An example identity could be the email address of the user. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createUserRequest">The details of the user to create. (optional)</param>
         /// <returns>ApiResponse of CreateUserResponse</returns>
         ApiResponse<CreateUserResponse> CreateUserWithHttpInfo(CreateUserRequest? createUserRequest = default(CreateUserRequest?));
@@ -48,7 +55,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Delete a user record. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The user&#39;s id.</param>
         /// <param name="isDeleteProfile">Delete all data and remove the user&#39;s profile from all of Kinde, including the subscriber list (optional)</param>
         /// <returns>SuccessResponse</returns>
@@ -60,7 +67,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Delete a user record. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The user&#39;s id.</param>
         /// <param name="isDeleteProfile">Delete all data and remove the user&#39;s profile from all of Kinde, including the subscriber list (optional)</param>
         /// <returns>ApiResponse of SuccessResponse</returns>
@@ -71,7 +78,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Retrieve a user record. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The user&#39;s id.</param>
         /// <param name="expand">Specify additional data to retrieve. Use \&quot;organizations\&quot; and/or \&quot;identities\&quot;. (optional)</param>
         /// <returns>User</returns>
@@ -83,7 +90,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Retrieve a user record. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The user&#39;s id.</param>
         /// <param name="expand">Specify additional data to retrieve. Use \&quot;organizations\&quot; and/or \&quot;identities\&quot;. (optional)</param>
         /// <returns>ApiResponse of User</returns>
@@ -94,7 +101,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Gets properties for an user by ID. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The user&#39;s ID.</param>
         /// <returns>GetPropertyValuesResponse</returns>
         GetPropertyValuesResponse GetUserPropertyValues(string userId);
@@ -105,7 +112,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Gets properties for an user by ID. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The user&#39;s ID.</param>
         /// <returns>ApiResponse of GetPropertyValuesResponse</returns>
         ApiResponse<GetPropertyValuesResponse> GetUserPropertyValuesWithHttpInfo(string userId);
@@ -115,7 +122,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// The returned list can be sorted by full name or email address in ascending or descending order. The number of records to return at a time can also be controlled using the &#x60;page_size&#x60; query string parameter. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="userId">ID of the user to filter by. (optional)</param>
         /// <param name="nextToken">A string to get the next page of results if there are more results. (optional)</param>
@@ -130,7 +137,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// The returned list can be sorted by full name or email address in ascending or descending order. The number of records to return at a time can also be controlled using the &#x60;page_size&#x60; query string parameter. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="userId">ID of the user to filter by. (optional)</param>
         /// <param name="nextToken">A string to get the next page of results if there are more results. (optional)</param>
@@ -144,7 +151,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Refreshes the user&#39;s claims and invalidates the current cache. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The id of the user whose claims needs to be updated.</param>
         /// <returns>SuccessResponse</returns>
         SuccessResponse RefreshUserClaims(string userId);
@@ -155,7 +162,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Refreshes the user&#39;s claims and invalidates the current cache. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The id of the user whose claims needs to be updated.</param>
         /// <returns>ApiResponse of SuccessResponse</returns>
         ApiResponse<SuccessResponse> RefreshUserClaimsWithHttpInfo(string userId);
@@ -165,7 +172,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Update a user record. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The user&#39;s id.</param>
         /// <param name="updateUserRequest">The user to update.</param>
         /// <returns>UpdateUserResponse</returns>
@@ -177,7 +184,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Update a user record. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The user&#39;s id.</param>
         /// <param name="updateUserRequest">The user to update.</param>
         /// <returns>ApiResponse of UpdateUserResponse</returns>
@@ -188,7 +195,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Update user feature flag override.
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The identifier for the user</param>
         /// <param name="featureFlagKey">The identifier for the feature flag</param>
         /// <param name="value">Override value</param>
@@ -201,7 +208,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Update user feature flag override.
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The identifier for the user</param>
         /// <param name="featureFlagKey">The identifier for the feature flag</param>
         /// <param name="value">Override value</param>
@@ -213,7 +220,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Update property values.
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The identifier for the user</param>
         /// <param name="updateOrganizationPropertiesRequest">Properties to update.</param>
         /// <returns>SuccessResponse</returns>
@@ -225,7 +232,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Update property values.
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The identifier for the user</param>
         /// <param name="updateOrganizationPropertiesRequest">Properties to update.</param>
         /// <returns>ApiResponse of SuccessResponse</returns>
@@ -236,7 +243,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Update property value.
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The identifier for the user</param>
         /// <param name="propertyKey">The identifier for the property</param>
         /// <param name="value">The new property value</param>
@@ -249,7 +256,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Update property value.
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The identifier for the user</param>
         /// <param name="propertyKey">The identifier for the property</param>
         /// <param name="value">The new property value</param>
@@ -270,7 +277,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Creates a user record and optionally zero or more identities for the user. An example identity could be the email address of the user. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createUserRequest">The details of the user to create. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateUserResponse</returns>
@@ -282,7 +289,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Creates a user record and optionally zero or more identities for the user. An example identity could be the email address of the user. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createUserRequest">The details of the user to create. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateUserResponse)</returns>
@@ -293,7 +300,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Delete a user record. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The user&#39;s id.</param>
         /// <param name="isDeleteProfile">Delete all data and remove the user&#39;s profile from all of Kinde, including the subscriber list (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -306,7 +313,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Delete a user record. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The user&#39;s id.</param>
         /// <param name="isDeleteProfile">Delete all data and remove the user&#39;s profile from all of Kinde, including the subscriber list (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -318,7 +325,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Retrieve a user record. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The user&#39;s id.</param>
         /// <param name="expand">Specify additional data to retrieve. Use \&quot;organizations\&quot; and/or \&quot;identities\&quot;. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -331,7 +338,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Retrieve a user record. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The user&#39;s id.</param>
         /// <param name="expand">Specify additional data to retrieve. Use \&quot;organizations\&quot; and/or \&quot;identities\&quot;. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -343,7 +350,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Gets properties for an user by ID. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The user&#39;s ID.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetPropertyValuesResponse</returns>
@@ -355,7 +362,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Gets properties for an user by ID. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The user&#39;s ID.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetPropertyValuesResponse)</returns>
@@ -366,7 +373,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// The returned list can be sorted by full name or email address in ascending or descending order. The number of records to return at a time can also be controlled using the &#x60;page_size&#x60; query string parameter. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="userId">ID of the user to filter by. (optional)</param>
         /// <param name="nextToken">A string to get the next page of results if there are more results. (optional)</param>
@@ -382,7 +389,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// The returned list can be sorted by full name or email address in ascending or descending order. The number of records to return at a time can also be controlled using the &#x60;page_size&#x60; query string parameter. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="userId">ID of the user to filter by. (optional)</param>
         /// <param name="nextToken">A string to get the next page of results if there are more results. (optional)</param>
@@ -397,7 +404,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Refreshes the user&#39;s claims and invalidates the current cache. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The id of the user whose claims needs to be updated.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SuccessResponse</returns>
@@ -409,7 +416,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Refreshes the user&#39;s claims and invalidates the current cache. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The id of the user whose claims needs to be updated.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
@@ -420,7 +427,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Update a user record. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The user&#39;s id.</param>
         /// <param name="updateUserRequest">The user to update.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -433,7 +440,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Update a user record. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The user&#39;s id.</param>
         /// <param name="updateUserRequest">The user to update.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -445,7 +452,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Update user feature flag override.
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The identifier for the user</param>
         /// <param name="featureFlagKey">The identifier for the feature flag</param>
         /// <param name="value">Override value</param>
@@ -459,7 +466,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Update user feature flag override.
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The identifier for the user</param>
         /// <param name="featureFlagKey">The identifier for the feature flag</param>
         /// <param name="value">Override value</param>
@@ -472,7 +479,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Update property values.
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The identifier for the user</param>
         /// <param name="updateOrganizationPropertiesRequest">Properties to update.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -485,7 +492,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Update property values.
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The identifier for the user</param>
         /// <param name="updateOrganizationPropertiesRequest">Properties to update.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -497,7 +504,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Update property value.
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The identifier for the user</param>
         /// <param name="propertyKey">The identifier for the property</param>
         /// <param name="value">The new property value</param>
@@ -511,7 +518,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Update property value.
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The identifier for the user</param>
         /// <param name="propertyKey">The identifier for the property</param>
         /// <param name="value">The new property value</param>
@@ -534,7 +541,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
     /// </summary>
     public partial class UsersApi : IDisposable, IUsersApi
     {
-        private ExceptionFactory _exceptionFactory = (name, response) => null;
+        private Kinde.Api.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UsersApi"/> class.
@@ -556,14 +563,14 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <returns></returns>
         public UsersApi(string basePath)
         {
-            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
-                GlobalConfiguration.Instance,
-                new Configuration { BasePath = basePath }
+            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
+                Kinde.Api.Client.GlobalConfiguration.Instance,
+                new Kinde.Api.Client.Configuration { BasePath = basePath }
             );
-            this.ApiClient = new ApiClient(this.Configuration.BasePath);
+            this.ApiClient = new Kinde.Api.Client.ApiClient(this.Configuration.BasePath);
             this.Client =  this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            this.ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -574,18 +581,18 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <param name="configuration">An instance of Configuration.</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <returns></returns>
-        public UsersApi(Configuration configuration)
+        public UsersApi(Kinde.Api.Client.Configuration configuration)
         {
             if (configuration == null) throw new ArgumentNullException("configuration");
 
-            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
-                GlobalConfiguration.Instance,
+            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
+                Kinde.Api.Client.GlobalConfiguration.Instance,
                 configuration
             );
-            this.ApiClient = new ApiClient(this.Configuration.BasePath);
+            this.ApiClient = new Kinde.Api.Client.ApiClient(this.Configuration.BasePath);
             this.Client = this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
+            ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -620,14 +627,14 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         {
             if (client == null) throw new ArgumentNullException("client");
 
-            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
-                GlobalConfiguration.Instance,
-                new Configuration { BasePath = basePath }
+            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
+                Kinde.Api.Client.GlobalConfiguration.Instance,
+                new Kinde.Api.Client.Configuration { BasePath = basePath }
             );
-            this.ApiClient = new ApiClient(client, this.Configuration.BasePath, handler);
+            this.ApiClient = new Kinde.Api.Client.ApiClient(client, this.Configuration.BasePath, handler);
             this.Client =  this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            this.ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -642,19 +649,19 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// Some configuration settings will not be applied without passing an HttpClientHandler.
         /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
         /// </remarks>
-        public UsersApi(HttpClient client, Configuration configuration, HttpClientHandler handler = null)
+        public UsersApi(HttpClient client, Kinde.Api.Client.Configuration configuration, HttpClientHandler handler = null)
         {
             if (configuration == null) throw new ArgumentNullException("configuration");
             if (client == null) throw new ArgumentNullException("client");
 
-            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
-                GlobalConfiguration.Instance,
+            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
+                Kinde.Api.Client.GlobalConfiguration.Instance,
                 configuration
             );
-            this.ApiClient = new ApiClient(client, this.Configuration.BasePath, handler);
+            this.ApiClient = new Kinde.Api.Client.ApiClient(client, this.Configuration.BasePath, handler);
             this.Client = this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
+            ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -665,7 +672,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
         /// <exception cref="ArgumentNullException"></exception>
-        public UsersApi(ISynchronousClient client, IAsynchronousClient asyncClient, IReadableConfiguration configuration)
+        public UsersApi(Kinde.Api.Client.ISynchronousClient client, Kinde.Api.Client.IAsynchronousClient asyncClient, Kinde.Api.Client.IReadableConfiguration configuration)
         {
             if (client == null) throw new ArgumentNullException("client");
             if (asyncClient == null) throw new ArgumentNullException("asyncClient");
@@ -674,7 +681,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
             this.Client = client;
             this.AsynchronousClient = asyncClient;
             this.Configuration = configuration;
-            this.ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -688,17 +695,17 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Holds the ApiClient if created
         /// </summary>
-        public ApiClient ApiClient { get; set; } = null;
+        public Kinde.Api.Client.ApiClient ApiClient { get; set; } = null;
 
         /// <summary>
         /// The client for accessing this underlying API asynchronously.
         /// </summary>
-        public IAsynchronousClient AsynchronousClient { get; set; }
+        public Kinde.Api.Client.IAsynchronousClient AsynchronousClient { get; set; }
 
         /// <summary>
         /// The client for accessing this underlying API synchronously.
         /// </summary>
-        public ISynchronousClient Client { get; set; }
+        public Kinde.Api.Client.ISynchronousClient Client { get; set; }
 
         /// <summary>
         /// Gets the base path of the API client.
@@ -713,12 +720,12 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// Gets or sets the configuration object
         /// </summary>
         /// <value>An instance of the Configuration</value>
-        public IReadableConfiguration Configuration { get; set; }
+        public Kinde.Api.Client.IReadableConfiguration Configuration { get; set; }
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
         /// </summary>
-        public ExceptionFactory ExceptionFactory
+        public Kinde.Api.Client.ExceptionFactory ExceptionFactory
         {
             get
             {
@@ -734,24 +741,24 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Create User Creates a user record and optionally zero or more identities for the user. An example identity could be the email address of the user. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createUserRequest">The details of the user to create. (optional)</param>
         /// <returns>CreateUserResponse</returns>
         public CreateUserResponse CreateUser(CreateUserRequest? createUserRequest = default(CreateUserRequest?))
         {
-            ApiResponse<CreateUserResponse> localVarResponse = CreateUserWithHttpInfo(createUserRequest);
+            Kinde.Api.Client.ApiResponse<CreateUserResponse> localVarResponse = CreateUserWithHttpInfo(createUserRequest);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Create User Creates a user record and optionally zero or more identities for the user. An example identity could be the email address of the user. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createUserRequest">The details of the user to create. (optional)</param>
         /// <returns>ApiResponse of CreateUserResponse</returns>
-        public ApiResponse<CreateUserResponse> CreateUserWithHttpInfo(CreateUserRequest? createUserRequest = default(CreateUserRequest?))
+        public Kinde.Api.Client.ApiResponse<CreateUserResponse> CreateUserWithHttpInfo(CreateUserRequest? createUserRequest = default(CreateUserRequest?))
         {
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/json"
@@ -763,10 +770,10 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
                 "application/json; charset=utf-8"
             };
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.Data = createUserRequest;
@@ -793,27 +800,27 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Create User Creates a user record and optionally zero or more identities for the user. An example identity could be the email address of the user. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createUserRequest">The details of the user to create. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateUserResponse</returns>
         public async System.Threading.Tasks.Task<CreateUserResponse> CreateUserAsync(CreateUserRequest? createUserRequest = default(CreateUserRequest?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            ApiResponse<CreateUserResponse> localVarResponse = await CreateUserWithHttpInfoAsync(createUserRequest, cancellationToken).ConfigureAwait(false);
+            Kinde.Api.Client.ApiResponse<CreateUserResponse> localVarResponse = await CreateUserWithHttpInfoAsync(createUserRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Create User Creates a user record and optionally zero or more identities for the user. An example identity could be the email address of the user. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="createUserRequest">The details of the user to create. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateUserResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<CreateUserResponse>> CreateUserWithHttpInfoAsync(CreateUserRequest? createUserRequest = default(CreateUserRequest?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<CreateUserResponse>> CreateUserWithHttpInfoAsync(CreateUserRequest? createUserRequest = default(CreateUserRequest?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/json"
@@ -826,10 +833,10 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
             };
 
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.Data = createUserRequest;
@@ -857,30 +864,30 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Delete User Delete a user record. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The user&#39;s id.</param>
         /// <param name="isDeleteProfile">Delete all data and remove the user&#39;s profile from all of Kinde, including the subscriber list (optional)</param>
         /// <returns>SuccessResponse</returns>
         public SuccessResponse DeleteUser(string id, bool? isDeleteProfile = default(bool?))
         {
-            ApiResponse<SuccessResponse> localVarResponse = DeleteUserWithHttpInfo(id, isDeleteProfile);
+            Kinde.Api.Client.ApiResponse<SuccessResponse> localVarResponse = DeleteUserWithHttpInfo(id, isDeleteProfile);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Delete User Delete a user record. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The user&#39;s id.</param>
         /// <param name="isDeleteProfile">Delete all data and remove the user&#39;s profile from all of Kinde, including the subscriber list (optional)</param>
         /// <returns>ApiResponse of SuccessResponse</returns>
-        public ApiResponse<SuccessResponse> DeleteUserWithHttpInfo(string id, bool? isDeleteProfile = default(bool?))
+        public Kinde.Api.Client.ApiResponse<SuccessResponse> DeleteUserWithHttpInfo(string id, bool? isDeleteProfile = default(bool?))
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling UsersApi->DeleteUser");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'id' when calling UsersApi->DeleteUser");
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -891,16 +898,16 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
                 "application/json; charset=utf-8"
             };
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "id", id));
+            localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "id", id));
             if (isDeleteProfile != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "is_delete_profile", isDeleteProfile));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "is_delete_profile", isDeleteProfile));
             }
 
             // authentication (kindeBearerAuth) required
@@ -925,33 +932,33 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Delete User Delete a user record. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The user&#39;s id.</param>
         /// <param name="isDeleteProfile">Delete all data and remove the user&#39;s profile from all of Kinde, including the subscriber list (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SuccessResponse</returns>
         public async System.Threading.Tasks.Task<SuccessResponse> DeleteUserAsync(string id, bool? isDeleteProfile = default(bool?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            ApiResponse<SuccessResponse> localVarResponse = await DeleteUserWithHttpInfoAsync(id, isDeleteProfile, cancellationToken).ConfigureAwait(false);
+            Kinde.Api.Client.ApiResponse<SuccessResponse> localVarResponse = await DeleteUserWithHttpInfoAsync(id, isDeleteProfile, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Delete User Delete a user record. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The user&#39;s id.</param>
         /// <param name="isDeleteProfile">Delete all data and remove the user&#39;s profile from all of Kinde, including the subscriber list (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<SuccessResponse>> DeleteUserWithHttpInfoAsync(string id, bool? isDeleteProfile = default(bool?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<SuccessResponse>> DeleteUserWithHttpInfoAsync(string id, bool? isDeleteProfile = default(bool?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling UsersApi->DeleteUser");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'id' when calling UsersApi->DeleteUser");
 
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -963,16 +970,16 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
             };
 
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "id", id));
+            localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "id", id));
             if (isDeleteProfile != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "is_delete_profile", isDeleteProfile));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "is_delete_profile", isDeleteProfile));
             }
 
             // authentication (kindeBearerAuth) required
@@ -998,30 +1005,30 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Get User Retrieve a user record. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The user&#39;s id.</param>
         /// <param name="expand">Specify additional data to retrieve. Use \&quot;organizations\&quot; and/or \&quot;identities\&quot;. (optional)</param>
         /// <returns>User</returns>
         public User GetUserData(string id, string? expand = default(string?))
         {
-            ApiResponse<User> localVarResponse = GetUserDataWithHttpInfo(id, expand);
+            Kinde.Api.Client.ApiResponse<User> localVarResponse = GetUserDataWithHttpInfo(id, expand);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get User Retrieve a user record. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The user&#39;s id.</param>
         /// <param name="expand">Specify additional data to retrieve. Use \&quot;organizations\&quot; and/or \&quot;identities\&quot;. (optional)</param>
         /// <returns>ApiResponse of User</returns>
-        public ApiResponse<User> GetUserDataWithHttpInfo(string id, string? expand = default(string?))
+        public Kinde.Api.Client.ApiResponse<User> GetUserDataWithHttpInfo(string id, string? expand = default(string?))
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling UsersApi->GetUserData");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'id' when calling UsersApi->GetUserData");
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -1032,16 +1039,16 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
                 "application/json; charset=utf-8"
             };
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "id", id));
+            localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "id", id));
             if (expand != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "expand", expand));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "expand", expand));
             }
 
             // authentication (kindeBearerAuth) required
@@ -1066,33 +1073,33 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Get User Retrieve a user record. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The user&#39;s id.</param>
         /// <param name="expand">Specify additional data to retrieve. Use \&quot;organizations\&quot; and/or \&quot;identities\&quot;. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of User</returns>
         public async System.Threading.Tasks.Task<User> GetUserDataAsync(string id, string? expand = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            ApiResponse<User> localVarResponse = await GetUserDataWithHttpInfoAsync(id, expand, cancellationToken).ConfigureAwait(false);
+            Kinde.Api.Client.ApiResponse<User> localVarResponse = await GetUserDataWithHttpInfoAsync(id, expand, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get User Retrieve a user record. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The user&#39;s id.</param>
         /// <param name="expand">Specify additional data to retrieve. Use \&quot;organizations\&quot; and/or \&quot;identities\&quot;. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (User)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<User>> GetUserDataWithHttpInfoAsync(string id, string? expand = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<User>> GetUserDataWithHttpInfoAsync(string id, string? expand = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling UsersApi->GetUserData");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'id' when calling UsersApi->GetUserData");
 
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -1104,16 +1111,16 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
             };
 
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "id", id));
+            localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "id", id));
             if (expand != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "expand", expand));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "expand", expand));
             }
 
             // authentication (kindeBearerAuth) required
@@ -1139,28 +1146,28 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Get property values Gets properties for an user by ID. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The user&#39;s ID.</param>
         /// <returns>GetPropertyValuesResponse</returns>
         public GetPropertyValuesResponse GetUserPropertyValues(string userId)
         {
-            ApiResponse<GetPropertyValuesResponse> localVarResponse = GetUserPropertyValuesWithHttpInfo(userId);
+            Kinde.Api.Client.ApiResponse<GetPropertyValuesResponse> localVarResponse = GetUserPropertyValuesWithHttpInfo(userId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get property values Gets properties for an user by ID. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The user&#39;s ID.</param>
         /// <returns>ApiResponse of GetPropertyValuesResponse</returns>
-        public ApiResponse<GetPropertyValuesResponse> GetUserPropertyValuesWithHttpInfo(string userId)
+        public Kinde.Api.Client.ApiResponse<GetPropertyValuesResponse> GetUserPropertyValuesWithHttpInfo(string userId)
         {
             // verify the required parameter 'userId' is set
             if (userId == null)
-                throw new ApiException(400, "Missing required parameter 'userId' when calling UsersApi->GetUserPropertyValues");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'userId' when calling UsersApi->GetUserPropertyValues");
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -1171,13 +1178,13 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
                 "application/json; charset=utf-8"
             };
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("user_id", ClientUtils.ParameterToString(userId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("user_id", Kinde.Api.Client.ClientUtils.ParameterToString(userId)); // path parameter
 
             // authentication (kindeBearerAuth) required
             // bearer authentication required
@@ -1201,31 +1208,31 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Get property values Gets properties for an user by ID. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The user&#39;s ID.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetPropertyValuesResponse</returns>
         public async System.Threading.Tasks.Task<GetPropertyValuesResponse> GetUserPropertyValuesAsync(string userId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            ApiResponse<GetPropertyValuesResponse> localVarResponse = await GetUserPropertyValuesWithHttpInfoAsync(userId, cancellationToken).ConfigureAwait(false);
+            Kinde.Api.Client.ApiResponse<GetPropertyValuesResponse> localVarResponse = await GetUserPropertyValuesWithHttpInfoAsync(userId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get property values Gets properties for an user by ID. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The user&#39;s ID.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetPropertyValuesResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<GetPropertyValuesResponse>> GetUserPropertyValuesWithHttpInfoAsync(string userId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<GetPropertyValuesResponse>> GetUserPropertyValuesWithHttpInfoAsync(string userId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'userId' is set
             if (userId == null)
-                throw new ApiException(400, "Missing required parameter 'userId' when calling UsersApi->GetUserPropertyValues");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'userId' when calling UsersApi->GetUserPropertyValues");
 
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -1237,13 +1244,13 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
             };
 
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("user_id", ClientUtils.ParameterToString(userId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("user_id", Kinde.Api.Client.ClientUtils.ParameterToString(userId)); // path parameter
 
             // authentication (kindeBearerAuth) required
             // bearer authentication required
@@ -1268,7 +1275,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// List Users The returned list can be sorted by full name or email address in ascending or descending order. The number of records to return at a time can also be controlled using the &#x60;page_size&#x60; query string parameter. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="userId">ID of the user to filter by. (optional)</param>
         /// <param name="nextToken">A string to get the next page of results if there are more results. (optional)</param>
@@ -1277,23 +1284,23 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <returns>UsersResponse</returns>
         public UsersResponse GetUsers(int? pageSize = default(int?), string? userId = default(string?), string? nextToken = default(string?), string? email = default(string?), string? expand = default(string?))
         {
-            ApiResponse<UsersResponse> localVarResponse = GetUsersWithHttpInfo(pageSize, userId, nextToken, email, expand);
+            Kinde.Api.Client.ApiResponse<UsersResponse> localVarResponse = GetUsersWithHttpInfo(pageSize, userId, nextToken, email, expand);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List Users The returned list can be sorted by full name or email address in ascending or descending order. The number of records to return at a time can also be controlled using the &#x60;page_size&#x60; query string parameter. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="userId">ID of the user to filter by. (optional)</param>
         /// <param name="nextToken">A string to get the next page of results if there are more results. (optional)</param>
         /// <param name="email">Filter the results by email address. The query string should be comma separated and url encoded. (optional)</param>
         /// <param name="expand">Specify additional data to retrieve. Use \&quot;organizations\&quot; and/or \&quot;identities\&quot;. (optional)</param>
         /// <returns>ApiResponse of UsersResponse</returns>
-        public ApiResponse<UsersResponse> GetUsersWithHttpInfo(int? pageSize = default(int?), string? userId = default(string?), string? nextToken = default(string?), string? email = default(string?), string? expand = default(string?))
+        public Kinde.Api.Client.ApiResponse<UsersResponse> GetUsersWithHttpInfo(int? pageSize = default(int?), string? userId = default(string?), string? nextToken = default(string?), string? email = default(string?), string? expand = default(string?))
         {
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -1304,31 +1311,31 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
                 "application/json; charset=utf-8"
             };
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             if (pageSize != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page_size", pageSize));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "page_size", pageSize));
             }
             if (userId != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "user_id", userId));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "user_id", userId));
             }
             if (nextToken != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "next_token", nextToken));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "next_token", nextToken));
             }
             if (email != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "email", email));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "email", email));
             }
             if (expand != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "expand", expand));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "expand", expand));
             }
 
             // authentication (kindeBearerAuth) required
@@ -1353,7 +1360,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// List Users The returned list can be sorted by full name or email address in ascending or descending order. The number of records to return at a time can also be controlled using the &#x60;page_size&#x60; query string parameter. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="userId">ID of the user to filter by. (optional)</param>
         /// <param name="nextToken">A string to get the next page of results if there are more results. (optional)</param>
@@ -1363,14 +1370,14 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <returns>Task of UsersResponse</returns>
         public async System.Threading.Tasks.Task<UsersResponse> GetUsersAsync(int? pageSize = default(int?), string? userId = default(string?), string? nextToken = default(string?), string? email = default(string?), string? expand = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            ApiResponse<UsersResponse> localVarResponse = await GetUsersWithHttpInfoAsync(pageSize, userId, nextToken, email, expand, cancellationToken).ConfigureAwait(false);
+            Kinde.Api.Client.ApiResponse<UsersResponse> localVarResponse = await GetUsersWithHttpInfoAsync(pageSize, userId, nextToken, email, expand, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List Users The returned list can be sorted by full name or email address in ascending or descending order. The number of records to return at a time can also be controlled using the &#x60;page_size&#x60; query string parameter. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="userId">ID of the user to filter by. (optional)</param>
         /// <param name="nextToken">A string to get the next page of results if there are more results. (optional)</param>
@@ -1378,10 +1385,10 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <param name="expand">Specify additional data to retrieve. Use \&quot;organizations\&quot; and/or \&quot;identities\&quot;. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UsersResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UsersResponse>> GetUsersWithHttpInfoAsync(int? pageSize = default(int?), string? userId = default(string?), string? nextToken = default(string?), string? email = default(string?), string? expand = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<UsersResponse>> GetUsersWithHttpInfoAsync(int? pageSize = default(int?), string? userId = default(string?), string? nextToken = default(string?), string? email = default(string?), string? expand = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -1393,31 +1400,31 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
             };
 
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             if (pageSize != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page_size", pageSize));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "page_size", pageSize));
             }
             if (userId != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "user_id", userId));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "user_id", userId));
             }
             if (nextToken != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "next_token", nextToken));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "next_token", nextToken));
             }
             if (email != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "email", email));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "email", email));
             }
             if (expand != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "expand", expand));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "expand", expand));
             }
 
             // authentication (kindeBearerAuth) required
@@ -1443,28 +1450,28 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Refresh User Claims and Invalidate Cache Refreshes the user&#39;s claims and invalidates the current cache. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The id of the user whose claims needs to be updated.</param>
         /// <returns>SuccessResponse</returns>
         public SuccessResponse RefreshUserClaims(string userId)
         {
-            ApiResponse<SuccessResponse> localVarResponse = RefreshUserClaimsWithHttpInfo(userId);
+            Kinde.Api.Client.ApiResponse<SuccessResponse> localVarResponse = RefreshUserClaimsWithHttpInfo(userId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Refresh User Claims and Invalidate Cache Refreshes the user&#39;s claims and invalidates the current cache. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The id of the user whose claims needs to be updated.</param>
         /// <returns>ApiResponse of SuccessResponse</returns>
-        public ApiResponse<SuccessResponse> RefreshUserClaimsWithHttpInfo(string userId)
+        public Kinde.Api.Client.ApiResponse<SuccessResponse> RefreshUserClaimsWithHttpInfo(string userId)
         {
             // verify the required parameter 'userId' is set
             if (userId == null)
-                throw new ApiException(400, "Missing required parameter 'userId' when calling UsersApi->RefreshUserClaims");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'userId' when calling UsersApi->RefreshUserClaims");
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -1475,13 +1482,13 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
                 "application/json"
             };
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("user_id", ClientUtils.ParameterToString(userId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("user_id", Kinde.Api.Client.ClientUtils.ParameterToString(userId)); // path parameter
 
             // authentication (kindeBearerAuth) required
             // bearer authentication required
@@ -1505,31 +1512,31 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Refresh User Claims and Invalidate Cache Refreshes the user&#39;s claims and invalidates the current cache. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The id of the user whose claims needs to be updated.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SuccessResponse</returns>
         public async System.Threading.Tasks.Task<SuccessResponse> RefreshUserClaimsAsync(string userId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            ApiResponse<SuccessResponse> localVarResponse = await RefreshUserClaimsWithHttpInfoAsync(userId, cancellationToken).ConfigureAwait(false);
+            Kinde.Api.Client.ApiResponse<SuccessResponse> localVarResponse = await RefreshUserClaimsWithHttpInfoAsync(userId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Refresh User Claims and Invalidate Cache Refreshes the user&#39;s claims and invalidates the current cache. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The id of the user whose claims needs to be updated.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<SuccessResponse>> RefreshUserClaimsWithHttpInfoAsync(string userId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<SuccessResponse>> RefreshUserClaimsWithHttpInfoAsync(string userId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'userId' is set
             if (userId == null)
-                throw new ApiException(400, "Missing required parameter 'userId' when calling UsersApi->RefreshUserClaims");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'userId' when calling UsersApi->RefreshUserClaims");
 
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -1541,13 +1548,13 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
             };
 
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("user_id", ClientUtils.ParameterToString(userId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("user_id", Kinde.Api.Client.ClientUtils.ParameterToString(userId)); // path parameter
 
             // authentication (kindeBearerAuth) required
             // bearer authentication required
@@ -1572,34 +1579,34 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Update User Update a user record. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The user&#39;s id.</param>
         /// <param name="updateUserRequest">The user to update.</param>
         /// <returns>UpdateUserResponse</returns>
         public UpdateUserResponse UpdateUser(string id, UpdateUserRequest updateUserRequest)
         {
-            ApiResponse<UpdateUserResponse> localVarResponse = UpdateUserWithHttpInfo(id, updateUserRequest);
+            Kinde.Api.Client.ApiResponse<UpdateUserResponse> localVarResponse = UpdateUserWithHttpInfo(id, updateUserRequest);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Update User Update a user record. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The user&#39;s id.</param>
         /// <param name="updateUserRequest">The user to update.</param>
         /// <returns>ApiResponse of UpdateUserResponse</returns>
-        public ApiResponse<UpdateUserResponse> UpdateUserWithHttpInfo(string id, UpdateUserRequest updateUserRequest)
+        public Kinde.Api.Client.ApiResponse<UpdateUserResponse> UpdateUserWithHttpInfo(string id, UpdateUserRequest updateUserRequest)
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling UsersApi->UpdateUser");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'id' when calling UsersApi->UpdateUser");
 
             // verify the required parameter 'updateUserRequest' is set
             if (updateUserRequest == null)
-                throw new ApiException(400, "Missing required parameter 'updateUserRequest' when calling UsersApi->UpdateUser");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'updateUserRequest' when calling UsersApi->UpdateUser");
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/json"
@@ -1611,13 +1618,13 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
                 "application/json; charset=utf-8"
             };
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "id", id));
+            localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "id", id));
             localVarRequestOptions.Data = updateUserRequest;
 
             // authentication (kindeBearerAuth) required
@@ -1642,37 +1649,37 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Update User Update a user record. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The user&#39;s id.</param>
         /// <param name="updateUserRequest">The user to update.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UpdateUserResponse</returns>
         public async System.Threading.Tasks.Task<UpdateUserResponse> UpdateUserAsync(string id, UpdateUserRequest updateUserRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            ApiResponse<UpdateUserResponse> localVarResponse = await UpdateUserWithHttpInfoAsync(id, updateUserRequest, cancellationToken).ConfigureAwait(false);
+            Kinde.Api.Client.ApiResponse<UpdateUserResponse> localVarResponse = await UpdateUserWithHttpInfoAsync(id, updateUserRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Update User Update a user record. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="id">The user&#39;s id.</param>
         /// <param name="updateUserRequest">The user to update.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UpdateUserResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<UpdateUserResponse>> UpdateUserWithHttpInfoAsync(string id, UpdateUserRequest updateUserRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<UpdateUserResponse>> UpdateUserWithHttpInfoAsync(string id, UpdateUserRequest updateUserRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'id' is set
             if (id == null)
-                throw new ApiException(400, "Missing required parameter 'id' when calling UsersApi->UpdateUser");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'id' when calling UsersApi->UpdateUser");
 
             // verify the required parameter 'updateUserRequest' is set
             if (updateUserRequest == null)
-                throw new ApiException(400, "Missing required parameter 'updateUserRequest' when calling UsersApi->UpdateUser");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'updateUserRequest' when calling UsersApi->UpdateUser");
 
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/json"
@@ -1685,13 +1692,13 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
             };
 
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "id", id));
+            localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "id", id));
             localVarRequestOptions.Data = updateUserRequest;
 
             // authentication (kindeBearerAuth) required
@@ -1717,40 +1724,40 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Update User Feature Flag Override Update user feature flag override.
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The identifier for the user</param>
         /// <param name="featureFlagKey">The identifier for the feature flag</param>
         /// <param name="value">Override value</param>
         /// <returns>SuccessResponse</returns>
         public SuccessResponse UpdateUserFeatureFlagOverride(string userId, string featureFlagKey, string value)
         {
-            ApiResponse<SuccessResponse> localVarResponse = UpdateUserFeatureFlagOverrideWithHttpInfo(userId, featureFlagKey, value);
+            Kinde.Api.Client.ApiResponse<SuccessResponse> localVarResponse = UpdateUserFeatureFlagOverrideWithHttpInfo(userId, featureFlagKey, value);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Update User Feature Flag Override Update user feature flag override.
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The identifier for the user</param>
         /// <param name="featureFlagKey">The identifier for the feature flag</param>
         /// <param name="value">Override value</param>
         /// <returns>ApiResponse of SuccessResponse</returns>
-        public ApiResponse<SuccessResponse> UpdateUserFeatureFlagOverrideWithHttpInfo(string userId, string featureFlagKey, string value)
+        public Kinde.Api.Client.ApiResponse<SuccessResponse> UpdateUserFeatureFlagOverrideWithHttpInfo(string userId, string featureFlagKey, string value)
         {
             // verify the required parameter 'userId' is set
             if (userId == null)
-                throw new ApiException(400, "Missing required parameter 'userId' when calling UsersApi->UpdateUserFeatureFlagOverride");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'userId' when calling UsersApi->UpdateUserFeatureFlagOverride");
 
             // verify the required parameter 'featureFlagKey' is set
             if (featureFlagKey == null)
-                throw new ApiException(400, "Missing required parameter 'featureFlagKey' when calling UsersApi->UpdateUserFeatureFlagOverride");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'featureFlagKey' when calling UsersApi->UpdateUserFeatureFlagOverride");
 
             // verify the required parameter 'value' is set
             if (value == null)
-                throw new ApiException(400, "Missing required parameter 'value' when calling UsersApi->UpdateUserFeatureFlagOverride");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'value' when calling UsersApi->UpdateUserFeatureFlagOverride");
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -1761,15 +1768,15 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
                 "application/json; charset=utf-8"
             };
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("user_id", ClientUtils.ParameterToString(userId)); // path parameter
-            localVarRequestOptions.PathParameters.Add("feature_flag_key", ClientUtils.ParameterToString(featureFlagKey)); // path parameter
-            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "value", value));
+            localVarRequestOptions.PathParameters.Add("user_id", Kinde.Api.Client.ClientUtils.ParameterToString(userId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("feature_flag_key", Kinde.Api.Client.ClientUtils.ParameterToString(featureFlagKey)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "value", value));
 
             // authentication (kindeBearerAuth) required
             // bearer authentication required
@@ -1793,7 +1800,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Update User Feature Flag Override Update user feature flag override.
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The identifier for the user</param>
         /// <param name="featureFlagKey">The identifier for the feature flag</param>
         /// <param name="value">Override value</param>
@@ -1801,35 +1808,35 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <returns>Task of SuccessResponse</returns>
         public async System.Threading.Tasks.Task<SuccessResponse> UpdateUserFeatureFlagOverrideAsync(string userId, string featureFlagKey, string value, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            ApiResponse<SuccessResponse> localVarResponse = await UpdateUserFeatureFlagOverrideWithHttpInfoAsync(userId, featureFlagKey, value, cancellationToken).ConfigureAwait(false);
+            Kinde.Api.Client.ApiResponse<SuccessResponse> localVarResponse = await UpdateUserFeatureFlagOverrideWithHttpInfoAsync(userId, featureFlagKey, value, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Update User Feature Flag Override Update user feature flag override.
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The identifier for the user</param>
         /// <param name="featureFlagKey">The identifier for the feature flag</param>
         /// <param name="value">Override value</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<SuccessResponse>> UpdateUserFeatureFlagOverrideWithHttpInfoAsync(string userId, string featureFlagKey, string value, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<SuccessResponse>> UpdateUserFeatureFlagOverrideWithHttpInfoAsync(string userId, string featureFlagKey, string value, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'userId' is set
             if (userId == null)
-                throw new ApiException(400, "Missing required parameter 'userId' when calling UsersApi->UpdateUserFeatureFlagOverride");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'userId' when calling UsersApi->UpdateUserFeatureFlagOverride");
 
             // verify the required parameter 'featureFlagKey' is set
             if (featureFlagKey == null)
-                throw new ApiException(400, "Missing required parameter 'featureFlagKey' when calling UsersApi->UpdateUserFeatureFlagOverride");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'featureFlagKey' when calling UsersApi->UpdateUserFeatureFlagOverride");
 
             // verify the required parameter 'value' is set
             if (value == null)
-                throw new ApiException(400, "Missing required parameter 'value' when calling UsersApi->UpdateUserFeatureFlagOverride");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'value' when calling UsersApi->UpdateUserFeatureFlagOverride");
 
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -1841,15 +1848,15 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
             };
 
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("user_id", ClientUtils.ParameterToString(userId)); // path parameter
-            localVarRequestOptions.PathParameters.Add("feature_flag_key", ClientUtils.ParameterToString(featureFlagKey)); // path parameter
-            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "value", value));
+            localVarRequestOptions.PathParameters.Add("user_id", Kinde.Api.Client.ClientUtils.ParameterToString(userId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("feature_flag_key", Kinde.Api.Client.ClientUtils.ParameterToString(featureFlagKey)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "value", value));
 
             // authentication (kindeBearerAuth) required
             // bearer authentication required
@@ -1874,34 +1881,34 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Update Property values Update property values.
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The identifier for the user</param>
         /// <param name="updateOrganizationPropertiesRequest">Properties to update.</param>
         /// <returns>SuccessResponse</returns>
         public SuccessResponse UpdateUserProperties(string userId, UpdateOrganizationPropertiesRequest updateOrganizationPropertiesRequest)
         {
-            ApiResponse<SuccessResponse> localVarResponse = UpdateUserPropertiesWithHttpInfo(userId, updateOrganizationPropertiesRequest);
+            Kinde.Api.Client.ApiResponse<SuccessResponse> localVarResponse = UpdateUserPropertiesWithHttpInfo(userId, updateOrganizationPropertiesRequest);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Update Property values Update property values.
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The identifier for the user</param>
         /// <param name="updateOrganizationPropertiesRequest">Properties to update.</param>
         /// <returns>ApiResponse of SuccessResponse</returns>
-        public ApiResponse<SuccessResponse> UpdateUserPropertiesWithHttpInfo(string userId, UpdateOrganizationPropertiesRequest updateOrganizationPropertiesRequest)
+        public Kinde.Api.Client.ApiResponse<SuccessResponse> UpdateUserPropertiesWithHttpInfo(string userId, UpdateOrganizationPropertiesRequest updateOrganizationPropertiesRequest)
         {
             // verify the required parameter 'userId' is set
             if (userId == null)
-                throw new ApiException(400, "Missing required parameter 'userId' when calling UsersApi->UpdateUserProperties");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'userId' when calling UsersApi->UpdateUserProperties");
 
             // verify the required parameter 'updateOrganizationPropertiesRequest' is set
             if (updateOrganizationPropertiesRequest == null)
-                throw new ApiException(400, "Missing required parameter 'updateOrganizationPropertiesRequest' when calling UsersApi->UpdateUserProperties");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'updateOrganizationPropertiesRequest' when calling UsersApi->UpdateUserProperties");
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/json"
@@ -1913,13 +1920,13 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
                 "application/json; charset=utf-8"
             };
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("user_id", ClientUtils.ParameterToString(userId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("user_id", Kinde.Api.Client.ClientUtils.ParameterToString(userId)); // path parameter
             localVarRequestOptions.Data = updateOrganizationPropertiesRequest;
 
             // authentication (kindeBearerAuth) required
@@ -1930,7 +1937,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Put<SuccessResponse>("/api/v1/users/{user_id}/properties", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Patch<SuccessResponse>("/api/v1/users/{user_id}/properties", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -1944,37 +1951,37 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Update Property values Update property values.
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The identifier for the user</param>
         /// <param name="updateOrganizationPropertiesRequest">Properties to update.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SuccessResponse</returns>
         public async System.Threading.Tasks.Task<SuccessResponse> UpdateUserPropertiesAsync(string userId, UpdateOrganizationPropertiesRequest updateOrganizationPropertiesRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            ApiResponse<SuccessResponse> localVarResponse = await UpdateUserPropertiesWithHttpInfoAsync(userId, updateOrganizationPropertiesRequest, cancellationToken).ConfigureAwait(false);
+            Kinde.Api.Client.ApiResponse<SuccessResponse> localVarResponse = await UpdateUserPropertiesWithHttpInfoAsync(userId, updateOrganizationPropertiesRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Update Property values Update property values.
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The identifier for the user</param>
         /// <param name="updateOrganizationPropertiesRequest">Properties to update.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<SuccessResponse>> UpdateUserPropertiesWithHttpInfoAsync(string userId, UpdateOrganizationPropertiesRequest updateOrganizationPropertiesRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<SuccessResponse>> UpdateUserPropertiesWithHttpInfoAsync(string userId, UpdateOrganizationPropertiesRequest updateOrganizationPropertiesRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'userId' is set
             if (userId == null)
-                throw new ApiException(400, "Missing required parameter 'userId' when calling UsersApi->UpdateUserProperties");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'userId' when calling UsersApi->UpdateUserProperties");
 
             // verify the required parameter 'updateOrganizationPropertiesRequest' is set
             if (updateOrganizationPropertiesRequest == null)
-                throw new ApiException(400, "Missing required parameter 'updateOrganizationPropertiesRequest' when calling UsersApi->UpdateUserProperties");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'updateOrganizationPropertiesRequest' when calling UsersApi->UpdateUserProperties");
 
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/json"
@@ -1987,13 +1994,13 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
             };
 
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("user_id", ClientUtils.ParameterToString(userId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("user_id", Kinde.Api.Client.ClientUtils.ParameterToString(userId)); // path parameter
             localVarRequestOptions.Data = updateOrganizationPropertiesRequest;
 
             // authentication (kindeBearerAuth) required
@@ -2005,7 +2012,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PutAsync<SuccessResponse>("/api/v1/users/{user_id}/properties", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PatchAsync<SuccessResponse>("/api/v1/users/{user_id}/properties", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
@@ -2019,40 +2026,40 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Update Property value Update property value.
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The identifier for the user</param>
         /// <param name="propertyKey">The identifier for the property</param>
         /// <param name="value">The new property value</param>
         /// <returns>SuccessResponse</returns>
         public SuccessResponse UpdateUserProperty(string userId, string propertyKey, string value)
         {
-            ApiResponse<SuccessResponse> localVarResponse = UpdateUserPropertyWithHttpInfo(userId, propertyKey, value);
+            Kinde.Api.Client.ApiResponse<SuccessResponse> localVarResponse = UpdateUserPropertyWithHttpInfo(userId, propertyKey, value);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Update Property value Update property value.
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The identifier for the user</param>
         /// <param name="propertyKey">The identifier for the property</param>
         /// <param name="value">The new property value</param>
         /// <returns>ApiResponse of SuccessResponse</returns>
-        public ApiResponse<SuccessResponse> UpdateUserPropertyWithHttpInfo(string userId, string propertyKey, string value)
+        public Kinde.Api.Client.ApiResponse<SuccessResponse> UpdateUserPropertyWithHttpInfo(string userId, string propertyKey, string value)
         {
             // verify the required parameter 'userId' is set
             if (userId == null)
-                throw new ApiException(400, "Missing required parameter 'userId' when calling UsersApi->UpdateUserProperty");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'userId' when calling UsersApi->UpdateUserProperty");
 
             // verify the required parameter 'propertyKey' is set
             if (propertyKey == null)
-                throw new ApiException(400, "Missing required parameter 'propertyKey' when calling UsersApi->UpdateUserProperty");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'propertyKey' when calling UsersApi->UpdateUserProperty");
 
             // verify the required parameter 'value' is set
             if (value == null)
-                throw new ApiException(400, "Missing required parameter 'value' when calling UsersApi->UpdateUserProperty");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'value' when calling UsersApi->UpdateUserProperty");
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -2063,15 +2070,15 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
                 "application/json; charset=utf-8"
             };
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("user_id", ClientUtils.ParameterToString(userId)); // path parameter
-            localVarRequestOptions.PathParameters.Add("property_key", ClientUtils.ParameterToString(propertyKey)); // path parameter
-            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "value", value));
+            localVarRequestOptions.PathParameters.Add("user_id", Kinde.Api.Client.ClientUtils.ParameterToString(userId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("property_key", Kinde.Api.Client.ClientUtils.ParameterToString(propertyKey)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "value", value));
 
             // authentication (kindeBearerAuth) required
             // bearer authentication required
@@ -2081,7 +2088,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Patch<SuccessResponse>("/api/v1/users/{user_id}/properties/{property_key}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Put<SuccessResponse>("/api/v1/users/{user_id}/properties/{property_key}", localVarRequestOptions, this.Configuration);
 
             if (this.ExceptionFactory != null)
             {
@@ -2095,7 +2102,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Update Property value Update property value.
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The identifier for the user</param>
         /// <param name="propertyKey">The identifier for the property</param>
         /// <param name="value">The new property value</param>
@@ -2103,35 +2110,35 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <returns>Task of SuccessResponse</returns>
         public async System.Threading.Tasks.Task<SuccessResponse> UpdateUserPropertyAsync(string userId, string propertyKey, string value, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            ApiResponse<SuccessResponse> localVarResponse = await UpdateUserPropertyWithHttpInfoAsync(userId, propertyKey, value, cancellationToken).ConfigureAwait(false);
+            Kinde.Api.Client.ApiResponse<SuccessResponse> localVarResponse = await UpdateUserPropertyWithHttpInfoAsync(userId, propertyKey, value, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Update Property value Update property value.
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="userId">The identifier for the user</param>
         /// <param name="propertyKey">The identifier for the property</param>
         /// <param name="value">The new property value</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<SuccessResponse>> UpdateUserPropertyWithHttpInfoAsync(string userId, string propertyKey, string value, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<SuccessResponse>> UpdateUserPropertyWithHttpInfoAsync(string userId, string propertyKey, string value, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'userId' is set
             if (userId == null)
-                throw new ApiException(400, "Missing required parameter 'userId' when calling UsersApi->UpdateUserProperty");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'userId' when calling UsersApi->UpdateUserProperty");
 
             // verify the required parameter 'propertyKey' is set
             if (propertyKey == null)
-                throw new ApiException(400, "Missing required parameter 'propertyKey' when calling UsersApi->UpdateUserProperty");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'propertyKey' when calling UsersApi->UpdateUserProperty");
 
             // verify the required parameter 'value' is set
             if (value == null)
-                throw new ApiException(400, "Missing required parameter 'value' when calling UsersApi->UpdateUserProperty");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'value' when calling UsersApi->UpdateUserProperty");
 
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -2143,15 +2150,15 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
             };
 
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("user_id", ClientUtils.ParameterToString(userId)); // path parameter
-            localVarRequestOptions.PathParameters.Add("property_key", ClientUtils.ParameterToString(propertyKey)); // path parameter
-            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "value", value));
+            localVarRequestOptions.PathParameters.Add("user_id", Kinde.Api.Client.ClientUtils.ParameterToString(userId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("property_key", Kinde.Api.Client.ClientUtils.ParameterToString(propertyKey)); // path parameter
+            localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "value", value));
 
             // authentication (kindeBearerAuth) required
             // bearer authentication required
@@ -2162,7 +2169,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
 
             // make the HTTP request
 
-            var localVarResponse = await this.AsynchronousClient.PatchAsync<SuccessResponse>("/api/v1/users/{user_id}/properties/{property_key}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.PutAsync<SuccessResponse>("/api/v1/users/{user_id}/properties/{property_key}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {

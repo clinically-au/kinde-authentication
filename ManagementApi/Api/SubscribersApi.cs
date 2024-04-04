@@ -9,10 +9,17 @@
  */
 
 
-using Clinically.Kinde.Authentication.ManagementApi.Client;
-using Clinically.Kinde.Authentication.ManagementApi.Model;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Mime;
+using Kinde.Api.Client;
+using Kinde.Api.Model;
 
-namespace Clinically.Kinde.Authentication.ManagementApi.Api
+namespace Kinde.Api.Api
 {
 
     /// <summary>
@@ -27,7 +34,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Create subscriber.
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="firstName">Subscriber&#39;s first name.</param>
         /// <param name="lastName">Subscriber&#39;s last name.</param>
         /// <param name="email">The email address of the subscriber.</param>
@@ -40,7 +47,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Create subscriber.
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="firstName">Subscriber&#39;s first name.</param>
         /// <param name="lastName">Subscriber&#39;s last name.</param>
         /// <param name="email">The email address of the subscriber.</param>
@@ -52,7 +59,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Retrieve a subscriber record. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="subscriberId">The subscriber&#39;s id.</param>
         /// <returns>GetSubscriberResponse</returns>
         GetSubscriberResponse GetSubscriber(string subscriberId);
@@ -63,7 +70,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Retrieve a subscriber record. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="subscriberId">The subscriber&#39;s id.</param>
         /// <returns>ApiResponse of GetSubscriberResponse</returns>
         ApiResponse<GetSubscriberResponse> GetSubscriberWithHttpInfo(string subscriberId);
@@ -73,7 +80,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// The returned list can be sorted by full name or email address in ascending or descending order. The number of records to return at a time can also be controlled using the &#x60;page_size&#x60; query string parameter. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sort">Field and order to sort the result by. (optional)</param>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="nextToken">A string to get the next page of results if there are more results. (optional)</param>
@@ -86,7 +93,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// The returned list can be sorted by full name or email address in ascending or descending order. The number of records to return at a time can also be controlled using the &#x60;page_size&#x60; query string parameter. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sort">Field and order to sort the result by. (optional)</param>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="nextToken">A string to get the next page of results if there are more results. (optional)</param>
@@ -107,7 +114,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Create subscriber.
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="firstName">Subscriber&#39;s first name.</param>
         /// <param name="lastName">Subscriber&#39;s last name.</param>
         /// <param name="email">The email address of the subscriber.</param>
@@ -121,7 +128,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Create subscriber.
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="firstName">Subscriber&#39;s first name.</param>
         /// <param name="lastName">Subscriber&#39;s last name.</param>
         /// <param name="email">The email address of the subscriber.</param>
@@ -134,7 +141,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Retrieve a subscriber record. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="subscriberId">The subscriber&#39;s id.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetSubscriberResponse</returns>
@@ -146,7 +153,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Retrieve a subscriber record. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="subscriberId">The subscriber&#39;s id.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetSubscriberResponse)</returns>
@@ -157,7 +164,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// The returned list can be sorted by full name or email address in ascending or descending order. The number of records to return at a time can also be controlled using the &#x60;page_size&#x60; query string parameter. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sort">Field and order to sort the result by. (optional)</param>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="nextToken">A string to get the next page of results if there are more results. (optional)</param>
@@ -171,7 +178,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// The returned list can be sorted by full name or email address in ascending or descending order. The number of records to return at a time can also be controlled using the &#x60;page_size&#x60; query string parameter. 
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sort">Field and order to sort the result by. (optional)</param>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="nextToken">A string to get the next page of results if there are more results. (optional)</param>
@@ -194,7 +201,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
     /// </summary>
     public partial class SubscribersApi : IDisposable, ISubscribersApi
     {
-        private ExceptionFactory _exceptionFactory = (name, response) => null;
+        private Kinde.Api.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SubscribersApi"/> class.
@@ -216,14 +223,14 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <returns></returns>
         public SubscribersApi(string basePath)
         {
-            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
-                GlobalConfiguration.Instance,
-                new Configuration { BasePath = basePath }
+            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
+                Kinde.Api.Client.GlobalConfiguration.Instance,
+                new Kinde.Api.Client.Configuration { BasePath = basePath }
             );
-            this.ApiClient = new ApiClient(this.Configuration.BasePath);
+            this.ApiClient = new Kinde.Api.Client.ApiClient(this.Configuration.BasePath);
             this.Client =  this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            this.ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -234,18 +241,18 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <param name="configuration">An instance of Configuration.</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <returns></returns>
-        public SubscribersApi(Configuration configuration)
+        public SubscribersApi(Kinde.Api.Client.Configuration configuration)
         {
             if (configuration == null) throw new ArgumentNullException("configuration");
 
-            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
-                GlobalConfiguration.Instance,
+            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
+                Kinde.Api.Client.GlobalConfiguration.Instance,
                 configuration
             );
-            this.ApiClient = new ApiClient(this.Configuration.BasePath);
+            this.ApiClient = new Kinde.Api.Client.ApiClient(this.Configuration.BasePath);
             this.Client = this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
+            ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -280,14 +287,14 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         {
             if (client == null) throw new ArgumentNullException("client");
 
-            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
-                GlobalConfiguration.Instance,
-                new Configuration { BasePath = basePath }
+            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
+                Kinde.Api.Client.GlobalConfiguration.Instance,
+                new Kinde.Api.Client.Configuration { BasePath = basePath }
             );
-            this.ApiClient = new ApiClient(client, this.Configuration.BasePath, handler);
+            this.ApiClient = new Kinde.Api.Client.ApiClient(client, this.Configuration.BasePath, handler);
             this.Client =  this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            this.ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -302,19 +309,19 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// Some configuration settings will not be applied without passing an HttpClientHandler.
         /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
         /// </remarks>
-        public SubscribersApi(HttpClient client, Configuration configuration, HttpClientHandler handler = null)
+        public SubscribersApi(HttpClient client, Kinde.Api.Client.Configuration configuration, HttpClientHandler handler = null)
         {
             if (configuration == null) throw new ArgumentNullException("configuration");
             if (client == null) throw new ArgumentNullException("client");
 
-            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
-                GlobalConfiguration.Instance,
+            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
+                Kinde.Api.Client.GlobalConfiguration.Instance,
                 configuration
             );
-            this.ApiClient = new ApiClient(client, this.Configuration.BasePath, handler);
+            this.ApiClient = new Kinde.Api.Client.ApiClient(client, this.Configuration.BasePath, handler);
             this.Client = this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
+            ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -325,7 +332,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
         /// <exception cref="ArgumentNullException"></exception>
-        public SubscribersApi(ISynchronousClient client, IAsynchronousClient asyncClient, IReadableConfiguration configuration)
+        public SubscribersApi(Kinde.Api.Client.ISynchronousClient client, Kinde.Api.Client.IAsynchronousClient asyncClient, Kinde.Api.Client.IReadableConfiguration configuration)
         {
             if (client == null) throw new ArgumentNullException("client");
             if (asyncClient == null) throw new ArgumentNullException("asyncClient");
@@ -334,7 +341,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
             this.Client = client;
             this.AsynchronousClient = asyncClient;
             this.Configuration = configuration;
-            this.ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -348,17 +355,17 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Holds the ApiClient if created
         /// </summary>
-        public ApiClient ApiClient { get; set; } = null;
+        public Kinde.Api.Client.ApiClient ApiClient { get; set; } = null;
 
         /// <summary>
         /// The client for accessing this underlying API asynchronously.
         /// </summary>
-        public IAsynchronousClient AsynchronousClient { get; set; }
+        public Kinde.Api.Client.IAsynchronousClient AsynchronousClient { get; set; }
 
         /// <summary>
         /// The client for accessing this underlying API synchronously.
         /// </summary>
-        public ISynchronousClient Client { get; set; }
+        public Kinde.Api.Client.ISynchronousClient Client { get; set; }
 
         /// <summary>
         /// Gets the base path of the API client.
@@ -373,12 +380,12 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// Gets or sets the configuration object
         /// </summary>
         /// <value>An instance of the Configuration</value>
-        public IReadableConfiguration Configuration { get; set; }
+        public Kinde.Api.Client.IReadableConfiguration Configuration { get; set; }
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
         /// </summary>
-        public ExceptionFactory ExceptionFactory
+        public Kinde.Api.Client.ExceptionFactory ExceptionFactory
         {
             get
             {
@@ -394,40 +401,40 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Create Subscriber Create subscriber.
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="firstName">Subscriber&#39;s first name.</param>
         /// <param name="lastName">Subscriber&#39;s last name.</param>
         /// <param name="email">The email address of the subscriber.</param>
         /// <returns>CreateSubscriberSuccessResponse</returns>
         public CreateSubscriberSuccessResponse CreateSubscriber(string firstName, string lastName, string email)
         {
-            ApiResponse<CreateSubscriberSuccessResponse> localVarResponse = CreateSubscriberWithHttpInfo(firstName, lastName, email);
+            Kinde.Api.Client.ApiResponse<CreateSubscriberSuccessResponse> localVarResponse = CreateSubscriberWithHttpInfo(firstName, lastName, email);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Create Subscriber Create subscriber.
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="firstName">Subscriber&#39;s first name.</param>
         /// <param name="lastName">Subscriber&#39;s last name.</param>
         /// <param name="email">The email address of the subscriber.</param>
         /// <returns>ApiResponse of CreateSubscriberSuccessResponse</returns>
-        public ApiResponse<CreateSubscriberSuccessResponse> CreateSubscriberWithHttpInfo(string firstName, string lastName, string email)
+        public Kinde.Api.Client.ApiResponse<CreateSubscriberSuccessResponse> CreateSubscriberWithHttpInfo(string firstName, string lastName, string email)
         {
             // verify the required parameter 'firstName' is set
             if (firstName == null)
-                throw new ApiException(400, "Missing required parameter 'firstName' when calling SubscribersApi->CreateSubscriber");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'firstName' when calling SubscribersApi->CreateSubscriber");
 
             // verify the required parameter 'lastName' is set
             if (lastName == null)
-                throw new ApiException(400, "Missing required parameter 'lastName' when calling SubscribersApi->CreateSubscriber");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'lastName' when calling SubscribersApi->CreateSubscriber");
 
             // verify the required parameter 'email' is set
             if (email == null)
-                throw new ApiException(400, "Missing required parameter 'email' when calling SubscribersApi->CreateSubscriber");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'email' when calling SubscribersApi->CreateSubscriber");
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -437,15 +444,15 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
                 "application/json; charset=utf-8"
             };
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "first_name", firstName));
-            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "last_name", lastName));
-            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "email", email));
+            localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "first_name", firstName));
+            localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "last_name", lastName));
+            localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "email", email));
 
             // authentication (kindeBearerAuth) required
             // bearer authentication required
@@ -469,7 +476,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Create Subscriber Create subscriber.
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="firstName">Subscriber&#39;s first name.</param>
         /// <param name="lastName">Subscriber&#39;s last name.</param>
         /// <param name="email">The email address of the subscriber.</param>
@@ -477,35 +484,35 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <returns>Task of CreateSubscriberSuccessResponse</returns>
         public async System.Threading.Tasks.Task<CreateSubscriberSuccessResponse> CreateSubscriberAsync(string firstName, string lastName, string email, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            ApiResponse<CreateSubscriberSuccessResponse> localVarResponse = await CreateSubscriberWithHttpInfoAsync(firstName, lastName, email, cancellationToken).ConfigureAwait(false);
+            Kinde.Api.Client.ApiResponse<CreateSubscriberSuccessResponse> localVarResponse = await CreateSubscriberWithHttpInfoAsync(firstName, lastName, email, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Create Subscriber Create subscriber.
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="firstName">Subscriber&#39;s first name.</param>
         /// <param name="lastName">Subscriber&#39;s last name.</param>
         /// <param name="email">The email address of the subscriber.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateSubscriberSuccessResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<CreateSubscriberSuccessResponse>> CreateSubscriberWithHttpInfoAsync(string firstName, string lastName, string email, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<CreateSubscriberSuccessResponse>> CreateSubscriberWithHttpInfoAsync(string firstName, string lastName, string email, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'firstName' is set
             if (firstName == null)
-                throw new ApiException(400, "Missing required parameter 'firstName' when calling SubscribersApi->CreateSubscriber");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'firstName' when calling SubscribersApi->CreateSubscriber");
 
             // verify the required parameter 'lastName' is set
             if (lastName == null)
-                throw new ApiException(400, "Missing required parameter 'lastName' when calling SubscribersApi->CreateSubscriber");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'lastName' when calling SubscribersApi->CreateSubscriber");
 
             // verify the required parameter 'email' is set
             if (email == null)
-                throw new ApiException(400, "Missing required parameter 'email' when calling SubscribersApi->CreateSubscriber");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'email' when calling SubscribersApi->CreateSubscriber");
 
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -516,15 +523,15 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
             };
 
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "first_name", firstName));
-            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "last_name", lastName));
-            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "email", email));
+            localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "first_name", firstName));
+            localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "last_name", lastName));
+            localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "email", email));
 
             // authentication (kindeBearerAuth) required
             // bearer authentication required
@@ -549,28 +556,28 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Get Subscriber Retrieve a subscriber record. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="subscriberId">The subscriber&#39;s id.</param>
         /// <returns>GetSubscriberResponse</returns>
         public GetSubscriberResponse GetSubscriber(string subscriberId)
         {
-            ApiResponse<GetSubscriberResponse> localVarResponse = GetSubscriberWithHttpInfo(subscriberId);
+            Kinde.Api.Client.ApiResponse<GetSubscriberResponse> localVarResponse = GetSubscriberWithHttpInfo(subscriberId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get Subscriber Retrieve a subscriber record. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="subscriberId">The subscriber&#39;s id.</param>
         /// <returns>ApiResponse of GetSubscriberResponse</returns>
-        public ApiResponse<GetSubscriberResponse> GetSubscriberWithHttpInfo(string subscriberId)
+        public Kinde.Api.Client.ApiResponse<GetSubscriberResponse> GetSubscriberWithHttpInfo(string subscriberId)
         {
             // verify the required parameter 'subscriberId' is set
             if (subscriberId == null)
-                throw new ApiException(400, "Missing required parameter 'subscriberId' when calling SubscribersApi->GetSubscriber");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'subscriberId' when calling SubscribersApi->GetSubscriber");
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -580,13 +587,13 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
                 "application/json; charset=utf-8"
             };
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("subscriber_id", ClientUtils.ParameterToString(subscriberId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("subscriber_id", Kinde.Api.Client.ClientUtils.ParameterToString(subscriberId)); // path parameter
 
             // authentication (kindeBearerAuth) required
             // bearer authentication required
@@ -610,31 +617,31 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Get Subscriber Retrieve a subscriber record. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="subscriberId">The subscriber&#39;s id.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetSubscriberResponse</returns>
         public async System.Threading.Tasks.Task<GetSubscriberResponse> GetSubscriberAsync(string subscriberId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            ApiResponse<GetSubscriberResponse> localVarResponse = await GetSubscriberWithHttpInfoAsync(subscriberId, cancellationToken).ConfigureAwait(false);
+            Kinde.Api.Client.ApiResponse<GetSubscriberResponse> localVarResponse = await GetSubscriberWithHttpInfoAsync(subscriberId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get Subscriber Retrieve a subscriber record. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="subscriberId">The subscriber&#39;s id.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetSubscriberResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<GetSubscriberResponse>> GetSubscriberWithHttpInfoAsync(string subscriberId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<GetSubscriberResponse>> GetSubscriberWithHttpInfoAsync(string subscriberId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'subscriberId' is set
             if (subscriberId == null)
-                throw new ApiException(400, "Missing required parameter 'subscriberId' when calling SubscribersApi->GetSubscriber");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'subscriberId' when calling SubscribersApi->GetSubscriber");
 
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -645,13 +652,13 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
             };
 
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("subscriber_id", ClientUtils.ParameterToString(subscriberId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("subscriber_id", Kinde.Api.Client.ClientUtils.ParameterToString(subscriberId)); // path parameter
 
             // authentication (kindeBearerAuth) required
             // bearer authentication required
@@ -676,28 +683,28 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// List Subscribers The returned list can be sorted by full name or email address in ascending or descending order. The number of records to return at a time can also be controlled using the &#x60;page_size&#x60; query string parameter. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sort">Field and order to sort the result by. (optional)</param>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="nextToken">A string to get the next page of results if there are more results. (optional)</param>
         /// <returns>GetSubscribersResponse</returns>
         public GetSubscribersResponse GetSubscribers(string? sort = default(string?), int? pageSize = default(int?), string? nextToken = default(string?))
         {
-            ApiResponse<GetSubscribersResponse> localVarResponse = GetSubscribersWithHttpInfo(sort, pageSize, nextToken);
+            Kinde.Api.Client.ApiResponse<GetSubscribersResponse> localVarResponse = GetSubscribersWithHttpInfo(sort, pageSize, nextToken);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List Subscribers The returned list can be sorted by full name or email address in ascending or descending order. The number of records to return at a time can also be controlled using the &#x60;page_size&#x60; query string parameter. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sort">Field and order to sort the result by. (optional)</param>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="nextToken">A string to get the next page of results if there are more results. (optional)</param>
         /// <returns>ApiResponse of GetSubscribersResponse</returns>
-        public ApiResponse<GetSubscribersResponse> GetSubscribersWithHttpInfo(string? sort = default(string?), int? pageSize = default(int?), string? nextToken = default(string?))
+        public Kinde.Api.Client.ApiResponse<GetSubscribersResponse> GetSubscribersWithHttpInfo(string? sort = default(string?), int? pageSize = default(int?), string? nextToken = default(string?))
         {
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -707,23 +714,23 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
                 "application/json; charset=utf-8"
             };
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             if (sort != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "sort", sort));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "sort", sort));
             }
             if (pageSize != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page_size", pageSize));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "page_size", pageSize));
             }
             if (nextToken != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "next_token", nextToken));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "next_token", nextToken));
             }
 
             // authentication (kindeBearerAuth) required
@@ -748,7 +755,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// List Subscribers The returned list can be sorted by full name or email address in ascending or descending order. The number of records to return at a time can also be controlled using the &#x60;page_size&#x60; query string parameter. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sort">Field and order to sort the result by. (optional)</param>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="nextToken">A string to get the next page of results if there are more results. (optional)</param>
@@ -756,23 +763,23 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <returns>Task of GetSubscribersResponse</returns>
         public async System.Threading.Tasks.Task<GetSubscribersResponse> GetSubscribersAsync(string? sort = default(string?), int? pageSize = default(int?), string? nextToken = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            ApiResponse<GetSubscribersResponse> localVarResponse = await GetSubscribersWithHttpInfoAsync(sort, pageSize, nextToken, cancellationToken).ConfigureAwait(false);
+            Kinde.Api.Client.ApiResponse<GetSubscribersResponse> localVarResponse = await GetSubscribersWithHttpInfoAsync(sort, pageSize, nextToken, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List Subscribers The returned list can be sorted by full name or email address in ascending or descending order. The number of records to return at a time can also be controlled using the &#x60;page_size&#x60; query string parameter. 
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="sort">Field and order to sort the result by. (optional)</param>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="nextToken">A string to get the next page of results if there are more results. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetSubscribersResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<GetSubscribersResponse>> GetSubscribersWithHttpInfoAsync(string? sort = default(string?), int? pageSize = default(int?), string? nextToken = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<GetSubscribersResponse>> GetSubscribersWithHttpInfoAsync(string? sort = default(string?), int? pageSize = default(int?), string? nextToken = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -783,23 +790,23 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
             };
 
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             if (sort != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "sort", sort));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "sort", sort));
             }
             if (pageSize != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page_size", pageSize));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "page_size", pageSize));
             }
             if (nextToken != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "next_token", nextToken));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "next_token", nextToken));
             }
 
             // authentication (kindeBearerAuth) required

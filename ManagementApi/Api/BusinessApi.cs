@@ -9,10 +9,17 @@
  */
 
 
-using Clinically.Kinde.Authentication.ManagementApi.Client;
-using Clinically.Kinde.Authentication.ManagementApi.Model;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Mime;
+using Kinde.Api.Client;
+using Kinde.Api.Model;
 
-namespace Clinically.Kinde.Authentication.ManagementApi.Api
+namespace Kinde.Api.Api
 {
 
     /// <summary>
@@ -27,7 +34,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Get your business details.
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">Business code.</param>
         /// <param name="name">Business name.</param>
         /// <param name="email">Email associated with business.</param>
@@ -45,7 +52,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Get your business details.
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">Business code.</param>
         /// <param name="name">Business name.</param>
         /// <param name="email">Email associated with business.</param>
@@ -62,7 +69,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Update business details.
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="businessName">Business name.</param>
         /// <param name="primaryEmail">Email associated with business.</param>
         /// <param name="primaryPhone">Phone number associated with business. (optional)</param>
@@ -82,7 +89,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Update business details.
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="businessName">Business name.</param>
         /// <param name="primaryEmail">Email associated with business.</param>
         /// <param name="primaryPhone">Phone number associated with business. (optional)</param>
@@ -110,7 +117,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Get your business details.
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">Business code.</param>
         /// <param name="name">Business name.</param>
         /// <param name="email">Email associated with business.</param>
@@ -129,7 +136,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Get your business details.
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">Business code.</param>
         /// <param name="name">Business name.</param>
         /// <param name="email">Email associated with business.</param>
@@ -147,7 +154,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Update business details.
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="businessName">Business name.</param>
         /// <param name="primaryEmail">Email associated with business.</param>
         /// <param name="primaryPhone">Phone number associated with business. (optional)</param>
@@ -168,7 +175,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <remarks>
         /// Update business details.
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="businessName">Business name.</param>
         /// <param name="primaryEmail">Email associated with business.</param>
         /// <param name="primaryPhone">Phone number associated with business. (optional)</param>
@@ -198,7 +205,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
     /// </summary>
     public partial class BusinessApi : IDisposable, IBusinessApi
     {
-        private ExceptionFactory _exceptionFactory = (name, response) => null;
+        private Kinde.Api.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BusinessApi"/> class.
@@ -220,14 +227,14 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <returns></returns>
         public BusinessApi(string basePath)
         {
-            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
-                GlobalConfiguration.Instance,
-                new Configuration { BasePath = basePath }
+            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
+                Kinde.Api.Client.GlobalConfiguration.Instance,
+                new Kinde.Api.Client.Configuration { BasePath = basePath }
             );
-            this.ApiClient = new ApiClient(this.Configuration.BasePath);
+            this.ApiClient = new Kinde.Api.Client.ApiClient(this.Configuration.BasePath);
             this.Client =  this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            this.ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -238,18 +245,18 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <param name="configuration">An instance of Configuration.</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <returns></returns>
-        public BusinessApi(Configuration configuration)
+        public BusinessApi(Kinde.Api.Client.Configuration configuration)
         {
             if (configuration == null) throw new ArgumentNullException("configuration");
 
-            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
-                GlobalConfiguration.Instance,
+            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
+                Kinde.Api.Client.GlobalConfiguration.Instance,
                 configuration
             );
-            this.ApiClient = new ApiClient(this.Configuration.BasePath);
+            this.ApiClient = new Kinde.Api.Client.ApiClient(this.Configuration.BasePath);
             this.Client = this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
+            ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -284,14 +291,14 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         {
             if (client == null) throw new ArgumentNullException("client");
 
-            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
-                GlobalConfiguration.Instance,
-                new Configuration { BasePath = basePath }
+            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
+                Kinde.Api.Client.GlobalConfiguration.Instance,
+                new Kinde.Api.Client.Configuration { BasePath = basePath }
             );
-            this.ApiClient = new ApiClient(client, this.Configuration.BasePath, handler);
+            this.ApiClient = new Kinde.Api.Client.ApiClient(client, this.Configuration.BasePath, handler);
             this.Client =  this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            this.ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -306,19 +313,19 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// Some configuration settings will not be applied without passing an HttpClientHandler.
         /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
         /// </remarks>
-        public BusinessApi(HttpClient client, Configuration configuration, HttpClientHandler handler = null)
+        public BusinessApi(HttpClient client, Kinde.Api.Client.Configuration configuration, HttpClientHandler handler = null)
         {
             if (configuration == null) throw new ArgumentNullException("configuration");
             if (client == null) throw new ArgumentNullException("client");
 
-            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
-                GlobalConfiguration.Instance,
+            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
+                Kinde.Api.Client.GlobalConfiguration.Instance,
                 configuration
             );
-            this.ApiClient = new ApiClient(client, this.Configuration.BasePath, handler);
+            this.ApiClient = new Kinde.Api.Client.ApiClient(client, this.Configuration.BasePath, handler);
             this.Client = this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
+            ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -329,7 +336,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
         /// <exception cref="ArgumentNullException"></exception>
-        public BusinessApi(ISynchronousClient client, IAsynchronousClient asyncClient, IReadableConfiguration configuration)
+        public BusinessApi(Kinde.Api.Client.ISynchronousClient client, Kinde.Api.Client.IAsynchronousClient asyncClient, Kinde.Api.Client.IReadableConfiguration configuration)
         {
             if (client == null) throw new ArgumentNullException("client");
             if (asyncClient == null) throw new ArgumentNullException("asyncClient");
@@ -338,7 +345,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
             this.Client = client;
             this.AsynchronousClient = asyncClient;
             this.Configuration = configuration;
-            this.ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -352,17 +359,17 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Holds the ApiClient if created
         /// </summary>
-        public ApiClient ApiClient { get; set; } = null;
+        public Kinde.Api.Client.ApiClient ApiClient { get; set; } = null;
 
         /// <summary>
         /// The client for accessing this underlying API asynchronously.
         /// </summary>
-        public IAsynchronousClient AsynchronousClient { get; set; }
+        public Kinde.Api.Client.IAsynchronousClient AsynchronousClient { get; set; }
 
         /// <summary>
         /// The client for accessing this underlying API synchronously.
         /// </summary>
-        public ISynchronousClient Client { get; set; }
+        public Kinde.Api.Client.ISynchronousClient Client { get; set; }
 
         /// <summary>
         /// Gets the base path of the API client.
@@ -377,12 +384,12 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// Gets or sets the configuration object
         /// </summary>
         /// <value>An instance of the Configuration</value>
-        public IReadableConfiguration Configuration { get; set; }
+        public Kinde.Api.Client.IReadableConfiguration Configuration { get; set; }
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
         /// </summary>
-        public ExceptionFactory ExceptionFactory
+        public Kinde.Api.Client.ExceptionFactory ExceptionFactory
         {
             get
             {
@@ -398,7 +405,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// List business details Get your business details.
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">Business code.</param>
         /// <param name="name">Business name.</param>
         /// <param name="email">Email associated with business.</param>
@@ -410,14 +417,14 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <returns>SuccessResponse</returns>
         public SuccessResponse GetBusiness(string code, string name, string email, string? phone = default(string?), string? industry = default(string?), string? timezone = default(string?), string? privacyUrl = default(string?), string? termsUrl = default(string?))
         {
-            ApiResponse<SuccessResponse> localVarResponse = GetBusinessWithHttpInfo(code, name, email, phone, industry, timezone, privacyUrl, termsUrl);
+            Kinde.Api.Client.ApiResponse<SuccessResponse> localVarResponse = GetBusinessWithHttpInfo(code, name, email, phone, industry, timezone, privacyUrl, termsUrl);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List business details Get your business details.
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">Business code.</param>
         /// <param name="name">Business name.</param>
         /// <param name="email">Email associated with business.</param>
@@ -427,21 +434,21 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <param name="privacyUrl">Your Privacy policy URL. (optional)</param>
         /// <param name="termsUrl">Your Terms and Conditions URL. (optional)</param>
         /// <returns>ApiResponse of SuccessResponse</returns>
-        public ApiResponse<SuccessResponse> GetBusinessWithHttpInfo(string code, string name, string email, string? phone = default(string?), string? industry = default(string?), string? timezone = default(string?), string? privacyUrl = default(string?), string? termsUrl = default(string?))
+        public Kinde.Api.Client.ApiResponse<SuccessResponse> GetBusinessWithHttpInfo(string code, string name, string email, string? phone = default(string?), string? industry = default(string?), string? timezone = default(string?), string? privacyUrl = default(string?), string? termsUrl = default(string?))
         {
             // verify the required parameter 'code' is set
             if (code == null)
-                throw new ApiException(400, "Missing required parameter 'code' when calling BusinessApi->GetBusiness");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'code' when calling BusinessApi->GetBusiness");
 
             // verify the required parameter 'name' is set
             if (name == null)
-                throw new ApiException(400, "Missing required parameter 'name' when calling BusinessApi->GetBusiness");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'name' when calling BusinessApi->GetBusiness");
 
             // verify the required parameter 'email' is set
             if (email == null)
-                throw new ApiException(400, "Missing required parameter 'email' when calling BusinessApi->GetBusiness");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'email' when calling BusinessApi->GetBusiness");
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -451,34 +458,34 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
                 "application/json; charset=utf-8"
             };
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "code", code));
-            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "name", name));
-            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "email", email));
+            localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "code", code));
+            localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "name", name));
+            localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "email", email));
             if (phone != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "phone", phone));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "phone", phone));
             }
             if (industry != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "industry", industry));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "industry", industry));
             }
             if (timezone != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "timezone", timezone));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "timezone", timezone));
             }
             if (privacyUrl != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "privacy_url", privacyUrl));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "privacy_url", privacyUrl));
             }
             if (termsUrl != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "terms_url", termsUrl));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "terms_url", termsUrl));
             }
 
             // authentication (kindeBearerAuth) required
@@ -503,7 +510,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// List business details Get your business details.
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">Business code.</param>
         /// <param name="name">Business name.</param>
         /// <param name="email">Email associated with business.</param>
@@ -516,14 +523,14 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <returns>Task of SuccessResponse</returns>
         public async System.Threading.Tasks.Task<SuccessResponse> GetBusinessAsync(string code, string name, string email, string? phone = default(string?), string? industry = default(string?), string? timezone = default(string?), string? privacyUrl = default(string?), string? termsUrl = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            ApiResponse<SuccessResponse> localVarResponse = await GetBusinessWithHttpInfoAsync(code, name, email, phone, industry, timezone, privacyUrl, termsUrl, cancellationToken).ConfigureAwait(false);
+            Kinde.Api.Client.ApiResponse<SuccessResponse> localVarResponse = await GetBusinessWithHttpInfoAsync(code, name, email, phone, industry, timezone, privacyUrl, termsUrl, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List business details Get your business details.
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="code">Business code.</param>
         /// <param name="name">Business name.</param>
         /// <param name="email">Email associated with business.</param>
@@ -534,22 +541,22 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <param name="termsUrl">Your Terms and Conditions URL. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<SuccessResponse>> GetBusinessWithHttpInfoAsync(string code, string name, string email, string? phone = default(string?), string? industry = default(string?), string? timezone = default(string?), string? privacyUrl = default(string?), string? termsUrl = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<SuccessResponse>> GetBusinessWithHttpInfoAsync(string code, string name, string email, string? phone = default(string?), string? industry = default(string?), string? timezone = default(string?), string? privacyUrl = default(string?), string? termsUrl = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'code' is set
             if (code == null)
-                throw new ApiException(400, "Missing required parameter 'code' when calling BusinessApi->GetBusiness");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'code' when calling BusinessApi->GetBusiness");
 
             // verify the required parameter 'name' is set
             if (name == null)
-                throw new ApiException(400, "Missing required parameter 'name' when calling BusinessApi->GetBusiness");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'name' when calling BusinessApi->GetBusiness");
 
             // verify the required parameter 'email' is set
             if (email == null)
-                throw new ApiException(400, "Missing required parameter 'email' when calling BusinessApi->GetBusiness");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'email' when calling BusinessApi->GetBusiness");
 
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -560,34 +567,34 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
             };
 
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "code", code));
-            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "name", name));
-            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "email", email));
+            localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "code", code));
+            localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "name", name));
+            localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "email", email));
             if (phone != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "phone", phone));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "phone", phone));
             }
             if (industry != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "industry", industry));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "industry", industry));
             }
             if (timezone != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "timezone", timezone));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "timezone", timezone));
             }
             if (privacyUrl != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "privacy_url", privacyUrl));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "privacy_url", privacyUrl));
             }
             if (termsUrl != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "terms_url", termsUrl));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "terms_url", termsUrl));
             }
 
             // authentication (kindeBearerAuth) required
@@ -613,7 +620,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Update business details Update business details.
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="businessName">Business name.</param>
         /// <param name="primaryEmail">Email associated with business.</param>
         /// <param name="primaryPhone">Phone number associated with business. (optional)</param>
@@ -627,14 +634,14 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <returns>SuccessResponse</returns>
         public SuccessResponse UpdateBusiness(string businessName, string primaryEmail, string? primaryPhone = default(string?), string? industryKey = default(string?), string? timezoneId = default(string?), string? privacyUrl = default(string?), string? termsUrl = default(string?), string? isShowKindeBranding = default(string?), bool? isClickWrap = default(bool?), string? partnerCode = default(string?))
         {
-            ApiResponse<SuccessResponse> localVarResponse = UpdateBusinessWithHttpInfo(businessName, primaryEmail, primaryPhone, industryKey, timezoneId, privacyUrl, termsUrl, isShowKindeBranding, isClickWrap, partnerCode);
+            Kinde.Api.Client.ApiResponse<SuccessResponse> localVarResponse = UpdateBusinessWithHttpInfo(businessName, primaryEmail, primaryPhone, industryKey, timezoneId, privacyUrl, termsUrl, isShowKindeBranding, isClickWrap, partnerCode);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Update business details Update business details.
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="businessName">Business name.</param>
         /// <param name="primaryEmail">Email associated with business.</param>
         /// <param name="primaryPhone">Phone number associated with business. (optional)</param>
@@ -646,17 +653,17 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <param name="isClickWrap">Show a policy acceptance checkbox on sign up. (optional)</param>
         /// <param name="partnerCode">Your Kinde Perk code. (optional)</param>
         /// <returns>ApiResponse of SuccessResponse</returns>
-        public ApiResponse<SuccessResponse> UpdateBusinessWithHttpInfo(string businessName, string primaryEmail, string? primaryPhone = default(string?), string? industryKey = default(string?), string? timezoneId = default(string?), string? privacyUrl = default(string?), string? termsUrl = default(string?), string? isShowKindeBranding = default(string?), bool? isClickWrap = default(bool?), string? partnerCode = default(string?))
+        public Kinde.Api.Client.ApiResponse<SuccessResponse> UpdateBusinessWithHttpInfo(string businessName, string primaryEmail, string? primaryPhone = default(string?), string? industryKey = default(string?), string? timezoneId = default(string?), string? privacyUrl = default(string?), string? termsUrl = default(string?), string? isShowKindeBranding = default(string?), bool? isClickWrap = default(bool?), string? partnerCode = default(string?))
         {
             // verify the required parameter 'businessName' is set
             if (businessName == null)
-                throw new ApiException(400, "Missing required parameter 'businessName' when calling BusinessApi->UpdateBusiness");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'businessName' when calling BusinessApi->UpdateBusiness");
 
             // verify the required parameter 'primaryEmail' is set
             if (primaryEmail == null)
-                throw new ApiException(400, "Missing required parameter 'primaryEmail' when calling BusinessApi->UpdateBusiness");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'primaryEmail' when calling BusinessApi->UpdateBusiness");
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -666,45 +673,45 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
                 "application/json; charset=utf-8"
             };
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "business_name", businessName));
-            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "primary_email", primaryEmail));
+            localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "business_name", businessName));
+            localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "primary_email", primaryEmail));
             if (primaryPhone != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "primary_phone", primaryPhone));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "primary_phone", primaryPhone));
             }
             if (industryKey != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "industry_key", industryKey));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "industry_key", industryKey));
             }
             if (timezoneId != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "timezone_id", timezoneId));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "timezone_id", timezoneId));
             }
             if (privacyUrl != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "privacy_url", privacyUrl));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "privacy_url", privacyUrl));
             }
             if (termsUrl != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "terms_url", termsUrl));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "terms_url", termsUrl));
             }
             if (isShowKindeBranding != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "is_show_kinde_branding", isShowKindeBranding));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "is_show_kinde_branding", isShowKindeBranding));
             }
             if (isClickWrap != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "is_click_wrap", isClickWrap));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "is_click_wrap", isClickWrap));
             }
             if (partnerCode != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "partner_code", partnerCode));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "partner_code", partnerCode));
             }
 
             // authentication (kindeBearerAuth) required
@@ -729,7 +736,7 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <summary>
         /// Update business details Update business details.
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="businessName">Business name.</param>
         /// <param name="primaryEmail">Email associated with business.</param>
         /// <param name="primaryPhone">Phone number associated with business. (optional)</param>
@@ -744,14 +751,14 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <returns>Task of SuccessResponse</returns>
         public async System.Threading.Tasks.Task<SuccessResponse> UpdateBusinessAsync(string businessName, string primaryEmail, string? primaryPhone = default(string?), string? industryKey = default(string?), string? timezoneId = default(string?), string? privacyUrl = default(string?), string? termsUrl = default(string?), string? isShowKindeBranding = default(string?), bool? isClickWrap = default(bool?), string? partnerCode = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            ApiResponse<SuccessResponse> localVarResponse = await UpdateBusinessWithHttpInfoAsync(businessName, primaryEmail, primaryPhone, industryKey, timezoneId, privacyUrl, termsUrl, isShowKindeBranding, isClickWrap, partnerCode, cancellationToken).ConfigureAwait(false);
+            Kinde.Api.Client.ApiResponse<SuccessResponse> localVarResponse = await UpdateBusinessWithHttpInfoAsync(businessName, primaryEmail, primaryPhone, industryKey, timezoneId, privacyUrl, termsUrl, isShowKindeBranding, isClickWrap, partnerCode, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Update business details Update business details.
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="businessName">Business name.</param>
         /// <param name="primaryEmail">Email associated with business.</param>
         /// <param name="primaryPhone">Phone number associated with business. (optional)</param>
@@ -764,18 +771,18 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
         /// <param name="partnerCode">Your Kinde Perk code. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<SuccessResponse>> UpdateBusinessWithHttpInfoAsync(string businessName, string primaryEmail, string? primaryPhone = default(string?), string? industryKey = default(string?), string? timezoneId = default(string?), string? privacyUrl = default(string?), string? termsUrl = default(string?), string? isShowKindeBranding = default(string?), bool? isClickWrap = default(bool?), string? partnerCode = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<SuccessResponse>> UpdateBusinessWithHttpInfoAsync(string businessName, string primaryEmail, string? primaryPhone = default(string?), string? industryKey = default(string?), string? timezoneId = default(string?), string? privacyUrl = default(string?), string? termsUrl = default(string?), string? isShowKindeBranding = default(string?), bool? isClickWrap = default(bool?), string? partnerCode = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'businessName' is set
             if (businessName == null)
-                throw new ApiException(400, "Missing required parameter 'businessName' when calling BusinessApi->UpdateBusiness");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'businessName' when calling BusinessApi->UpdateBusiness");
 
             // verify the required parameter 'primaryEmail' is set
             if (primaryEmail == null)
-                throw new ApiException(400, "Missing required parameter 'primaryEmail' when calling BusinessApi->UpdateBusiness");
+                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'primaryEmail' when calling BusinessApi->UpdateBusiness");
 
 
-            RequestOptions localVarRequestOptions = new RequestOptions();
+            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -786,45 +793,45 @@ namespace Clinically.Kinde.Authentication.ManagementApi.Api
             };
 
 
-            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "business_name", businessName));
-            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "primary_email", primaryEmail));
+            localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "business_name", businessName));
+            localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "primary_email", primaryEmail));
             if (primaryPhone != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "primary_phone", primaryPhone));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "primary_phone", primaryPhone));
             }
             if (industryKey != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "industry_key", industryKey));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "industry_key", industryKey));
             }
             if (timezoneId != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "timezone_id", timezoneId));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "timezone_id", timezoneId));
             }
             if (privacyUrl != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "privacy_url", privacyUrl));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "privacy_url", privacyUrl));
             }
             if (termsUrl != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "terms_url", termsUrl));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "terms_url", termsUrl));
             }
             if (isShowKindeBranding != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "is_show_kinde_branding", isShowKindeBranding));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "is_show_kinde_branding", isShowKindeBranding));
             }
             if (isClickWrap != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "is_click_wrap", isClickWrap));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "is_click_wrap", isClickWrap));
             }
             if (partnerCode != null)
             {
-                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "partner_code", partnerCode));
+                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "partner_code", partnerCode));
             }
 
             // authentication (kindeBearerAuth) required

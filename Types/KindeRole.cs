@@ -1,5 +1,5 @@
 using System.Text.Json.Serialization;
-using Clinically.Kinde.Authentication.ManagementApi.Model;
+using Kinde.Api.Model;
 
 namespace Clinically.Kinde.Authentication.Types;
 
@@ -13,7 +13,7 @@ public class KindeRole
     public string? Description { get; set; }
     [JsonPropertyName("key")]
     public string? Key { get; set; }
-
+    
     public static KindeRole FromRoles(Roles role)
     {
         return new KindeRole()

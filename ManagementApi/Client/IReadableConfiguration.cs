@@ -9,11 +9,13 @@
  */
 
 
+using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 
-namespace Clinically.Kinde.Authentication.ManagementApi.Client
+namespace Kinde.Api.Client
 {
     /// <summary>
     /// Represents a readable-only configuration contract.

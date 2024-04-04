@@ -1,5 +1,5 @@
-using Clinically.Kinde.Authentication.ManagementApi.Api;
-using Clinically.Kinde.Authentication.ManagementApi.Client;
+using Kinde.Api.Api;
+using Kinde.Api.Client;
 
 namespace Clinically.Kinde.Authentication.ManagementApi;
 

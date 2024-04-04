@@ -1,7 +1,7 @@
 using System.Security.Claims;
 using System.Text.Json;
 using Clinically.Kinde.Authentication.ManagementApi;
-using Clinically.Kinde.Authentication.ManagementApi.Model;
+using Kinde.Api.Model;
 using Clinically.Kinde.Authentication.Types;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;

@@ -9,9 +9,12 @@
  */
 
 
+using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Net;
 
-namespace Clinically.Kinde.Authentication.ManagementApi.Client
+namespace Kinde.Api.Client
 {
     /// <summary>
     /// A container for generalized request inputs. This type allows consumers to extend the request functionality

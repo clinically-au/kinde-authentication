@@ -9,9 +9,11 @@
  */
 
 
+using System;
 using System.Collections;
+using System.Collections.Generic;
 
-namespace Clinically.Kinde.Authentication.ManagementApi.Client
+namespace Kinde.Api.Client
 {
     /// <summary>
     /// A dictionary in which one key has many associated values.
