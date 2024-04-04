@@ -33,7 +33,7 @@ jobs:
       run: dotnet pack --no-build -c Release -o ./nupkg
 
     - name: Push
-      run: dotnet nuget push "./nupkg/*.nupkg" --api-key ${{ secrets.PUBLISH_TO_GITHUB }} --source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
+      run: dotnet nuget push "./nupkg/*.nupkg" --api-key ${{ secrets.PUBLISH_TO_GITHUB }} --source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json --skip-duplicate
 
     - name: PushToNuget
       run: dotnet nuget push "./nupkg/*.nupkg" -k ${{ secrets.PUBLISH_TO_NUGET }} -s https://api.nuget.org/v3/index.json
