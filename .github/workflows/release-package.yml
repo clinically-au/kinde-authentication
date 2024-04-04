@@ -34,7 +34,7 @@ jobs:
 
       - name: Get package version
         id: package_version
-        run: echo "::set-env name=PACKAGE_VERSION::$(dotnet msbuild -property:Configuration=Release -target:PrintPackageVersion -nologo -verbosity:quiet)"
+        run: echo "PACKAGE_VERSION=$(dotnet msbuild -property:Configuration=Release -target:PrintPackageVersion -nologo -verbosity:quiet)" >> $GITHUB_ENV
         shell: bash
 
       - name: Push

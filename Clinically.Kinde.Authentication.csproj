@@ -18,6 +18,10 @@
         <PackageTags>net8 blazor kinde</PackageTags>
     </PropertyGroup>
 
+    <Target Name="PrintPackageVersion">
+        <Message Text="$(PackageVersion)" Importance="high"/>
+    </Target>
+
     <ItemGroup>
       <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.3" />
       <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="8.0.3" />
