@@ -38,7 +38,7 @@ jobs:
         shell: bash
 
       - name: Push
-        run: dotnet nuget push "./nupkg/*.nupkg" --api-key ${{ secrets.PUBLISH_TO_GITHUB }} --source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json --skip-duplicate
+        run: dotnet nuget push "./nupkg/*.nupkg" --api-key ${{ secrets.PUBLISH_TO_GITHUB }} --source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json --skip-duplicate --version ${{ env.PACKAGE_VERSION }}
 
       - name: PushToNuget
-        run: dotnet nuget push "./nupkg/*.nupkg" -k ${{ secrets.PUBLISH_TO_NUGET }} -s https://api.nuget.org/v3/index.json
+        run: dotnet nuget push "./nupkg/*.nupkg" -k ${{ secrets.PUBLISH_TO_NUGET }} -s https://api.nuget.org/v3/index.json --version ${{ env.PACKAGE_VERSION }}
