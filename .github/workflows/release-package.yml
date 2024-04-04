@@ -11,6 +11,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - uses: actions/
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
@@ -34,3 +35,6 @@ jobs:
 
     - name: Push
       run: dotnet nuget push "./nupkg/*.nupkg" --api-key ${{ secrets.PUBLISH_TO_GITHUB }} --source https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
+
+    - name: PushToNuget
+      run: dotnet nuget push nupkgs/*.nupkg -k ${{ secrets.PUBLISH_TO_NUGET }} -s https://api.nuget.org/v3/index.json
