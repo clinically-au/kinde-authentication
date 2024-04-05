@@ -9,17 +9,10 @@
  */
 
 
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Net.Mime;
-using Kinde.Api.Client;
-using Kinde.Api.Model;
+using Clinically.Kinde.Authentication.ManagementApi.Client;
+using Clinically.Kinde.Authentication.ManagementApi.Model;
 
-namespace Kinde.Api.Api
+namespace Clinically.Kinde.Authentication.ManagementApi.Api
 {
 
     /// <summary>
@@ -34,7 +27,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Get a list of timezones and associated timezone keys.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="timezoneKey">Timezone Key. (optional)</param>
         /// <param name="name">Timezone. (optional)</param>
         /// <returns>SuccessResponse</returns>
@@ -46,7 +39,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Get a list of timezones and associated timezone keys.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="timezoneKey">Timezone Key. (optional)</param>
         /// <param name="name">Timezone. (optional)</param>
         /// <returns>ApiResponse of SuccessResponse</returns>
@@ -66,7 +59,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Get a list of timezones and associated timezone keys.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="timezoneKey">Timezone Key. (optional)</param>
         /// <param name="name">Timezone. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -79,7 +72,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Get a list of timezones and associated timezone keys.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="timezoneKey">Timezone Key. (optional)</param>
         /// <param name="name">Timezone. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -101,7 +94,7 @@ namespace Kinde.Api.Api
     /// </summary>
     public partial class TimezonesApi : IDisposable, ITimezonesApi
     {
-        private Kinde.Api.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
+        private ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TimezonesApi"/> class.
@@ -123,14 +116,14 @@ namespace Kinde.Api.Api
         /// <returns></returns>
         public TimezonesApi(string basePath)
         {
-            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
-                Kinde.Api.Client.GlobalConfiguration.Instance,
-                new Kinde.Api.Client.Configuration { BasePath = basePath }
+            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
+                GlobalConfiguration.Instance,
+                new Configuration { BasePath = basePath }
             );
-            this.ApiClient = new Kinde.Api.Client.ApiClient(this.Configuration.BasePath);
+            this.ApiClient = new ApiClient(this.Configuration.BasePath);
             this.Client =  this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            this.ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -141,18 +134,18 @@ namespace Kinde.Api.Api
         /// <param name="configuration">An instance of Configuration.</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <returns></returns>
-        public TimezonesApi(Kinde.Api.Client.Configuration configuration)
+        public TimezonesApi(Configuration configuration)
         {
             if (configuration == null) throw new ArgumentNullException("configuration");
 
-            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
-                Kinde.Api.Client.GlobalConfiguration.Instance,
+            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
+                GlobalConfiguration.Instance,
                 configuration
             );
-            this.ApiClient = new Kinde.Api.Client.ApiClient(this.Configuration.BasePath);
+            this.ApiClient = new ApiClient(this.Configuration.BasePath);
             this.Client = this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
+            ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -187,14 +180,14 @@ namespace Kinde.Api.Api
         {
             if (client == null) throw new ArgumentNullException("client");
 
-            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
-                Kinde.Api.Client.GlobalConfiguration.Instance,
-                new Kinde.Api.Client.Configuration { BasePath = basePath }
+            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
+                GlobalConfiguration.Instance,
+                new Configuration { BasePath = basePath }
             );
-            this.ApiClient = new Kinde.Api.Client.ApiClient(client, this.Configuration.BasePath, handler);
+            this.ApiClient = new ApiClient(client, this.Configuration.BasePath, handler);
             this.Client =  this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            this.ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -209,19 +202,19 @@ namespace Kinde.Api.Api
         /// Some configuration settings will not be applied without passing an HttpClientHandler.
         /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
         /// </remarks>
-        public TimezonesApi(HttpClient client, Kinde.Api.Client.Configuration configuration, HttpClientHandler handler = null)
+        public TimezonesApi(HttpClient client, Configuration configuration, HttpClientHandler handler = null)
         {
             if (configuration == null) throw new ArgumentNullException("configuration");
             if (client == null) throw new ArgumentNullException("client");
 
-            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
-                Kinde.Api.Client.GlobalConfiguration.Instance,
+            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
+                GlobalConfiguration.Instance,
                 configuration
             );
-            this.ApiClient = new Kinde.Api.Client.ApiClient(client, this.Configuration.BasePath, handler);
+            this.ApiClient = new ApiClient(client, this.Configuration.BasePath, handler);
             this.Client = this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
+            ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -232,7 +225,7 @@ namespace Kinde.Api.Api
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
         /// <exception cref="ArgumentNullException"></exception>
-        public TimezonesApi(Kinde.Api.Client.ISynchronousClient client, Kinde.Api.Client.IAsynchronousClient asyncClient, Kinde.Api.Client.IReadableConfiguration configuration)
+        public TimezonesApi(ISynchronousClient client, IAsynchronousClient asyncClient, IReadableConfiguration configuration)
         {
             if (client == null) throw new ArgumentNullException("client");
             if (asyncClient == null) throw new ArgumentNullException("asyncClient");
@@ -241,7 +234,7 @@ namespace Kinde.Api.Api
             this.Client = client;
             this.AsynchronousClient = asyncClient;
             this.Configuration = configuration;
-            this.ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -255,17 +248,17 @@ namespace Kinde.Api.Api
         /// <summary>
         /// Holds the ApiClient if created
         /// </summary>
-        public Kinde.Api.Client.ApiClient ApiClient { get; set; } = null;
+        public ApiClient ApiClient { get; set; } = null;
 
         /// <summary>
         /// The client for accessing this underlying API asynchronously.
         /// </summary>
-        public Kinde.Api.Client.IAsynchronousClient AsynchronousClient { get; set; }
+        public IAsynchronousClient AsynchronousClient { get; set; }
 
         /// <summary>
         /// The client for accessing this underlying API synchronously.
         /// </summary>
-        public Kinde.Api.Client.ISynchronousClient Client { get; set; }
+        public ISynchronousClient Client { get; set; }
 
         /// <summary>
         /// Gets the base path of the API client.
@@ -280,12 +273,12 @@ namespace Kinde.Api.Api
         /// Gets or sets the configuration object
         /// </summary>
         /// <value>An instance of the Configuration</value>
-        public Kinde.Api.Client.IReadableConfiguration Configuration { get; set; }
+        public IReadableConfiguration Configuration { get; set; }
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
         /// </summary>
-        public Kinde.Api.Client.ExceptionFactory ExceptionFactory
+        public ExceptionFactory ExceptionFactory
         {
             get
             {
@@ -301,26 +294,26 @@ namespace Kinde.Api.Api
         /// <summary>
         /// List timezones and timezone IDs. Get a list of timezones and associated timezone keys.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="timezoneKey">Timezone Key. (optional)</param>
         /// <param name="name">Timezone. (optional)</param>
         /// <returns>SuccessResponse</returns>
         public SuccessResponse GetTimezones(string? timezoneKey = default(string?), string? name = default(string?))
         {
-            Kinde.Api.Client.ApiResponse<SuccessResponse> localVarResponse = GetTimezonesWithHttpInfo(timezoneKey, name);
+            ApiResponse<SuccessResponse> localVarResponse = GetTimezonesWithHttpInfo(timezoneKey, name);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List timezones and timezone IDs. Get a list of timezones and associated timezone keys.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="timezoneKey">Timezone Key. (optional)</param>
         /// <param name="name">Timezone. (optional)</param>
         /// <returns>ApiResponse of SuccessResponse</returns>
-        public Kinde.Api.Client.ApiResponse<SuccessResponse> GetTimezonesWithHttpInfo(string? timezoneKey = default(string?), string? name = default(string?))
+        public ApiResponse<SuccessResponse> GetTimezonesWithHttpInfo(string? timezoneKey = default(string?), string? name = default(string?))
         {
-            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
+            RequestOptions localVarRequestOptions = new RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -330,19 +323,19 @@ namespace Kinde.Api.Api
                 "application/json; charset=utf-8"
             };
 
-            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             if (timezoneKey != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "timezone_key", timezoneKey));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "timezone_key", timezoneKey));
             }
             if (name != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "name", name));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "name", name));
             }
 
             // authentication (kindeBearerAuth) required
@@ -367,29 +360,29 @@ namespace Kinde.Api.Api
         /// <summary>
         /// List timezones and timezone IDs. Get a list of timezones and associated timezone keys.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="timezoneKey">Timezone Key. (optional)</param>
         /// <param name="name">Timezone. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SuccessResponse</returns>
         public async System.Threading.Tasks.Task<SuccessResponse> GetTimezonesAsync(string? timezoneKey = default(string?), string? name = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Kinde.Api.Client.ApiResponse<SuccessResponse> localVarResponse = await GetTimezonesWithHttpInfoAsync(timezoneKey, name, cancellationToken).ConfigureAwait(false);
+            ApiResponse<SuccessResponse> localVarResponse = await GetTimezonesWithHttpInfoAsync(timezoneKey, name, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List timezones and timezone IDs. Get a list of timezones and associated timezone keys.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="timezoneKey">Timezone Key. (optional)</param>
         /// <param name="name">Timezone. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
-        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<SuccessResponse>> GetTimezonesWithHttpInfoAsync(string? timezoneKey = default(string?), string? name = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<SuccessResponse>> GetTimezonesWithHttpInfoAsync(string? timezoneKey = default(string?), string? name = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
-            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
+            RequestOptions localVarRequestOptions = new RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -400,19 +393,19 @@ namespace Kinde.Api.Api
             };
 
 
-            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             if (timezoneKey != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "timezone_key", timezoneKey));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "timezone_key", timezoneKey));
             }
             if (name != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "name", name));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "name", name));
             }
 
             // authentication (kindeBearerAuth) required

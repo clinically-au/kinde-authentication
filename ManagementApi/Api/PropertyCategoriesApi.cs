@@ -9,17 +9,10 @@
  */
 
 
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Net.Mime;
-using Kinde.Api.Client;
-using Kinde.Api.Model;
+using Clinically.Kinde.Authentication.ManagementApi.Client;
+using Clinically.Kinde.Authentication.ManagementApi.Model;
 
-namespace Kinde.Api.Api
+namespace Clinically.Kinde.Authentication.ManagementApi.Api
 {
 
     /// <summary>
@@ -34,7 +27,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Create category.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCategoryRequest">Category details.</param>
         /// <returns>CreateCategoryResponse</returns>
         CreateCategoryResponse CreateCategory(CreateCategoryRequest createCategoryRequest);
@@ -45,7 +38,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Create category.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCategoryRequest">Category details.</param>
         /// <returns>ApiResponse of CreateCategoryResponse</returns>
         ApiResponse<CreateCategoryResponse> CreateCategoryWithHttpInfo(CreateCategoryRequest createCategoryRequest);
@@ -55,7 +48,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Returns a list of categories. 
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="startingAfter">The ID of the category to start after. (optional)</param>
         /// <param name="endingBefore">The ID of the category to end before. (optional)</param>
@@ -69,7 +62,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Returns a list of categories. 
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="startingAfter">The ID of the category to start after. (optional)</param>
         /// <param name="endingBefore">The ID of the category to end before. (optional)</param>
@@ -82,7 +75,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Update category.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="categoryId">The unique identifier for the category.</param>
         /// <param name="updateCategoryRequest">The fields of the category to update.</param>
         /// <returns>SuccessResponse</returns>
@@ -94,7 +87,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Update category.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="categoryId">The unique identifier for the category.</param>
         /// <param name="updateCategoryRequest">The fields of the category to update.</param>
         /// <returns>ApiResponse of SuccessResponse</returns>
@@ -114,7 +107,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Create category.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCategoryRequest">Category details.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateCategoryResponse</returns>
@@ -126,7 +119,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Create category.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCategoryRequest">Category details.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateCategoryResponse)</returns>
@@ -137,7 +130,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Returns a list of categories. 
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="startingAfter">The ID of the category to start after. (optional)</param>
         /// <param name="endingBefore">The ID of the category to end before. (optional)</param>
@@ -152,7 +145,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Returns a list of categories. 
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="startingAfter">The ID of the category to start after. (optional)</param>
         /// <param name="endingBefore">The ID of the category to end before. (optional)</param>
@@ -166,7 +159,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Update category.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="categoryId">The unique identifier for the category.</param>
         /// <param name="updateCategoryRequest">The fields of the category to update.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -179,7 +172,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Update category.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="categoryId">The unique identifier for the category.</param>
         /// <param name="updateCategoryRequest">The fields of the category to update.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -201,7 +194,7 @@ namespace Kinde.Api.Api
     /// </summary>
     public partial class PropertyCategoriesApi : IDisposable, IPropertyCategoriesApi
     {
-        private Kinde.Api.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
+        private ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PropertyCategoriesApi"/> class.
@@ -223,14 +216,14 @@ namespace Kinde.Api.Api
         /// <returns></returns>
         public PropertyCategoriesApi(string basePath)
         {
-            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
-                Kinde.Api.Client.GlobalConfiguration.Instance,
-                new Kinde.Api.Client.Configuration { BasePath = basePath }
+            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
+                GlobalConfiguration.Instance,
+                new Configuration { BasePath = basePath }
             );
-            this.ApiClient = new Kinde.Api.Client.ApiClient(this.Configuration.BasePath);
+            this.ApiClient = new ApiClient(this.Configuration.BasePath);
             this.Client =  this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            this.ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -241,18 +234,18 @@ namespace Kinde.Api.Api
         /// <param name="configuration">An instance of Configuration.</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <returns></returns>
-        public PropertyCategoriesApi(Kinde.Api.Client.Configuration configuration)
+        public PropertyCategoriesApi(Configuration configuration)
         {
             if (configuration == null) throw new ArgumentNullException("configuration");
 
-            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
-                Kinde.Api.Client.GlobalConfiguration.Instance,
+            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
+                GlobalConfiguration.Instance,
                 configuration
             );
-            this.ApiClient = new Kinde.Api.Client.ApiClient(this.Configuration.BasePath);
+            this.ApiClient = new ApiClient(this.Configuration.BasePath);
             this.Client = this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
+            ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -287,14 +280,14 @@ namespace Kinde.Api.Api
         {
             if (client == null) throw new ArgumentNullException("client");
 
-            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
-                Kinde.Api.Client.GlobalConfiguration.Instance,
-                new Kinde.Api.Client.Configuration { BasePath = basePath }
+            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
+                GlobalConfiguration.Instance,
+                new Configuration { BasePath = basePath }
             );
-            this.ApiClient = new Kinde.Api.Client.ApiClient(client, this.Configuration.BasePath, handler);
+            this.ApiClient = new ApiClient(client, this.Configuration.BasePath, handler);
             this.Client =  this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            this.ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -309,19 +302,19 @@ namespace Kinde.Api.Api
         /// Some configuration settings will not be applied without passing an HttpClientHandler.
         /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
         /// </remarks>
-        public PropertyCategoriesApi(HttpClient client, Kinde.Api.Client.Configuration configuration, HttpClientHandler handler = null)
+        public PropertyCategoriesApi(HttpClient client, Configuration configuration, HttpClientHandler handler = null)
         {
             if (configuration == null) throw new ArgumentNullException("configuration");
             if (client == null) throw new ArgumentNullException("client");
 
-            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
-                Kinde.Api.Client.GlobalConfiguration.Instance,
+            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
+                GlobalConfiguration.Instance,
                 configuration
             );
-            this.ApiClient = new Kinde.Api.Client.ApiClient(client, this.Configuration.BasePath, handler);
+            this.ApiClient = new ApiClient(client, this.Configuration.BasePath, handler);
             this.Client = this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
+            ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -332,7 +325,7 @@ namespace Kinde.Api.Api
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
         /// <exception cref="ArgumentNullException"></exception>
-        public PropertyCategoriesApi(Kinde.Api.Client.ISynchronousClient client, Kinde.Api.Client.IAsynchronousClient asyncClient, Kinde.Api.Client.IReadableConfiguration configuration)
+        public PropertyCategoriesApi(ISynchronousClient client, IAsynchronousClient asyncClient, IReadableConfiguration configuration)
         {
             if (client == null) throw new ArgumentNullException("client");
             if (asyncClient == null) throw new ArgumentNullException("asyncClient");
@@ -341,7 +334,7 @@ namespace Kinde.Api.Api
             this.Client = client;
             this.AsynchronousClient = asyncClient;
             this.Configuration = configuration;
-            this.ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -355,17 +348,17 @@ namespace Kinde.Api.Api
         /// <summary>
         /// Holds the ApiClient if created
         /// </summary>
-        public Kinde.Api.Client.ApiClient ApiClient { get; set; } = null;
+        public ApiClient ApiClient { get; set; } = null;
 
         /// <summary>
         /// The client for accessing this underlying API asynchronously.
         /// </summary>
-        public Kinde.Api.Client.IAsynchronousClient AsynchronousClient { get; set; }
+        public IAsynchronousClient AsynchronousClient { get; set; }
 
         /// <summary>
         /// The client for accessing this underlying API synchronously.
         /// </summary>
-        public Kinde.Api.Client.ISynchronousClient Client { get; set; }
+        public ISynchronousClient Client { get; set; }
 
         /// <summary>
         /// Gets the base path of the API client.
@@ -380,12 +373,12 @@ namespace Kinde.Api.Api
         /// Gets or sets the configuration object
         /// </summary>
         /// <value>An instance of the Configuration</value>
-        public Kinde.Api.Client.IReadableConfiguration Configuration { get; set; }
+        public IReadableConfiguration Configuration { get; set; }
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
         /// </summary>
-        public Kinde.Api.Client.ExceptionFactory ExceptionFactory
+        public ExceptionFactory ExceptionFactory
         {
             get
             {
@@ -401,28 +394,28 @@ namespace Kinde.Api.Api
         /// <summary>
         /// Create Category Create category.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCategoryRequest">Category details.</param>
         /// <returns>CreateCategoryResponse</returns>
         public CreateCategoryResponse CreateCategory(CreateCategoryRequest createCategoryRequest)
         {
-            Kinde.Api.Client.ApiResponse<CreateCategoryResponse> localVarResponse = CreateCategoryWithHttpInfo(createCategoryRequest);
+            ApiResponse<CreateCategoryResponse> localVarResponse = CreateCategoryWithHttpInfo(createCategoryRequest);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Create Category Create category.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCategoryRequest">Category details.</param>
         /// <returns>ApiResponse of CreateCategoryResponse</returns>
-        public Kinde.Api.Client.ApiResponse<CreateCategoryResponse> CreateCategoryWithHttpInfo(CreateCategoryRequest createCategoryRequest)
+        public ApiResponse<CreateCategoryResponse> CreateCategoryWithHttpInfo(CreateCategoryRequest createCategoryRequest)
         {
             // verify the required parameter 'createCategoryRequest' is set
             if (createCategoryRequest == null)
-                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'createCategoryRequest' when calling PropertyCategoriesApi->CreateCategory");
+                throw new ApiException(400, "Missing required parameter 'createCategoryRequest' when calling PropertyCategoriesApi->CreateCategory");
 
-            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
+            RequestOptions localVarRequestOptions = new RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/json"
@@ -434,10 +427,10 @@ namespace Kinde.Api.Api
                 "application/json; charset=utf-8"
             };
 
-            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.Data = createCategoryRequest;
@@ -464,31 +457,31 @@ namespace Kinde.Api.Api
         /// <summary>
         /// Create Category Create category.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCategoryRequest">Category details.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateCategoryResponse</returns>
         public async System.Threading.Tasks.Task<CreateCategoryResponse> CreateCategoryAsync(CreateCategoryRequest createCategoryRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Kinde.Api.Client.ApiResponse<CreateCategoryResponse> localVarResponse = await CreateCategoryWithHttpInfoAsync(createCategoryRequest, cancellationToken).ConfigureAwait(false);
+            ApiResponse<CreateCategoryResponse> localVarResponse = await CreateCategoryWithHttpInfoAsync(createCategoryRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Create Category Create category.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="createCategoryRequest">Category details.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateCategoryResponse)</returns>
-        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<CreateCategoryResponse>> CreateCategoryWithHttpInfoAsync(CreateCategoryRequest createCategoryRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<CreateCategoryResponse>> CreateCategoryWithHttpInfoAsync(CreateCategoryRequest createCategoryRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'createCategoryRequest' is set
             if (createCategoryRequest == null)
-                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'createCategoryRequest' when calling PropertyCategoriesApi->CreateCategory");
+                throw new ApiException(400, "Missing required parameter 'createCategoryRequest' when calling PropertyCategoriesApi->CreateCategory");
 
 
-            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
+            RequestOptions localVarRequestOptions = new RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/json"
@@ -501,10 +494,10 @@ namespace Kinde.Api.Api
             };
 
 
-            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.Data = createCategoryRequest;
@@ -532,7 +525,7 @@ namespace Kinde.Api.Api
         /// <summary>
         /// List categories Returns a list of categories. 
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="startingAfter">The ID of the category to start after. (optional)</param>
         /// <param name="endingBefore">The ID of the category to end before. (optional)</param>
@@ -540,22 +533,22 @@ namespace Kinde.Api.Api
         /// <returns>GetCategoriesResponse</returns>
         public GetCategoriesResponse GetCategories(int? pageSize = default(int?), string? startingAfter = default(string?), string? endingBefore = default(string?), string? context = default(string?))
         {
-            Kinde.Api.Client.ApiResponse<GetCategoriesResponse> localVarResponse = GetCategoriesWithHttpInfo(pageSize, startingAfter, endingBefore, context);
+            ApiResponse<GetCategoriesResponse> localVarResponse = GetCategoriesWithHttpInfo(pageSize, startingAfter, endingBefore, context);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List categories Returns a list of categories. 
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="startingAfter">The ID of the category to start after. (optional)</param>
         /// <param name="endingBefore">The ID of the category to end before. (optional)</param>
         /// <param name="context">Filter the results by User or Organization context (optional)</param>
         /// <returns>ApiResponse of GetCategoriesResponse</returns>
-        public Kinde.Api.Client.ApiResponse<GetCategoriesResponse> GetCategoriesWithHttpInfo(int? pageSize = default(int?), string? startingAfter = default(string?), string? endingBefore = default(string?), string? context = default(string?))
+        public ApiResponse<GetCategoriesResponse> GetCategoriesWithHttpInfo(int? pageSize = default(int?), string? startingAfter = default(string?), string? endingBefore = default(string?), string? context = default(string?))
         {
-            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
+            RequestOptions localVarRequestOptions = new RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -566,27 +559,27 @@ namespace Kinde.Api.Api
                 "application/json"
             };
 
-            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             if (pageSize != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "page_size", pageSize));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page_size", pageSize));
             }
             if (startingAfter != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "starting_after", startingAfter));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "starting_after", startingAfter));
             }
             if (endingBefore != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "ending_before", endingBefore));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "ending_before", endingBefore));
             }
             if (context != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "context", context));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "context", context));
             }
 
             // authentication (kindeBearerAuth) required
@@ -611,7 +604,7 @@ namespace Kinde.Api.Api
         /// <summary>
         /// List categories Returns a list of categories. 
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="startingAfter">The ID of the category to start after. (optional)</param>
         /// <param name="endingBefore">The ID of the category to end before. (optional)</param>
@@ -620,24 +613,24 @@ namespace Kinde.Api.Api
         /// <returns>Task of GetCategoriesResponse</returns>
         public async System.Threading.Tasks.Task<GetCategoriesResponse> GetCategoriesAsync(int? pageSize = default(int?), string? startingAfter = default(string?), string? endingBefore = default(string?), string? context = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Kinde.Api.Client.ApiResponse<GetCategoriesResponse> localVarResponse = await GetCategoriesWithHttpInfoAsync(pageSize, startingAfter, endingBefore, context, cancellationToken).ConfigureAwait(false);
+            ApiResponse<GetCategoriesResponse> localVarResponse = await GetCategoriesWithHttpInfoAsync(pageSize, startingAfter, endingBefore, context, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List categories Returns a list of categories. 
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="startingAfter">The ID of the category to start after. (optional)</param>
         /// <param name="endingBefore">The ID of the category to end before. (optional)</param>
         /// <param name="context">Filter the results by User or Organization context (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetCategoriesResponse)</returns>
-        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<GetCategoriesResponse>> GetCategoriesWithHttpInfoAsync(int? pageSize = default(int?), string? startingAfter = default(string?), string? endingBefore = default(string?), string? context = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<GetCategoriesResponse>> GetCategoriesWithHttpInfoAsync(int? pageSize = default(int?), string? startingAfter = default(string?), string? endingBefore = default(string?), string? context = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
-            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
+            RequestOptions localVarRequestOptions = new RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -649,27 +642,27 @@ namespace Kinde.Api.Api
             };
 
 
-            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             if (pageSize != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "page_size", pageSize));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page_size", pageSize));
             }
             if (startingAfter != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "starting_after", startingAfter));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "starting_after", startingAfter));
             }
             if (endingBefore != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "ending_before", endingBefore));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "ending_before", endingBefore));
             }
             if (context != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "context", context));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "context", context));
             }
 
             // authentication (kindeBearerAuth) required
@@ -695,34 +688,34 @@ namespace Kinde.Api.Api
         /// <summary>
         /// Update Category Update category.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="categoryId">The unique identifier for the category.</param>
         /// <param name="updateCategoryRequest">The fields of the category to update.</param>
         /// <returns>SuccessResponse</returns>
         public SuccessResponse UpdateCategory(string categoryId, UpdateCategoryRequest updateCategoryRequest)
         {
-            Kinde.Api.Client.ApiResponse<SuccessResponse> localVarResponse = UpdateCategoryWithHttpInfo(categoryId, updateCategoryRequest);
+            ApiResponse<SuccessResponse> localVarResponse = UpdateCategoryWithHttpInfo(categoryId, updateCategoryRequest);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Update Category Update category.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="categoryId">The unique identifier for the category.</param>
         /// <param name="updateCategoryRequest">The fields of the category to update.</param>
         /// <returns>ApiResponse of SuccessResponse</returns>
-        public Kinde.Api.Client.ApiResponse<SuccessResponse> UpdateCategoryWithHttpInfo(string categoryId, UpdateCategoryRequest updateCategoryRequest)
+        public ApiResponse<SuccessResponse> UpdateCategoryWithHttpInfo(string categoryId, UpdateCategoryRequest updateCategoryRequest)
         {
             // verify the required parameter 'categoryId' is set
             if (categoryId == null)
-                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'categoryId' when calling PropertyCategoriesApi->UpdateCategory");
+                throw new ApiException(400, "Missing required parameter 'categoryId' when calling PropertyCategoriesApi->UpdateCategory");
 
             // verify the required parameter 'updateCategoryRequest' is set
             if (updateCategoryRequest == null)
-                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'updateCategoryRequest' when calling PropertyCategoriesApi->UpdateCategory");
+                throw new ApiException(400, "Missing required parameter 'updateCategoryRequest' when calling PropertyCategoriesApi->UpdateCategory");
 
-            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
+            RequestOptions localVarRequestOptions = new RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/json"
@@ -734,13 +727,13 @@ namespace Kinde.Api.Api
                 "application/json; charset=utf-8"
             };
 
-            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("category_id", Kinde.Api.Client.ClientUtils.ParameterToString(categoryId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("category_id", ClientUtils.ParameterToString(categoryId)); // path parameter
             localVarRequestOptions.Data = updateCategoryRequest;
 
             // authentication (kindeBearerAuth) required
@@ -765,37 +758,37 @@ namespace Kinde.Api.Api
         /// <summary>
         /// Update Category Update category.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="categoryId">The unique identifier for the category.</param>
         /// <param name="updateCategoryRequest">The fields of the category to update.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SuccessResponse</returns>
         public async System.Threading.Tasks.Task<SuccessResponse> UpdateCategoryAsync(string categoryId, UpdateCategoryRequest updateCategoryRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Kinde.Api.Client.ApiResponse<SuccessResponse> localVarResponse = await UpdateCategoryWithHttpInfoAsync(categoryId, updateCategoryRequest, cancellationToken).ConfigureAwait(false);
+            ApiResponse<SuccessResponse> localVarResponse = await UpdateCategoryWithHttpInfoAsync(categoryId, updateCategoryRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Update Category Update category.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="categoryId">The unique identifier for the category.</param>
         /// <param name="updateCategoryRequest">The fields of the category to update.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
-        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<SuccessResponse>> UpdateCategoryWithHttpInfoAsync(string categoryId, UpdateCategoryRequest updateCategoryRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<SuccessResponse>> UpdateCategoryWithHttpInfoAsync(string categoryId, UpdateCategoryRequest updateCategoryRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'categoryId' is set
             if (categoryId == null)
-                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'categoryId' when calling PropertyCategoriesApi->UpdateCategory");
+                throw new ApiException(400, "Missing required parameter 'categoryId' when calling PropertyCategoriesApi->UpdateCategory");
 
             // verify the required parameter 'updateCategoryRequest' is set
             if (updateCategoryRequest == null)
-                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'updateCategoryRequest' when calling PropertyCategoriesApi->UpdateCategory");
+                throw new ApiException(400, "Missing required parameter 'updateCategoryRequest' when calling PropertyCategoriesApi->UpdateCategory");
 
 
-            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
+            RequestOptions localVarRequestOptions = new RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/json"
@@ -808,13 +801,13 @@ namespace Kinde.Api.Api
             };
 
 
-            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("category_id", Kinde.Api.Client.ClientUtils.ParameterToString(categoryId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("category_id", ClientUtils.ParameterToString(categoryId)); // path parameter
             localVarRequestOptions.Data = updateCategoryRequest;
 
             // authentication (kindeBearerAuth) required

@@ -9,17 +9,10 @@
  */
 
 
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Net.Mime;
-using Kinde.Api.Client;
-using Kinde.Api.Model;
+using Clinically.Kinde.Authentication.ManagementApi.Client;
+using Clinically.Kinde.Authentication.ManagementApi.Model;
 
-namespace Kinde.Api.Api
+namespace Clinically.Kinde.Authentication.ManagementApi.Api
 {
 
     /// <summary>
@@ -34,7 +27,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Contains the id, names and email of the currently logged in user. 
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <returns>UserProfile</returns>
         UserProfile GetUser();
 
@@ -44,7 +37,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Contains the id, names and email of the currently logged in user. 
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of UserProfile</returns>
         ApiResponse<UserProfile> GetUserWithHttpInfo();
         /// <summary>
@@ -53,7 +46,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Contains the id, names, profile picture URL and email of the currently logged in user. 
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <returns>UserProfileV2</returns>
         UserProfileV2 GetUserProfileV2();
 
@@ -63,7 +56,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Contains the id, names, profile picture URL and email of the currently logged in user. 
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of UserProfileV2</returns>
         ApiResponse<UserProfileV2> GetUserProfileV2WithHttpInfo();
         /// <summary>
@@ -72,7 +65,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Retrieve information about the provided token.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="token">The token to be introspected. (optional)</param>
         /// <param name="tokenType">The provided token&#39;s type. (optional)</param>
         /// <returns>TokenIntrospect</returns>
@@ -84,7 +77,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Retrieve information about the provided token.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="token">The token to be introspected. (optional)</param>
         /// <param name="tokenType">The provided token&#39;s type. (optional)</param>
         /// <returns>ApiResponse of TokenIntrospect</returns>
@@ -95,7 +88,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Revoke a previously issued token.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="token">The token to be revoked. (optional)</param>
         /// <param name="clientId">The identifier for your client. (optional)</param>
         /// <param name="clientSecret">The secret associated with your client. (optional)</param>
@@ -108,7 +101,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Revoke a previously issued token.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="token">The token to be revoked. (optional)</param>
         /// <param name="clientId">The identifier for your client. (optional)</param>
         /// <param name="clientSecret">The secret associated with your client. (optional)</param>
@@ -129,7 +122,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Contains the id, names and email of the currently logged in user. 
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UserProfile</returns>
         System.Threading.Tasks.Task<UserProfile> GetUserAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -140,7 +133,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Contains the id, names and email of the currently logged in user. 
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UserProfile)</returns>
         System.Threading.Tasks.Task<ApiResponse<UserProfile>> GetUserWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -150,7 +143,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Contains the id, names, profile picture URL and email of the currently logged in user. 
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UserProfileV2</returns>
         System.Threading.Tasks.Task<UserProfileV2> GetUserProfileV2Async(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -161,7 +154,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Contains the id, names, profile picture URL and email of the currently logged in user. 
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UserProfileV2)</returns>
         System.Threading.Tasks.Task<ApiResponse<UserProfileV2>> GetUserProfileV2WithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -171,7 +164,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Retrieve information about the provided token.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="token">The token to be introspected. (optional)</param>
         /// <param name="tokenType">The provided token&#39;s type. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -184,7 +177,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Retrieve information about the provided token.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="token">The token to be introspected. (optional)</param>
         /// <param name="tokenType">The provided token&#39;s type. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -196,7 +189,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Revoke a previously issued token.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="token">The token to be revoked. (optional)</param>
         /// <param name="clientId">The identifier for your client. (optional)</param>
         /// <param name="clientSecret">The secret associated with your client. (optional)</param>
@@ -210,7 +203,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Revoke a previously issued token.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="token">The token to be revoked. (optional)</param>
         /// <param name="clientId">The identifier for your client. (optional)</param>
         /// <param name="clientSecret">The secret associated with your client. (optional)</param>
@@ -233,7 +226,7 @@ namespace Kinde.Api.Api
     /// </summary>
     public partial class OAuthApi : IDisposable, IOAuthApi
     {
-        private Kinde.Api.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
+        private ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="OAuthApi"/> class.
@@ -255,14 +248,14 @@ namespace Kinde.Api.Api
         /// <returns></returns>
         public OAuthApi(string basePath)
         {
-            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
-                Kinde.Api.Client.GlobalConfiguration.Instance,
-                new Kinde.Api.Client.Configuration { BasePath = basePath }
+            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
+                GlobalConfiguration.Instance,
+                new Configuration { BasePath = basePath }
             );
-            this.ApiClient = new Kinde.Api.Client.ApiClient(this.Configuration.BasePath);
+            this.ApiClient = new ApiClient(this.Configuration.BasePath);
             this.Client =  this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            this.ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -273,18 +266,18 @@ namespace Kinde.Api.Api
         /// <param name="configuration">An instance of Configuration.</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <returns></returns>
-        public OAuthApi(Kinde.Api.Client.Configuration configuration)
+        public OAuthApi(Configuration configuration)
         {
             if (configuration == null) throw new ArgumentNullException("configuration");
 
-            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
-                Kinde.Api.Client.GlobalConfiguration.Instance,
+            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
+                GlobalConfiguration.Instance,
                 configuration
             );
-            this.ApiClient = new Kinde.Api.Client.ApiClient(this.Configuration.BasePath);
+            this.ApiClient = new ApiClient(this.Configuration.BasePath);
             this.Client = this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
+            ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -319,14 +312,14 @@ namespace Kinde.Api.Api
         {
             if (client == null) throw new ArgumentNullException("client");
 
-            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
-                Kinde.Api.Client.GlobalConfiguration.Instance,
-                new Kinde.Api.Client.Configuration { BasePath = basePath }
+            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
+                GlobalConfiguration.Instance,
+                new Configuration { BasePath = basePath }
             );
-            this.ApiClient = new Kinde.Api.Client.ApiClient(client, this.Configuration.BasePath, handler);
+            this.ApiClient = new ApiClient(client, this.Configuration.BasePath, handler);
             this.Client =  this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            this.ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -341,19 +334,19 @@ namespace Kinde.Api.Api
         /// Some configuration settings will not be applied without passing an HttpClientHandler.
         /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
         /// </remarks>
-        public OAuthApi(HttpClient client, Kinde.Api.Client.Configuration configuration, HttpClientHandler handler = null)
+        public OAuthApi(HttpClient client, Configuration configuration, HttpClientHandler handler = null)
         {
             if (configuration == null) throw new ArgumentNullException("configuration");
             if (client == null) throw new ArgumentNullException("client");
 
-            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
-                Kinde.Api.Client.GlobalConfiguration.Instance,
+            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
+                GlobalConfiguration.Instance,
                 configuration
             );
-            this.ApiClient = new Kinde.Api.Client.ApiClient(client, this.Configuration.BasePath, handler);
+            this.ApiClient = new ApiClient(client, this.Configuration.BasePath, handler);
             this.Client = this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
+            ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -364,7 +357,7 @@ namespace Kinde.Api.Api
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
         /// <exception cref="ArgumentNullException"></exception>
-        public OAuthApi(Kinde.Api.Client.ISynchronousClient client, Kinde.Api.Client.IAsynchronousClient asyncClient, Kinde.Api.Client.IReadableConfiguration configuration)
+        public OAuthApi(ISynchronousClient client, IAsynchronousClient asyncClient, IReadableConfiguration configuration)
         {
             if (client == null) throw new ArgumentNullException("client");
             if (asyncClient == null) throw new ArgumentNullException("asyncClient");
@@ -373,7 +366,7 @@ namespace Kinde.Api.Api
             this.Client = client;
             this.AsynchronousClient = asyncClient;
             this.Configuration = configuration;
-            this.ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -387,17 +380,17 @@ namespace Kinde.Api.Api
         /// <summary>
         /// Holds the ApiClient if created
         /// </summary>
-        public Kinde.Api.Client.ApiClient ApiClient { get; set; } = null;
+        public ApiClient ApiClient { get; set; } = null;
 
         /// <summary>
         /// The client for accessing this underlying API asynchronously.
         /// </summary>
-        public Kinde.Api.Client.IAsynchronousClient AsynchronousClient { get; set; }
+        public IAsynchronousClient AsynchronousClient { get; set; }
 
         /// <summary>
         /// The client for accessing this underlying API synchronously.
         /// </summary>
-        public Kinde.Api.Client.ISynchronousClient Client { get; set; }
+        public ISynchronousClient Client { get; set; }
 
         /// <summary>
         /// Gets the base path of the API client.
@@ -412,12 +405,12 @@ namespace Kinde.Api.Api
         /// Gets or sets the configuration object
         /// </summary>
         /// <value>An instance of the Configuration</value>
-        public Kinde.Api.Client.IReadableConfiguration Configuration { get; set; }
+        public IReadableConfiguration Configuration { get; set; }
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
         /// </summary>
-        public Kinde.Api.Client.ExceptionFactory ExceptionFactory
+        public ExceptionFactory ExceptionFactory
         {
             get
             {
@@ -433,22 +426,22 @@ namespace Kinde.Api.Api
         /// <summary>
         /// Get User Profile Contains the id, names and email of the currently logged in user. 
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <returns>UserProfile</returns>
         public UserProfile GetUser()
         {
-            Kinde.Api.Client.ApiResponse<UserProfile> localVarResponse = GetUserWithHttpInfo();
+            ApiResponse<UserProfile> localVarResponse = GetUserWithHttpInfo();
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get User Profile Contains the id, names and email of the currently logged in user. 
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of UserProfile</returns>
-        public Kinde.Api.Client.ApiResponse<UserProfile> GetUserWithHttpInfo()
+        public ApiResponse<UserProfile> GetUserWithHttpInfo()
         {
-            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
+            RequestOptions localVarRequestOptions = new RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -458,10 +451,10 @@ namespace Kinde.Api.Api
                 "application/json"
             };
 
-            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
@@ -487,25 +480,25 @@ namespace Kinde.Api.Api
         /// <summary>
         /// Get User Profile Contains the id, names and email of the currently logged in user. 
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UserProfile</returns>
         public async System.Threading.Tasks.Task<UserProfile> GetUserAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Kinde.Api.Client.ApiResponse<UserProfile> localVarResponse = await GetUserWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            ApiResponse<UserProfile> localVarResponse = await GetUserWithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get User Profile Contains the id, names and email of the currently logged in user. 
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UserProfile)</returns>
-        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<UserProfile>> GetUserWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<UserProfile>> GetUserWithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
-            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
+            RequestOptions localVarRequestOptions = new RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -516,10 +509,10 @@ namespace Kinde.Api.Api
             };
 
 
-            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
@@ -546,22 +539,22 @@ namespace Kinde.Api.Api
         /// <summary>
         /// Returns the details of the currently logged in user Contains the id, names, profile picture URL and email of the currently logged in user. 
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <returns>UserProfileV2</returns>
         public UserProfileV2 GetUserProfileV2()
         {
-            Kinde.Api.Client.ApiResponse<UserProfileV2> localVarResponse = GetUserProfileV2WithHttpInfo();
+            ApiResponse<UserProfileV2> localVarResponse = GetUserProfileV2WithHttpInfo();
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns the details of the currently logged in user Contains the id, names, profile picture URL and email of the currently logged in user. 
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <returns>ApiResponse of UserProfileV2</returns>
-        public Kinde.Api.Client.ApiResponse<UserProfileV2> GetUserProfileV2WithHttpInfo()
+        public ApiResponse<UserProfileV2> GetUserProfileV2WithHttpInfo()
         {
-            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
+            RequestOptions localVarRequestOptions = new RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -571,10 +564,10 @@ namespace Kinde.Api.Api
                 "application/json"
             };
 
-            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
@@ -600,25 +593,25 @@ namespace Kinde.Api.Api
         /// <summary>
         /// Returns the details of the currently logged in user Contains the id, names, profile picture URL and email of the currently logged in user. 
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of UserProfileV2</returns>
         public async System.Threading.Tasks.Task<UserProfileV2> GetUserProfileV2Async(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Kinde.Api.Client.ApiResponse<UserProfileV2> localVarResponse = await GetUserProfileV2WithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
+            ApiResponse<UserProfileV2> localVarResponse = await GetUserProfileV2WithHttpInfoAsync(cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Returns the details of the currently logged in user Contains the id, names, profile picture URL and email of the currently logged in user. 
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (UserProfileV2)</returns>
-        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<UserProfileV2>> GetUserProfileV2WithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<UserProfileV2>> GetUserProfileV2WithHttpInfoAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
-            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
+            RequestOptions localVarRequestOptions = new RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -629,10 +622,10 @@ namespace Kinde.Api.Api
             };
 
 
-            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
 
@@ -659,26 +652,26 @@ namespace Kinde.Api.Api
         /// <summary>
         /// Get token details Retrieve information about the provided token.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="token">The token to be introspected. (optional)</param>
         /// <param name="tokenType">The provided token&#39;s type. (optional)</param>
         /// <returns>TokenIntrospect</returns>
         public TokenIntrospect TokenIntrospection(string? token = default(string?), string? tokenType = default(string?))
         {
-            Kinde.Api.Client.ApiResponse<TokenIntrospect> localVarResponse = TokenIntrospectionWithHttpInfo(token, tokenType);
+            ApiResponse<TokenIntrospect> localVarResponse = TokenIntrospectionWithHttpInfo(token, tokenType);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get token details Retrieve information about the provided token.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="token">The token to be introspected. (optional)</param>
         /// <param name="tokenType">The provided token&#39;s type. (optional)</param>
         /// <returns>ApiResponse of TokenIntrospect</returns>
-        public Kinde.Api.Client.ApiResponse<TokenIntrospect> TokenIntrospectionWithHttpInfo(string? token = default(string?), string? tokenType = default(string?))
+        public ApiResponse<TokenIntrospect> TokenIntrospectionWithHttpInfo(string? token = default(string?), string? tokenType = default(string?))
         {
-            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
+            RequestOptions localVarRequestOptions = new RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/x-www-form-urlencoded"
@@ -690,19 +683,19 @@ namespace Kinde.Api.Api
                 "application/json; charset=utf-8"
             };
 
-            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             if (token != null)
             {
-                localVarRequestOptions.FormParameters.Add("token", Kinde.Api.Client.ClientUtils.ParameterToString(token)); // form parameter
+                localVarRequestOptions.FormParameters.Add("token", ClientUtils.ParameterToString(token)); // form parameter
             }
             if (tokenType != null)
             {
-                localVarRequestOptions.FormParameters.Add("token_type", Kinde.Api.Client.ClientUtils.ParameterToString(tokenType)); // form parameter
+                localVarRequestOptions.FormParameters.Add("token_type", ClientUtils.ParameterToString(tokenType)); // form parameter
             }
 
             // authentication (kindeBearerAuth) required
@@ -727,29 +720,29 @@ namespace Kinde.Api.Api
         /// <summary>
         /// Get token details Retrieve information about the provided token.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="token">The token to be introspected. (optional)</param>
         /// <param name="tokenType">The provided token&#39;s type. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TokenIntrospect</returns>
         public async System.Threading.Tasks.Task<TokenIntrospect> TokenIntrospectionAsync(string? token = default(string?), string? tokenType = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Kinde.Api.Client.ApiResponse<TokenIntrospect> localVarResponse = await TokenIntrospectionWithHttpInfoAsync(token, tokenType, cancellationToken).ConfigureAwait(false);
+            ApiResponse<TokenIntrospect> localVarResponse = await TokenIntrospectionWithHttpInfoAsync(token, tokenType, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get token details Retrieve information about the provided token.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="token">The token to be introspected. (optional)</param>
         /// <param name="tokenType">The provided token&#39;s type. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TokenIntrospect)</returns>
-        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<TokenIntrospect>> TokenIntrospectionWithHttpInfoAsync(string? token = default(string?), string? tokenType = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<TokenIntrospect>> TokenIntrospectionWithHttpInfoAsync(string? token = default(string?), string? tokenType = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
-            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
+            RequestOptions localVarRequestOptions = new RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/x-www-form-urlencoded"
@@ -762,19 +755,19 @@ namespace Kinde.Api.Api
             };
 
 
-            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             if (token != null)
             {
-                localVarRequestOptions.FormParameters.Add("token", Kinde.Api.Client.ClientUtils.ParameterToString(token)); // form parameter
+                localVarRequestOptions.FormParameters.Add("token", ClientUtils.ParameterToString(token)); // form parameter
             }
             if (tokenType != null)
             {
-                localVarRequestOptions.FormParameters.Add("token_type", Kinde.Api.Client.ClientUtils.ParameterToString(tokenType)); // form parameter
+                localVarRequestOptions.FormParameters.Add("token_type", ClientUtils.ParameterToString(tokenType)); // form parameter
             }
 
             // authentication (kindeBearerAuth) required
@@ -800,7 +793,7 @@ namespace Kinde.Api.Api
         /// <summary>
         /// Revoke token Revoke a previously issued token.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="token">The token to be revoked. (optional)</param>
         /// <param name="clientId">The identifier for your client. (optional)</param>
         /// <param name="clientSecret">The secret associated with your client. (optional)</param>
@@ -813,14 +806,14 @@ namespace Kinde.Api.Api
         /// <summary>
         /// Revoke token Revoke a previously issued token.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="token">The token to be revoked. (optional)</param>
         /// <param name="clientId">The identifier for your client. (optional)</param>
         /// <param name="clientSecret">The secret associated with your client. (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public Kinde.Api.Client.ApiResponse<Object> TokenRevocationWithHttpInfo(string? token = default(string?), string? clientId = default(string?), string? clientSecret = default(string?))
+        public ApiResponse<Object> TokenRevocationWithHttpInfo(string? token = default(string?), string? clientId = default(string?), string? clientSecret = default(string?))
         {
-            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
+            RequestOptions localVarRequestOptions = new RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/x-www-form-urlencoded"
@@ -832,23 +825,23 @@ namespace Kinde.Api.Api
                 "application/json; charset=utf-8"
             };
 
-            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             if (token != null)
             {
-                localVarRequestOptions.FormParameters.Add("token", Kinde.Api.Client.ClientUtils.ParameterToString(token)); // form parameter
+                localVarRequestOptions.FormParameters.Add("token", ClientUtils.ParameterToString(token)); // form parameter
             }
             if (clientId != null)
             {
-                localVarRequestOptions.FormParameters.Add("client_id", Kinde.Api.Client.ClientUtils.ParameterToString(clientId)); // form parameter
+                localVarRequestOptions.FormParameters.Add("client_id", ClientUtils.ParameterToString(clientId)); // form parameter
             }
             if (clientSecret != null)
             {
-                localVarRequestOptions.FormParameters.Add("client_secret", Kinde.Api.Client.ClientUtils.ParameterToString(clientSecret)); // form parameter
+                localVarRequestOptions.FormParameters.Add("client_secret", ClientUtils.ParameterToString(clientSecret)); // form parameter
             }
 
             // authentication (kindeBearerAuth) required
@@ -873,7 +866,7 @@ namespace Kinde.Api.Api
         /// <summary>
         /// Revoke token Revoke a previously issued token.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="token">The token to be revoked. (optional)</param>
         /// <param name="clientId">The identifier for your client. (optional)</param>
         /// <param name="clientSecret">The secret associated with your client. (optional)</param>
@@ -887,16 +880,16 @@ namespace Kinde.Api.Api
         /// <summary>
         /// Revoke token Revoke a previously issued token.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="token">The token to be revoked. (optional)</param>
         /// <param name="clientId">The identifier for your client. (optional)</param>
         /// <param name="clientSecret">The secret associated with your client. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<Object>> TokenRevocationWithHttpInfoAsync(string? token = default(string?), string? clientId = default(string?), string? clientSecret = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> TokenRevocationWithHttpInfoAsync(string? token = default(string?), string? clientId = default(string?), string? clientSecret = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
-            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
+            RequestOptions localVarRequestOptions = new RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/x-www-form-urlencoded"
@@ -909,23 +902,23 @@ namespace Kinde.Api.Api
             };
 
 
-            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             if (token != null)
             {
-                localVarRequestOptions.FormParameters.Add("token", Kinde.Api.Client.ClientUtils.ParameterToString(token)); // form parameter
+                localVarRequestOptions.FormParameters.Add("token", ClientUtils.ParameterToString(token)); // form parameter
             }
             if (clientId != null)
             {
-                localVarRequestOptions.FormParameters.Add("client_id", Kinde.Api.Client.ClientUtils.ParameterToString(clientId)); // form parameter
+                localVarRequestOptions.FormParameters.Add("client_id", ClientUtils.ParameterToString(clientId)); // form parameter
             }
             if (clientSecret != null)
             {
-                localVarRequestOptions.FormParameters.Add("client_secret", Kinde.Api.Client.ClientUtils.ParameterToString(clientSecret)); // form parameter
+                localVarRequestOptions.FormParameters.Add("client_secret", ClientUtils.ParameterToString(clientSecret)); // form parameter
             }
 
             // authentication (kindeBearerAuth) required

@@ -1,5 +1,5 @@
 using System.Text.Json;
-using Kinde.Api.Model;
+using Clinically.Kinde.Authentication.ManagementApi.Model;
 using Microsoft.AspNetCore.Identity;
 
 namespace Clinically.Kinde.Authentication.Types;

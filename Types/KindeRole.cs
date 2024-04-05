@@ -1,5 +1,5 @@
 using System.Text.Json.Serialization;
-using Kinde.Api.Model;
+using Clinically.Kinde.Authentication.ManagementApi.Model;
 
 namespace Clinically.Kinde.Authentication.Types;
 

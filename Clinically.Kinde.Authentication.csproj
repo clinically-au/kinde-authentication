@@ -9,7 +9,7 @@
         <RepositoryType>git</RepositoryType>
         <PackageProjectUrl>https://github.com/clinically-au/kinde-authentication</PackageProjectUrl>
         <AssemblyName>Clinically.Kinde.Authentication</AssemblyName>
-        <Version>1.0.1</Version>
+        <Version>1.0.2</Version>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <RootNamespace>Clinically.Kinde.Authentication</RootNamespace>
         <PackageId>Clinically.Kinde.Authentication</PackageId>

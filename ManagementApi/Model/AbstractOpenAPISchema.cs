@@ -9,11 +9,10 @@
  */
 
 
-using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
-namespace Kinde.Api.Model
+namespace Clinically.Kinde.Authentication.ManagementApi.Model
 {
     /// <summary>
     ///  Abstract base class for oneOf, anyOf schemas in the OpenAPI specification

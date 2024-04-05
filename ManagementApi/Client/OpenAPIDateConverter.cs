@@ -10,7 +10,7 @@
 
 using Newtonsoft.Json.Converters;
 
-namespace Kinde.Api.Client
+namespace Clinically.Kinde.Authentication.ManagementApi.Client
 {
     /// <summary>
     /// Formatter for 'date' openapi formats ss defined by full-date - RFC3339

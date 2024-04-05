@@ -9,9 +9,7 @@
  */
 
 
-using System;
-
-namespace Kinde.Api.Client
+namespace Clinically.Kinde.Authentication.ManagementApi.Client
 {
     /// <summary>
     /// API Exception

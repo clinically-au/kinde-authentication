@@ -9,17 +9,10 @@
  */
 
 
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Net.Mime;
-using Kinde.Api.Client;
-using Kinde.Api.Model;
+using Clinically.Kinde.Authentication.ManagementApi.Client;
+using Clinically.Kinde.Authentication.ManagementApi.Model;
 
-namespace Kinde.Api.Api
+namespace Clinically.Kinde.Authentication.ManagementApi.Api
 {
 
     /// <summary>
@@ -34,7 +27,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Create an application.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="createApplicationRequest">Application details. (optional)</param>
         /// <returns>CreateApplicationResponse</returns>
         CreateApplicationResponse CreateApplication(CreateApplicationRequest? createApplicationRequest = default(CreateApplicationRequest?));
@@ -45,7 +38,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Create an application.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="createApplicationRequest">Application details. (optional)</param>
         /// <returns>ApiResponse of CreateApplicationResponse</returns>
         ApiResponse<CreateApplicationResponse> CreateApplicationWithHttpInfo(CreateApplicationRequest? createApplicationRequest = default(CreateApplicationRequest?));
@@ -55,7 +48,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Delete application. 
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="applicationId">The identifier for the application.</param>
         /// <returns>SuccessResponse</returns>
         SuccessResponse DeleteApplication(string applicationId);
@@ -66,7 +59,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Delete application. 
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="applicationId">The identifier for the application.</param>
         /// <returns>ApiResponse of SuccessResponse</returns>
         ApiResponse<SuccessResponse> DeleteApplicationWithHttpInfo(string applicationId);
@@ -76,7 +69,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Gets an application given the application&#39;s id. 
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="applicationId">The identifier for the application.</param>
         /// <returns>GetApplicationResponse</returns>
         GetApplicationResponse GetApplication(string applicationId);
@@ -87,7 +80,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Gets an application given the application&#39;s id. 
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="applicationId">The identifier for the application.</param>
         /// <returns>ApiResponse of GetApplicationResponse</returns>
         ApiResponse<GetApplicationResponse> GetApplicationWithHttpInfo(string applicationId);
@@ -97,7 +90,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Get a list of applications. 
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="sort">Field and order to sort the result by. (optional)</param>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="nextToken">A string to get the next page of results if there are more results. (optional)</param>
@@ -110,7 +103,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Get a list of applications. 
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="sort">Field and order to sort the result by. (optional)</param>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="nextToken">A string to get the next page of results if there are more results. (optional)</param>
@@ -122,7 +115,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Update an application.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="applicationId">The identifier for the application.</param>
         /// <param name="updateApplicationRequest">Application details. (optional)</param>
         /// <returns></returns>
@@ -134,7 +127,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Update an application.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="applicationId">The identifier for the application.</param>
         /// <param name="updateApplicationRequest">Application details. (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
@@ -154,7 +147,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Create an application.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="createApplicationRequest">Application details. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateApplicationResponse</returns>
@@ -166,7 +159,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Create an application.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="createApplicationRequest">Application details. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateApplicationResponse)</returns>
@@ -177,7 +170,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Delete application. 
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="applicationId">The identifier for the application.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SuccessResponse</returns>
@@ -189,7 +182,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Delete application. 
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="applicationId">The identifier for the application.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
@@ -200,7 +193,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Gets an application given the application&#39;s id. 
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="applicationId">The identifier for the application.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetApplicationResponse</returns>
@@ -212,7 +205,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Gets an application given the application&#39;s id. 
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="applicationId">The identifier for the application.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetApplicationResponse)</returns>
@@ -223,7 +216,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Get a list of applications. 
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="sort">Field and order to sort the result by. (optional)</param>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="nextToken">A string to get the next page of results if there are more results. (optional)</param>
@@ -237,7 +230,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Get a list of applications. 
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="sort">Field and order to sort the result by. (optional)</param>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="nextToken">A string to get the next page of results if there are more results. (optional)</param>
@@ -250,7 +243,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Update an application.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="applicationId">The identifier for the application.</param>
         /// <param name="updateApplicationRequest">Application details. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -263,7 +256,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Update an application.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="applicationId">The identifier for the application.</param>
         /// <param name="updateApplicationRequest">Application details. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -285,7 +278,7 @@ namespace Kinde.Api.Api
     /// </summary>
     public partial class ApplicationsApi : IDisposable, IApplicationsApi
     {
-        private Kinde.Api.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
+        private ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApplicationsApi"/> class.
@@ -307,14 +300,14 @@ namespace Kinde.Api.Api
         /// <returns></returns>
         public ApplicationsApi(string basePath)
         {
-            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
-                Kinde.Api.Client.GlobalConfiguration.Instance,
-                new Kinde.Api.Client.Configuration { BasePath = basePath }
+            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
+                GlobalConfiguration.Instance,
+                new Configuration { BasePath = basePath }
             );
-            this.ApiClient = new Kinde.Api.Client.ApiClient(this.Configuration.BasePath);
+            this.ApiClient = new ApiClient(this.Configuration.BasePath);
             this.Client =  this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            this.ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -325,18 +318,18 @@ namespace Kinde.Api.Api
         /// <param name="configuration">An instance of Configuration.</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <returns></returns>
-        public ApplicationsApi(Kinde.Api.Client.Configuration configuration)
+        public ApplicationsApi(Configuration configuration)
         {
             if (configuration == null) throw new ArgumentNullException("configuration");
 
-            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
-                Kinde.Api.Client.GlobalConfiguration.Instance,
+            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
+                GlobalConfiguration.Instance,
                 configuration
             );
-            this.ApiClient = new Kinde.Api.Client.ApiClient(this.Configuration.BasePath);
+            this.ApiClient = new ApiClient(this.Configuration.BasePath);
             this.Client = this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
+            ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -371,14 +364,14 @@ namespace Kinde.Api.Api
         {
             if (client == null) throw new ArgumentNullException("client");
 
-            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
-                Kinde.Api.Client.GlobalConfiguration.Instance,
-                new Kinde.Api.Client.Configuration { BasePath = basePath }
+            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
+                GlobalConfiguration.Instance,
+                new Configuration { BasePath = basePath }
             );
-            this.ApiClient = new Kinde.Api.Client.ApiClient(client, this.Configuration.BasePath, handler);
+            this.ApiClient = new ApiClient(client, this.Configuration.BasePath, handler);
             this.Client =  this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            this.ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -393,19 +386,19 @@ namespace Kinde.Api.Api
         /// Some configuration settings will not be applied without passing an HttpClientHandler.
         /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
         /// </remarks>
-        public ApplicationsApi(HttpClient client, Kinde.Api.Client.Configuration configuration, HttpClientHandler handler = null)
+        public ApplicationsApi(HttpClient client, Configuration configuration, HttpClientHandler handler = null)
         {
             if (configuration == null) throw new ArgumentNullException("configuration");
             if (client == null) throw new ArgumentNullException("client");
 
-            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
-                Kinde.Api.Client.GlobalConfiguration.Instance,
+            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
+                GlobalConfiguration.Instance,
                 configuration
             );
-            this.ApiClient = new Kinde.Api.Client.ApiClient(client, this.Configuration.BasePath, handler);
+            this.ApiClient = new ApiClient(client, this.Configuration.BasePath, handler);
             this.Client = this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
+            ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -416,7 +409,7 @@ namespace Kinde.Api.Api
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
         /// <exception cref="ArgumentNullException"></exception>
-        public ApplicationsApi(Kinde.Api.Client.ISynchronousClient client, Kinde.Api.Client.IAsynchronousClient asyncClient, Kinde.Api.Client.IReadableConfiguration configuration)
+        public ApplicationsApi(ISynchronousClient client, IAsynchronousClient asyncClient, IReadableConfiguration configuration)
         {
             if (client == null) throw new ArgumentNullException("client");
             if (asyncClient == null) throw new ArgumentNullException("asyncClient");
@@ -425,7 +418,7 @@ namespace Kinde.Api.Api
             this.Client = client;
             this.AsynchronousClient = asyncClient;
             this.Configuration = configuration;
-            this.ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -439,17 +432,17 @@ namespace Kinde.Api.Api
         /// <summary>
         /// Holds the ApiClient if created
         /// </summary>
-        public Kinde.Api.Client.ApiClient ApiClient { get; set; } = null;
+        public ApiClient ApiClient { get; set; } = null;
 
         /// <summary>
         /// The client for accessing this underlying API asynchronously.
         /// </summary>
-        public Kinde.Api.Client.IAsynchronousClient AsynchronousClient { get; set; }
+        public IAsynchronousClient AsynchronousClient { get; set; }
 
         /// <summary>
         /// The client for accessing this underlying API synchronously.
         /// </summary>
-        public Kinde.Api.Client.ISynchronousClient Client { get; set; }
+        public ISynchronousClient Client { get; set; }
 
         /// <summary>
         /// Gets the base path of the API client.
@@ -464,12 +457,12 @@ namespace Kinde.Api.Api
         /// Gets or sets the configuration object
         /// </summary>
         /// <value>An instance of the Configuration</value>
-        public Kinde.Api.Client.IReadableConfiguration Configuration { get; set; }
+        public IReadableConfiguration Configuration { get; set; }
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
         /// </summary>
-        public Kinde.Api.Client.ExceptionFactory ExceptionFactory
+        public ExceptionFactory ExceptionFactory
         {
             get
             {
@@ -485,24 +478,24 @@ namespace Kinde.Api.Api
         /// <summary>
         /// Create Application Create an application.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="createApplicationRequest">Application details. (optional)</param>
         /// <returns>CreateApplicationResponse</returns>
         public CreateApplicationResponse CreateApplication(CreateApplicationRequest? createApplicationRequest = default(CreateApplicationRequest?))
         {
-            Kinde.Api.Client.ApiResponse<CreateApplicationResponse> localVarResponse = CreateApplicationWithHttpInfo(createApplicationRequest);
+            ApiResponse<CreateApplicationResponse> localVarResponse = CreateApplicationWithHttpInfo(createApplicationRequest);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Create Application Create an application.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="createApplicationRequest">Application details. (optional)</param>
         /// <returns>ApiResponse of CreateApplicationResponse</returns>
-        public Kinde.Api.Client.ApiResponse<CreateApplicationResponse> CreateApplicationWithHttpInfo(CreateApplicationRequest? createApplicationRequest = default(CreateApplicationRequest?))
+        public ApiResponse<CreateApplicationResponse> CreateApplicationWithHttpInfo(CreateApplicationRequest? createApplicationRequest = default(CreateApplicationRequest?))
         {
-            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
+            RequestOptions localVarRequestOptions = new RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/json"
@@ -514,10 +507,10 @@ namespace Kinde.Api.Api
                 "application/json; charset=utf-8"
             };
 
-            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.Data = createApplicationRequest;
@@ -544,27 +537,27 @@ namespace Kinde.Api.Api
         /// <summary>
         /// Create Application Create an application.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="createApplicationRequest">Application details. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of CreateApplicationResponse</returns>
         public async System.Threading.Tasks.Task<CreateApplicationResponse> CreateApplicationAsync(CreateApplicationRequest? createApplicationRequest = default(CreateApplicationRequest?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Kinde.Api.Client.ApiResponse<CreateApplicationResponse> localVarResponse = await CreateApplicationWithHttpInfoAsync(createApplicationRequest, cancellationToken).ConfigureAwait(false);
+            ApiResponse<CreateApplicationResponse> localVarResponse = await CreateApplicationWithHttpInfoAsync(createApplicationRequest, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Create Application Create an application.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="createApplicationRequest">Application details. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (CreateApplicationResponse)</returns>
-        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<CreateApplicationResponse>> CreateApplicationWithHttpInfoAsync(CreateApplicationRequest? createApplicationRequest = default(CreateApplicationRequest?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<CreateApplicationResponse>> CreateApplicationWithHttpInfoAsync(CreateApplicationRequest? createApplicationRequest = default(CreateApplicationRequest?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
-            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
+            RequestOptions localVarRequestOptions = new RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/json"
@@ -577,10 +570,10 @@ namespace Kinde.Api.Api
             };
 
 
-            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             localVarRequestOptions.Data = createApplicationRequest;
@@ -608,28 +601,28 @@ namespace Kinde.Api.Api
         /// <summary>
         /// Delete Application Delete application. 
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="applicationId">The identifier for the application.</param>
         /// <returns>SuccessResponse</returns>
         public SuccessResponse DeleteApplication(string applicationId)
         {
-            Kinde.Api.Client.ApiResponse<SuccessResponse> localVarResponse = DeleteApplicationWithHttpInfo(applicationId);
+            ApiResponse<SuccessResponse> localVarResponse = DeleteApplicationWithHttpInfo(applicationId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Delete Application Delete application. 
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="applicationId">The identifier for the application.</param>
         /// <returns>ApiResponse of SuccessResponse</returns>
-        public Kinde.Api.Client.ApiResponse<SuccessResponse> DeleteApplicationWithHttpInfo(string applicationId)
+        public ApiResponse<SuccessResponse> DeleteApplicationWithHttpInfo(string applicationId)
         {
             // verify the required parameter 'applicationId' is set
             if (applicationId == null)
-                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'applicationId' when calling ApplicationsApi->DeleteApplication");
+                throw new ApiException(400, "Missing required parameter 'applicationId' when calling ApplicationsApi->DeleteApplication");
 
-            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
+            RequestOptions localVarRequestOptions = new RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -640,13 +633,13 @@ namespace Kinde.Api.Api
                 "application/json; charset=utf-8"
             };
 
-            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("application_id", Kinde.Api.Client.ClientUtils.ParameterToString(applicationId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("application_id", ClientUtils.ParameterToString(applicationId)); // path parameter
 
             // authentication (kindeBearerAuth) required
             // bearer authentication required
@@ -670,31 +663,31 @@ namespace Kinde.Api.Api
         /// <summary>
         /// Delete Application Delete application. 
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="applicationId">The identifier for the application.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SuccessResponse</returns>
         public async System.Threading.Tasks.Task<SuccessResponse> DeleteApplicationAsync(string applicationId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Kinde.Api.Client.ApiResponse<SuccessResponse> localVarResponse = await DeleteApplicationWithHttpInfoAsync(applicationId, cancellationToken).ConfigureAwait(false);
+            ApiResponse<SuccessResponse> localVarResponse = await DeleteApplicationWithHttpInfoAsync(applicationId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Delete Application Delete application. 
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="applicationId">The identifier for the application.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
-        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<SuccessResponse>> DeleteApplicationWithHttpInfoAsync(string applicationId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<SuccessResponse>> DeleteApplicationWithHttpInfoAsync(string applicationId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'applicationId' is set
             if (applicationId == null)
-                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'applicationId' when calling ApplicationsApi->DeleteApplication");
+                throw new ApiException(400, "Missing required parameter 'applicationId' when calling ApplicationsApi->DeleteApplication");
 
 
-            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
+            RequestOptions localVarRequestOptions = new RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -706,13 +699,13 @@ namespace Kinde.Api.Api
             };
 
 
-            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("application_id", Kinde.Api.Client.ClientUtils.ParameterToString(applicationId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("application_id", ClientUtils.ParameterToString(applicationId)); // path parameter
 
             // authentication (kindeBearerAuth) required
             // bearer authentication required
@@ -737,28 +730,28 @@ namespace Kinde.Api.Api
         /// <summary>
         /// Get Application Gets an application given the application&#39;s id. 
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="applicationId">The identifier for the application.</param>
         /// <returns>GetApplicationResponse</returns>
         public GetApplicationResponse GetApplication(string applicationId)
         {
-            Kinde.Api.Client.ApiResponse<GetApplicationResponse> localVarResponse = GetApplicationWithHttpInfo(applicationId);
+            ApiResponse<GetApplicationResponse> localVarResponse = GetApplicationWithHttpInfo(applicationId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get Application Gets an application given the application&#39;s id. 
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="applicationId">The identifier for the application.</param>
         /// <returns>ApiResponse of GetApplicationResponse</returns>
-        public Kinde.Api.Client.ApiResponse<GetApplicationResponse> GetApplicationWithHttpInfo(string applicationId)
+        public ApiResponse<GetApplicationResponse> GetApplicationWithHttpInfo(string applicationId)
         {
             // verify the required parameter 'applicationId' is set
             if (applicationId == null)
-                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'applicationId' when calling ApplicationsApi->GetApplication");
+                throw new ApiException(400, "Missing required parameter 'applicationId' when calling ApplicationsApi->GetApplication");
 
-            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
+            RequestOptions localVarRequestOptions = new RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -769,13 +762,13 @@ namespace Kinde.Api.Api
                 "application/json; charset=utf-8"
             };
 
-            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("application_id", Kinde.Api.Client.ClientUtils.ParameterToString(applicationId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("application_id", ClientUtils.ParameterToString(applicationId)); // path parameter
 
             // authentication (kindeBearerAuth) required
             // bearer authentication required
@@ -799,31 +792,31 @@ namespace Kinde.Api.Api
         /// <summary>
         /// Get Application Gets an application given the application&#39;s id. 
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="applicationId">The identifier for the application.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetApplicationResponse</returns>
         public async System.Threading.Tasks.Task<GetApplicationResponse> GetApplicationAsync(string applicationId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Kinde.Api.Client.ApiResponse<GetApplicationResponse> localVarResponse = await GetApplicationWithHttpInfoAsync(applicationId, cancellationToken).ConfigureAwait(false);
+            ApiResponse<GetApplicationResponse> localVarResponse = await GetApplicationWithHttpInfoAsync(applicationId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get Application Gets an application given the application&#39;s id. 
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="applicationId">The identifier for the application.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetApplicationResponse)</returns>
-        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<GetApplicationResponse>> GetApplicationWithHttpInfoAsync(string applicationId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<GetApplicationResponse>> GetApplicationWithHttpInfoAsync(string applicationId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'applicationId' is set
             if (applicationId == null)
-                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'applicationId' when calling ApplicationsApi->GetApplication");
+                throw new ApiException(400, "Missing required parameter 'applicationId' when calling ApplicationsApi->GetApplication");
 
 
-            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
+            RequestOptions localVarRequestOptions = new RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -835,13 +828,13 @@ namespace Kinde.Api.Api
             };
 
 
-            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("application_id", Kinde.Api.Client.ClientUtils.ParameterToString(applicationId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("application_id", ClientUtils.ParameterToString(applicationId)); // path parameter
 
             // authentication (kindeBearerAuth) required
             // bearer authentication required
@@ -866,28 +859,28 @@ namespace Kinde.Api.Api
         /// <summary>
         /// List Applications Get a list of applications. 
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="sort">Field and order to sort the result by. (optional)</param>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="nextToken">A string to get the next page of results if there are more results. (optional)</param>
         /// <returns>GetApplicationsResponse</returns>
         public GetApplicationsResponse GetApplications(string? sort = default(string?), int? pageSize = default(int?), string? nextToken = default(string?))
         {
-            Kinde.Api.Client.ApiResponse<GetApplicationsResponse> localVarResponse = GetApplicationsWithHttpInfo(sort, pageSize, nextToken);
+            ApiResponse<GetApplicationsResponse> localVarResponse = GetApplicationsWithHttpInfo(sort, pageSize, nextToken);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List Applications Get a list of applications. 
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="sort">Field and order to sort the result by. (optional)</param>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="nextToken">A string to get the next page of results if there are more results. (optional)</param>
         /// <returns>ApiResponse of GetApplicationsResponse</returns>
-        public Kinde.Api.Client.ApiResponse<GetApplicationsResponse> GetApplicationsWithHttpInfo(string? sort = default(string?), int? pageSize = default(int?), string? nextToken = default(string?))
+        public ApiResponse<GetApplicationsResponse> GetApplicationsWithHttpInfo(string? sort = default(string?), int? pageSize = default(int?), string? nextToken = default(string?))
         {
-            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
+            RequestOptions localVarRequestOptions = new RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -898,23 +891,23 @@ namespace Kinde.Api.Api
                 "application/json; charset=utf-8"
             };
 
-            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             if (sort != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "sort", sort));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "sort", sort));
             }
             if (pageSize != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "page_size", pageSize));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page_size", pageSize));
             }
             if (nextToken != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "next_token", nextToken));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "next_token", nextToken));
             }
 
             // authentication (kindeBearerAuth) required
@@ -939,7 +932,7 @@ namespace Kinde.Api.Api
         /// <summary>
         /// List Applications Get a list of applications. 
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="sort">Field and order to sort the result by. (optional)</param>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="nextToken">A string to get the next page of results if there are more results. (optional)</param>
@@ -947,23 +940,23 @@ namespace Kinde.Api.Api
         /// <returns>Task of GetApplicationsResponse</returns>
         public async System.Threading.Tasks.Task<GetApplicationsResponse> GetApplicationsAsync(string? sort = default(string?), int? pageSize = default(int?), string? nextToken = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Kinde.Api.Client.ApiResponse<GetApplicationsResponse> localVarResponse = await GetApplicationsWithHttpInfoAsync(sort, pageSize, nextToken, cancellationToken).ConfigureAwait(false);
+            ApiResponse<GetApplicationsResponse> localVarResponse = await GetApplicationsWithHttpInfoAsync(sort, pageSize, nextToken, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// List Applications Get a list of applications. 
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="sort">Field and order to sort the result by. (optional)</param>
         /// <param name="pageSize">Number of results per page. Defaults to 10 if parameter not sent. (optional)</param>
         /// <param name="nextToken">A string to get the next page of results if there are more results. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetApplicationsResponse)</returns>
-        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<GetApplicationsResponse>> GetApplicationsWithHttpInfoAsync(string? sort = default(string?), int? pageSize = default(int?), string? nextToken = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<GetApplicationsResponse>> GetApplicationsWithHttpInfoAsync(string? sort = default(string?), int? pageSize = default(int?), string? nextToken = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
-            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
+            RequestOptions localVarRequestOptions = new RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -975,23 +968,23 @@ namespace Kinde.Api.Api
             };
 
 
-            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
             if (sort != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "sort", sort));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "sort", sort));
             }
             if (pageSize != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "page_size", pageSize));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "page_size", pageSize));
             }
             if (nextToken != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "next_token", nextToken));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "next_token", nextToken));
             }
 
             // authentication (kindeBearerAuth) required
@@ -1017,7 +1010,7 @@ namespace Kinde.Api.Api
         /// <summary>
         /// Update Application Update an application.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="applicationId">The identifier for the application.</param>
         /// <param name="updateApplicationRequest">Application details. (optional)</param>
         /// <returns></returns>
@@ -1029,17 +1022,17 @@ namespace Kinde.Api.Api
         /// <summary>
         /// Update Application Update an application.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="applicationId">The identifier for the application.</param>
         /// <param name="updateApplicationRequest">Application details. (optional)</param>
         /// <returns>ApiResponse of Object(void)</returns>
-        public Kinde.Api.Client.ApiResponse<Object> UpdateApplicationWithHttpInfo(string applicationId, UpdateApplicationRequest? updateApplicationRequest = default(UpdateApplicationRequest?))
+        public ApiResponse<Object> UpdateApplicationWithHttpInfo(string applicationId, UpdateApplicationRequest? updateApplicationRequest = default(UpdateApplicationRequest?))
         {
             // verify the required parameter 'applicationId' is set
             if (applicationId == null)
-                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'applicationId' when calling ApplicationsApi->UpdateApplication");
+                throw new ApiException(400, "Missing required parameter 'applicationId' when calling ApplicationsApi->UpdateApplication");
 
-            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
+            RequestOptions localVarRequestOptions = new RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/json"
@@ -1051,13 +1044,13 @@ namespace Kinde.Api.Api
                 "application/json; charset=utf-8"
             };
 
-            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("application_id", Kinde.Api.Client.ClientUtils.ParameterToString(applicationId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("application_id", ClientUtils.ParameterToString(applicationId)); // path parameter
             localVarRequestOptions.Data = updateApplicationRequest;
 
             // authentication (kindeBearerAuth) required
@@ -1082,7 +1075,7 @@ namespace Kinde.Api.Api
         /// <summary>
         /// Update Application Update an application.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="applicationId">The identifier for the application.</param>
         /// <param name="updateApplicationRequest">Application details. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
@@ -1095,19 +1088,19 @@ namespace Kinde.Api.Api
         /// <summary>
         /// Update Application Update an application.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="applicationId">The identifier for the application.</param>
         /// <param name="updateApplicationRequest">Application details. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse</returns>
-        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<Object>> UpdateApplicationWithHttpInfoAsync(string applicationId, UpdateApplicationRequest? updateApplicationRequest = default(UpdateApplicationRequest?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<Object>> UpdateApplicationWithHttpInfoAsync(string applicationId, UpdateApplicationRequest? updateApplicationRequest = default(UpdateApplicationRequest?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'applicationId' is set
             if (applicationId == null)
-                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'applicationId' when calling ApplicationsApi->UpdateApplication");
+                throw new ApiException(400, "Missing required parameter 'applicationId' when calling ApplicationsApi->UpdateApplication");
 
 
-            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
+            RequestOptions localVarRequestOptions = new RequestOptions();
 
             string[] _contentTypes = new string[] {
                 "application/json"
@@ -1120,13 +1113,13 @@ namespace Kinde.Api.Api
             };
 
 
-            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.PathParameters.Add("application_id", Kinde.Api.Client.ClientUtils.ParameterToString(applicationId)); // path parameter
+            localVarRequestOptions.PathParameters.Add("application_id", ClientUtils.ParameterToString(applicationId)); // path parameter
             localVarRequestOptions.Data = updateApplicationRequest;
 
             // authentication (kindeBearerAuth) required

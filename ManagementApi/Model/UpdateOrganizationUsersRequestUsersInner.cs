@@ -9,23 +9,11 @@
  */
 
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.IO;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using System.Text;
-using System.Text.RegularExpressions;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
-using System.ComponentModel.DataAnnotations;
-using FileParameter = Kinde.Api.Client.FileParameter;
-using OpenAPIDateConverter = Kinde.Api.Client.OpenAPIDateConverter;
 
-namespace Kinde.Api.Model
+namespace Clinically.Kinde.Authentication.ManagementApi.Model
 {
     /// <summary>
     /// UpdateOrganizationUsersRequestUsersInner

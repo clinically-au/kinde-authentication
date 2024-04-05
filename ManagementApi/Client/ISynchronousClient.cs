@@ -9,10 +9,7 @@
  */
 
 
-using System;
-using System.IO;
-
-namespace Kinde.Api.Client
+namespace Clinically.Kinde.Authentication.ManagementApi.Client
 {
     /// <summary>
     /// Contract for Synchronous RESTful API interactions.

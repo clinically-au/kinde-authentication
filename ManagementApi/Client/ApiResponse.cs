@@ -9,11 +9,9 @@
  */
 
 
-using System;
-using System.Collections.Generic;
 using System.Net;
 
-namespace Kinde.Api.Client
+namespace Clinically.Kinde.Authentication.ManagementApi.Client
 {
     /// <summary>
     /// Provides a non-generic contract for the ApiResponse wrapper.

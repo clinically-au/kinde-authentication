@@ -9,17 +9,10 @@
  */
 
 
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Net.Mime;
-using Kinde.Api.Client;
-using Kinde.Api.Model;
+using Clinically.Kinde.Authentication.ManagementApi.Client;
+using Clinically.Kinde.Authentication.ManagementApi.Model;
 
-namespace Kinde.Api.Api
+namespace Clinically.Kinde.Authentication.ManagementApi.Api
 {
 
     /// <summary>
@@ -34,7 +27,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Get a URL that authenticates and authorizes a user to a third-party connected app.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="keyCodeRef">The unique key code reference of the connected app to authenticate against.</param>
         /// <param name="userId">The id of the user that needs to authenticate to the third-party connected app. (optional)</param>
         /// <param name="orgCode">The code of the Kinde organization that needs to authenticate to the third-party connected app. (optional)</param>
@@ -48,7 +41,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Get a URL that authenticates and authorizes a user to a third-party connected app.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="keyCodeRef">The unique key code reference of the connected app to authenticate against.</param>
         /// <param name="userId">The id of the user that needs to authenticate to the third-party connected app. (optional)</param>
         /// <param name="orgCode">The code of the Kinde organization that needs to authenticate to the third-party connected app. (optional)</param>
@@ -61,7 +54,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Get an access token that can be used to call the third-party provider linked to the connected app.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionId">The unique sesssion id reprensenting the login session of a user.</param>
         /// <returns>ConnectedAppsAccessToken</returns>
         ConnectedAppsAccessToken GetConnectedAppToken(string sessionId);
@@ -72,7 +65,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Get an access token that can be used to call the third-party provider linked to the connected app.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionId">The unique sesssion id reprensenting the login session of a user.</param>
         /// <returns>ApiResponse of ConnectedAppsAccessToken</returns>
         ApiResponse<ConnectedAppsAccessToken> GetConnectedAppTokenWithHttpInfo(string sessionId);
@@ -82,7 +75,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Revoke the tokens linked to the connected app session.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionId">The unique sesssion id reprensenting the login session of a user.</param>
         /// <returns>SuccessResponse</returns>
         SuccessResponse RevokeConnectedAppToken(string sessionId);
@@ -93,7 +86,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Revoke the tokens linked to the connected app session.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionId">The unique sesssion id reprensenting the login session of a user.</param>
         /// <returns>ApiResponse of SuccessResponse</returns>
         ApiResponse<SuccessResponse> RevokeConnectedAppTokenWithHttpInfo(string sessionId);
@@ -112,7 +105,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Get a URL that authenticates and authorizes a user to a third-party connected app.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="keyCodeRef">The unique key code reference of the connected app to authenticate against.</param>
         /// <param name="userId">The id of the user that needs to authenticate to the third-party connected app. (optional)</param>
         /// <param name="orgCode">The code of the Kinde organization that needs to authenticate to the third-party connected app. (optional)</param>
@@ -127,7 +120,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Get a URL that authenticates and authorizes a user to a third-party connected app.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="keyCodeRef">The unique key code reference of the connected app to authenticate against.</param>
         /// <param name="userId">The id of the user that needs to authenticate to the third-party connected app. (optional)</param>
         /// <param name="orgCode">The code of the Kinde organization that needs to authenticate to the third-party connected app. (optional)</param>
@@ -141,7 +134,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Get an access token that can be used to call the third-party provider linked to the connected app.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionId">The unique sesssion id reprensenting the login session of a user.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ConnectedAppsAccessToken</returns>
@@ -153,7 +146,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Get an access token that can be used to call the third-party provider linked to the connected app.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionId">The unique sesssion id reprensenting the login session of a user.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ConnectedAppsAccessToken)</returns>
@@ -164,7 +157,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Revoke the tokens linked to the connected app session.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionId">The unique sesssion id reprensenting the login session of a user.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SuccessResponse</returns>
@@ -176,7 +169,7 @@ namespace Kinde.Api.Api
         /// <remarks>
         /// Revoke the tokens linked to the connected app session.
         /// </remarks>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionId">The unique sesssion id reprensenting the login session of a user.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
@@ -197,7 +190,7 @@ namespace Kinde.Api.Api
     /// </summary>
     public partial class ConnectedAppsApi : IDisposable, IConnectedAppsApi
     {
-        private Kinde.Api.Client.ExceptionFactory _exceptionFactory = (name, response) => null;
+        private ExceptionFactory _exceptionFactory = (name, response) => null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConnectedAppsApi"/> class.
@@ -219,14 +212,14 @@ namespace Kinde.Api.Api
         /// <returns></returns>
         public ConnectedAppsApi(string basePath)
         {
-            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
-                Kinde.Api.Client.GlobalConfiguration.Instance,
-                new Kinde.Api.Client.Configuration { BasePath = basePath }
+            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
+                GlobalConfiguration.Instance,
+                new Configuration { BasePath = basePath }
             );
-            this.ApiClient = new Kinde.Api.Client.ApiClient(this.Configuration.BasePath);
+            this.ApiClient = new ApiClient(this.Configuration.BasePath);
             this.Client =  this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            this.ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -237,18 +230,18 @@ namespace Kinde.Api.Api
         /// <param name="configuration">An instance of Configuration.</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <returns></returns>
-        public ConnectedAppsApi(Kinde.Api.Client.Configuration configuration)
+        public ConnectedAppsApi(Configuration configuration)
         {
             if (configuration == null) throw new ArgumentNullException("configuration");
 
-            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
-                Kinde.Api.Client.GlobalConfiguration.Instance,
+            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
+                GlobalConfiguration.Instance,
                 configuration
             );
-            this.ApiClient = new Kinde.Api.Client.ApiClient(this.Configuration.BasePath);
+            this.ApiClient = new ApiClient(this.Configuration.BasePath);
             this.Client = this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
+            ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -283,14 +276,14 @@ namespace Kinde.Api.Api
         {
             if (client == null) throw new ArgumentNullException("client");
 
-            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
-                Kinde.Api.Client.GlobalConfiguration.Instance,
-                new Kinde.Api.Client.Configuration { BasePath = basePath }
+            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
+                GlobalConfiguration.Instance,
+                new Configuration { BasePath = basePath }
             );
-            this.ApiClient = new Kinde.Api.Client.ApiClient(client, this.Configuration.BasePath, handler);
+            this.ApiClient = new ApiClient(client, this.Configuration.BasePath, handler);
             this.Client =  this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            this.ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -305,19 +298,19 @@ namespace Kinde.Api.Api
         /// Some configuration settings will not be applied without passing an HttpClientHandler.
         /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
         /// </remarks>
-        public ConnectedAppsApi(HttpClient client, Kinde.Api.Client.Configuration configuration, HttpClientHandler handler = null)
+        public ConnectedAppsApi(HttpClient client, Configuration configuration, HttpClientHandler handler = null)
         {
             if (configuration == null) throw new ArgumentNullException("configuration");
             if (client == null) throw new ArgumentNullException("client");
 
-            this.Configuration = Kinde.Api.Client.Configuration.MergeConfigurations(
-                Kinde.Api.Client.GlobalConfiguration.Instance,
+            this.Configuration = ManagementApi.Client.Configuration.MergeConfigurations(
+                GlobalConfiguration.Instance,
                 configuration
             );
-            this.ApiClient = new Kinde.Api.Client.ApiClient(client, this.Configuration.BasePath, handler);
+            this.ApiClient = new ApiClient(client, this.Configuration.BasePath, handler);
             this.Client = this.ApiClient;
             this.AsynchronousClient = this.ApiClient;
-            ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
+            ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -328,7 +321,7 @@ namespace Kinde.Api.Api
         /// <param name="asyncClient">The client interface for asynchronous API access.</param>
         /// <param name="configuration">The configuration object.</param>
         /// <exception cref="ArgumentNullException"></exception>
-        public ConnectedAppsApi(Kinde.Api.Client.ISynchronousClient client, Kinde.Api.Client.IAsynchronousClient asyncClient, Kinde.Api.Client.IReadableConfiguration configuration)
+        public ConnectedAppsApi(ISynchronousClient client, IAsynchronousClient asyncClient, IReadableConfiguration configuration)
         {
             if (client == null) throw new ArgumentNullException("client");
             if (asyncClient == null) throw new ArgumentNullException("asyncClient");
@@ -337,7 +330,7 @@ namespace Kinde.Api.Api
             this.Client = client;
             this.AsynchronousClient = asyncClient;
             this.Configuration = configuration;
-            this.ExceptionFactory = Kinde.Api.Client.Configuration.DefaultExceptionFactory;
+            this.ExceptionFactory = ManagementApi.Client.Configuration.DefaultExceptionFactory;
         }
 
         /// <summary>
@@ -351,17 +344,17 @@ namespace Kinde.Api.Api
         /// <summary>
         /// Holds the ApiClient if created
         /// </summary>
-        public Kinde.Api.Client.ApiClient ApiClient { get; set; } = null;
+        public ApiClient ApiClient { get; set; } = null;
 
         /// <summary>
         /// The client for accessing this underlying API asynchronously.
         /// </summary>
-        public Kinde.Api.Client.IAsynchronousClient AsynchronousClient { get; set; }
+        public IAsynchronousClient AsynchronousClient { get; set; }
 
         /// <summary>
         /// The client for accessing this underlying API synchronously.
         /// </summary>
-        public Kinde.Api.Client.ISynchronousClient Client { get; set; }
+        public ISynchronousClient Client { get; set; }
 
         /// <summary>
         /// Gets the base path of the API client.
@@ -376,12 +369,12 @@ namespace Kinde.Api.Api
         /// Gets or sets the configuration object
         /// </summary>
         /// <value>An instance of the Configuration</value>
-        public Kinde.Api.Client.IReadableConfiguration Configuration { get; set; }
+        public IReadableConfiguration Configuration { get; set; }
 
         /// <summary>
         /// Provides a factory method hook for the creation of exceptions.
         /// </summary>
-        public Kinde.Api.Client.ExceptionFactory ExceptionFactory
+        public ExceptionFactory ExceptionFactory
         {
             get
             {
@@ -397,7 +390,7 @@ namespace Kinde.Api.Api
         /// <summary>
         /// Get Connected App URL Get a URL that authenticates and authorizes a user to a third-party connected app.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="keyCodeRef">The unique key code reference of the connected app to authenticate against.</param>
         /// <param name="userId">The id of the user that needs to authenticate to the third-party connected app. (optional)</param>
         /// <param name="orgCode">The code of the Kinde organization that needs to authenticate to the third-party connected app. (optional)</param>
@@ -405,26 +398,26 @@ namespace Kinde.Api.Api
         /// <returns>ConnectedAppsAuthUrl</returns>
         public ConnectedAppsAuthUrl GetConnectedAppAuthUrl(string keyCodeRef, string? userId = default(string?), string? orgCode = default(string?), string? overrideCallbackUrl = default(string?))
         {
-            Kinde.Api.Client.ApiResponse<ConnectedAppsAuthUrl> localVarResponse = GetConnectedAppAuthUrlWithHttpInfo(keyCodeRef, userId, orgCode, overrideCallbackUrl);
+            ApiResponse<ConnectedAppsAuthUrl> localVarResponse = GetConnectedAppAuthUrlWithHttpInfo(keyCodeRef, userId, orgCode, overrideCallbackUrl);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get Connected App URL Get a URL that authenticates and authorizes a user to a third-party connected app.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="keyCodeRef">The unique key code reference of the connected app to authenticate against.</param>
         /// <param name="userId">The id of the user that needs to authenticate to the third-party connected app. (optional)</param>
         /// <param name="orgCode">The code of the Kinde organization that needs to authenticate to the third-party connected app. (optional)</param>
         /// <param name="overrideCallbackUrl">A URL that overrides the default callback URL setup in your connected app configuration (optional)</param>
         /// <returns>ApiResponse of ConnectedAppsAuthUrl</returns>
-        public Kinde.Api.Client.ApiResponse<ConnectedAppsAuthUrl> GetConnectedAppAuthUrlWithHttpInfo(string keyCodeRef, string? userId = default(string?), string? orgCode = default(string?), string? overrideCallbackUrl = default(string?))
+        public ApiResponse<ConnectedAppsAuthUrl> GetConnectedAppAuthUrlWithHttpInfo(string keyCodeRef, string? userId = default(string?), string? orgCode = default(string?), string? overrideCallbackUrl = default(string?))
         {
             // verify the required parameter 'keyCodeRef' is set
             if (keyCodeRef == null)
-                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'keyCodeRef' when calling ConnectedAppsApi->GetConnectedAppAuthUrl");
+                throw new ApiException(400, "Missing required parameter 'keyCodeRef' when calling ConnectedAppsApi->GetConnectedAppAuthUrl");
 
-            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
+            RequestOptions localVarRequestOptions = new RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -435,24 +428,24 @@ namespace Kinde.Api.Api
                 "application/json; charset=utf-8"
             };
 
-            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "key_code_ref", keyCodeRef));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "key_code_ref", keyCodeRef));
             if (userId != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "user_id", userId));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "user_id", userId));
             }
             if (orgCode != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "org_code", orgCode));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "org_code", orgCode));
             }
             if (overrideCallbackUrl != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "override_callback_url", overrideCallbackUrl));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "override_callback_url", overrideCallbackUrl));
             }
 
             // authentication (kindeBearerAuth) required
@@ -477,7 +470,7 @@ namespace Kinde.Api.Api
         /// <summary>
         /// Get Connected App URL Get a URL that authenticates and authorizes a user to a third-party connected app.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="keyCodeRef">The unique key code reference of the connected app to authenticate against.</param>
         /// <param name="userId">The id of the user that needs to authenticate to the third-party connected app. (optional)</param>
         /// <param name="orgCode">The code of the Kinde organization that needs to authenticate to the third-party connected app. (optional)</param>
@@ -486,28 +479,28 @@ namespace Kinde.Api.Api
         /// <returns>Task of ConnectedAppsAuthUrl</returns>
         public async System.Threading.Tasks.Task<ConnectedAppsAuthUrl> GetConnectedAppAuthUrlAsync(string keyCodeRef, string? userId = default(string?), string? orgCode = default(string?), string? overrideCallbackUrl = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Kinde.Api.Client.ApiResponse<ConnectedAppsAuthUrl> localVarResponse = await GetConnectedAppAuthUrlWithHttpInfoAsync(keyCodeRef, userId, orgCode, overrideCallbackUrl, cancellationToken).ConfigureAwait(false);
+            ApiResponse<ConnectedAppsAuthUrl> localVarResponse = await GetConnectedAppAuthUrlWithHttpInfoAsync(keyCodeRef, userId, orgCode, overrideCallbackUrl, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get Connected App URL Get a URL that authenticates and authorizes a user to a third-party connected app.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="keyCodeRef">The unique key code reference of the connected app to authenticate against.</param>
         /// <param name="userId">The id of the user that needs to authenticate to the third-party connected app. (optional)</param>
         /// <param name="orgCode">The code of the Kinde organization that needs to authenticate to the third-party connected app. (optional)</param>
         /// <param name="overrideCallbackUrl">A URL that overrides the default callback URL setup in your connected app configuration (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ConnectedAppsAuthUrl)</returns>
-        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<ConnectedAppsAuthUrl>> GetConnectedAppAuthUrlWithHttpInfoAsync(string keyCodeRef, string? userId = default(string?), string? orgCode = default(string?), string? overrideCallbackUrl = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ConnectedAppsAuthUrl>> GetConnectedAppAuthUrlWithHttpInfoAsync(string keyCodeRef, string? userId = default(string?), string? orgCode = default(string?), string? overrideCallbackUrl = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'keyCodeRef' is set
             if (keyCodeRef == null)
-                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'keyCodeRef' when calling ConnectedAppsApi->GetConnectedAppAuthUrl");
+                throw new ApiException(400, "Missing required parameter 'keyCodeRef' when calling ConnectedAppsApi->GetConnectedAppAuthUrl");
 
 
-            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
+            RequestOptions localVarRequestOptions = new RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -519,24 +512,24 @@ namespace Kinde.Api.Api
             };
 
 
-            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "key_code_ref", keyCodeRef));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "key_code_ref", keyCodeRef));
             if (userId != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "user_id", userId));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "user_id", userId));
             }
             if (orgCode != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "org_code", orgCode));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "org_code", orgCode));
             }
             if (overrideCallbackUrl != null)
             {
-                localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "override_callback_url", overrideCallbackUrl));
+                localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "override_callback_url", overrideCallbackUrl));
             }
 
             // authentication (kindeBearerAuth) required
@@ -562,28 +555,28 @@ namespace Kinde.Api.Api
         /// <summary>
         /// Get Connected App Token Get an access token that can be used to call the third-party provider linked to the connected app.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionId">The unique sesssion id reprensenting the login session of a user.</param>
         /// <returns>ConnectedAppsAccessToken</returns>
         public ConnectedAppsAccessToken GetConnectedAppToken(string sessionId)
         {
-            Kinde.Api.Client.ApiResponse<ConnectedAppsAccessToken> localVarResponse = GetConnectedAppTokenWithHttpInfo(sessionId);
+            ApiResponse<ConnectedAppsAccessToken> localVarResponse = GetConnectedAppTokenWithHttpInfo(sessionId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get Connected App Token Get an access token that can be used to call the third-party provider linked to the connected app.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionId">The unique sesssion id reprensenting the login session of a user.</param>
         /// <returns>ApiResponse of ConnectedAppsAccessToken</returns>
-        public Kinde.Api.Client.ApiResponse<ConnectedAppsAccessToken> GetConnectedAppTokenWithHttpInfo(string sessionId)
+        public ApiResponse<ConnectedAppsAccessToken> GetConnectedAppTokenWithHttpInfo(string sessionId)
         {
             // verify the required parameter 'sessionId' is set
             if (sessionId == null)
-                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'sessionId' when calling ConnectedAppsApi->GetConnectedAppToken");
+                throw new ApiException(400, "Missing required parameter 'sessionId' when calling ConnectedAppsApi->GetConnectedAppToken");
 
-            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
+            RequestOptions localVarRequestOptions = new RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -594,13 +587,13 @@ namespace Kinde.Api.Api
                 "application/json; charset=utf-8"
             };
 
-            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "session_id", sessionId));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "session_id", sessionId));
 
             // authentication (kindeBearerAuth) required
             // bearer authentication required
@@ -624,31 +617,31 @@ namespace Kinde.Api.Api
         /// <summary>
         /// Get Connected App Token Get an access token that can be used to call the third-party provider linked to the connected app.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionId">The unique sesssion id reprensenting the login session of a user.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ConnectedAppsAccessToken</returns>
         public async System.Threading.Tasks.Task<ConnectedAppsAccessToken> GetConnectedAppTokenAsync(string sessionId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Kinde.Api.Client.ApiResponse<ConnectedAppsAccessToken> localVarResponse = await GetConnectedAppTokenWithHttpInfoAsync(sessionId, cancellationToken).ConfigureAwait(false);
+            ApiResponse<ConnectedAppsAccessToken> localVarResponse = await GetConnectedAppTokenWithHttpInfoAsync(sessionId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Get Connected App Token Get an access token that can be used to call the third-party provider linked to the connected app.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionId">The unique sesssion id reprensenting the login session of a user.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (ConnectedAppsAccessToken)</returns>
-        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<ConnectedAppsAccessToken>> GetConnectedAppTokenWithHttpInfoAsync(string sessionId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<ConnectedAppsAccessToken>> GetConnectedAppTokenWithHttpInfoAsync(string sessionId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'sessionId' is set
             if (sessionId == null)
-                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'sessionId' when calling ConnectedAppsApi->GetConnectedAppToken");
+                throw new ApiException(400, "Missing required parameter 'sessionId' when calling ConnectedAppsApi->GetConnectedAppToken");
 
 
-            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
+            RequestOptions localVarRequestOptions = new RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -660,13 +653,13 @@ namespace Kinde.Api.Api
             };
 
 
-            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "session_id", sessionId));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "session_id", sessionId));
 
             // authentication (kindeBearerAuth) required
             // bearer authentication required
@@ -691,28 +684,28 @@ namespace Kinde.Api.Api
         /// <summary>
         /// Revoke Connected App Token Revoke the tokens linked to the connected app session.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionId">The unique sesssion id reprensenting the login session of a user.</param>
         /// <returns>SuccessResponse</returns>
         public SuccessResponse RevokeConnectedAppToken(string sessionId)
         {
-            Kinde.Api.Client.ApiResponse<SuccessResponse> localVarResponse = RevokeConnectedAppTokenWithHttpInfo(sessionId);
+            ApiResponse<SuccessResponse> localVarResponse = RevokeConnectedAppTokenWithHttpInfo(sessionId);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Revoke Connected App Token Revoke the tokens linked to the connected app session.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionId">The unique sesssion id reprensenting the login session of a user.</param>
         /// <returns>ApiResponse of SuccessResponse</returns>
-        public Kinde.Api.Client.ApiResponse<SuccessResponse> RevokeConnectedAppTokenWithHttpInfo(string sessionId)
+        public ApiResponse<SuccessResponse> RevokeConnectedAppTokenWithHttpInfo(string sessionId)
         {
             // verify the required parameter 'sessionId' is set
             if (sessionId == null)
-                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'sessionId' when calling ConnectedAppsApi->RevokeConnectedAppToken");
+                throw new ApiException(400, "Missing required parameter 'sessionId' when calling ConnectedAppsApi->RevokeConnectedAppToken");
 
-            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
+            RequestOptions localVarRequestOptions = new RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -723,13 +716,13 @@ namespace Kinde.Api.Api
                 "application/json; charset=utf-8"
             };
 
-            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "session_id", sessionId));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "session_id", sessionId));
 
             // authentication (kindeBearerAuth) required
             // bearer authentication required
@@ -753,31 +746,31 @@ namespace Kinde.Api.Api
         /// <summary>
         /// Revoke Connected App Token Revoke the tokens linked to the connected app session.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionId">The unique sesssion id reprensenting the login session of a user.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SuccessResponse</returns>
         public async System.Threading.Tasks.Task<SuccessResponse> RevokeConnectedAppTokenAsync(string sessionId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Kinde.Api.Client.ApiResponse<SuccessResponse> localVarResponse = await RevokeConnectedAppTokenWithHttpInfoAsync(sessionId, cancellationToken).ConfigureAwait(false);
+            ApiResponse<SuccessResponse> localVarResponse = await RevokeConnectedAppTokenWithHttpInfoAsync(sessionId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
         /// Revoke Connected App Token Revoke the tokens linked to the connected app session.
         /// </summary>
-        /// <exception cref="Kinde.Api.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
         /// <param name="sessionId">The unique sesssion id reprensenting the login session of a user.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SuccessResponse)</returns>
-        public async System.Threading.Tasks.Task<Kinde.Api.Client.ApiResponse<SuccessResponse>> RevokeConnectedAppTokenWithHttpInfoAsync(string sessionId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<ApiResponse<SuccessResponse>> RevokeConnectedAppTokenWithHttpInfoAsync(string sessionId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'sessionId' is set
             if (sessionId == null)
-                throw new Kinde.Api.Client.ApiException(400, "Missing required parameter 'sessionId' when calling ConnectedAppsApi->RevokeConnectedAppToken");
+                throw new ApiException(400, "Missing required parameter 'sessionId' when calling ConnectedAppsApi->RevokeConnectedAppToken");
 
 
-            Kinde.Api.Client.RequestOptions localVarRequestOptions = new Kinde.Api.Client.RequestOptions();
+            RequestOptions localVarRequestOptions = new RequestOptions();
 
             string[] _contentTypes = new string[] {
             };
@@ -789,13 +782,13 @@ namespace Kinde.Api.Api
             };
 
 
-            var localVarContentType = Kinde.Api.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            var localVarContentType = ClientUtils.SelectHeaderContentType(_contentTypes);
             if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
 
-            var localVarAccept = Kinde.Api.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            var localVarAccept = ClientUtils.SelectHeaderAccept(_accepts);
             if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
 
-            localVarRequestOptions.QueryParameters.Add(Kinde.Api.Client.ClientUtils.ParameterToMultiMap("", "session_id", sessionId));
+            localVarRequestOptions.QueryParameters.Add(ClientUtils.ParameterToMultiMap("", "session_id", sessionId));
 
             // authentication (kindeBearerAuth) required
             // bearer authentication required

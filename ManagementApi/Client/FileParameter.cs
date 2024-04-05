@@ -9,9 +9,7 @@
  */
 
 
-using System.IO;
-
-namespace Kinde.Api.Client
+namespace Clinically.Kinde.Authentication.ManagementApi.Client
 {
 
     /// <summary>

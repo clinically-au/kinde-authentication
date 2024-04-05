@@ -9,9 +9,7 @@
  */
 
 
-using System;
-
-namespace Kinde.Api.Client
+namespace Clinically.Kinde.Authentication.ManagementApi.Client
 {
     /// <summary>
     /// Represents configuration aspects required to interact with the API endpoints.

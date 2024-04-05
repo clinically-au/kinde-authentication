@@ -9,10 +9,7 @@
  */
 
 
-using System;
-using System.Threading.Tasks;
-
-namespace Kinde.Api.Client
+namespace Clinically.Kinde.Authentication.ManagementApi.Client
 {
     /// <summary>
     /// Contract for Asynchronous RESTful API interactions.

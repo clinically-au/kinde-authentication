@@ -9,29 +9,16 @@
  */
 
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Linq;
 using System.Net;
-using System.Reflection;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters;
+using System.Net.Http.Headers;
 using System.Text;
-using System.Threading;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Web;
+using Clinically.Kinde.Authentication.ManagementApi.Model;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-using ErrorEventArgs = Newtonsoft.Json.Serialization.ErrorEventArgs;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using Polly;
 
-namespace Kinde.Api.Client
+namespace Clinically.Kinde.Authentication.ManagementApi.Client
 {
     /// <summary>
     /// To Serialize/Deserialize JSON using our custom logic, but only when ContentType is JSON.
@@ -71,10 +58,10 @@ namespace Kinde.Api.Client
         /// <returns>A JSON string.</returns>
         public string Serialize(object obj)
         {
-            if (obj != null && obj is Kinde.Api.Model.AbstractOpenAPISchema)
+            if (obj != null && obj is AbstractOpenAPISchema)
             {
                 // the object to be serialized is an oneOf/anyOf schema
-                return ((Kinde.Api.Model.AbstractOpenAPISchema)obj).ToJson();
+                return ((AbstractOpenAPISchema)obj).ToJson();
             }
             else
             {
@@ -225,7 +212,7 @@ namespace Kinde.Api.Client
         /// It's better to reuse the <see href="https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#issues-with-the-original-httpclient-class-available-in-net">HttpClient and HttpClientHandler</see>.
         /// </summary>
         public ApiClient() :
-                 this(Kinde.Api.Client.GlobalConfiguration.Instance.BasePath)
+                 this(GlobalConfiguration.Instance.BasePath)
         {
         }
 
@@ -257,7 +244,7 @@ namespace Kinde.Api.Client
         /// The features affected are: Setting and Retrieving Cookies, Client Certificates, Proxy settings.
         /// </remarks>
         public ApiClient(HttpClient client, HttpClientHandler handler = null) :
-                 this(client, Kinde.Api.Client.GlobalConfiguration.Instance.BasePath, handler)
+                 this(client, GlobalConfiguration.Instance.BasePath, handler)
         {
         }
 
@@ -543,7 +530,7 @@ namespace Kinde.Api.Client
                 object responseData = await deserializer.Deserialize<T>(response).ConfigureAwait(false);
 
                 // if the response type is oneOf/anyOf, call FromJSON to deserialize the data
-                if (typeof(Kinde.Api.Model.AbstractOpenAPISchema).IsAssignableFrom(typeof(T)))
+                if (typeof(AbstractOpenAPISchema).IsAssignableFrom(typeof(T)))
                 {
                     responseData = (T) typeof(T).GetMethod("FromJson").Invoke(null, new object[] { response.Content });
                 }
