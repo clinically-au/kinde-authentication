@@ -15,7 +15,7 @@ public class KindeUser : IdentityUser
     public int? FailedSignIns { get; private set; }
     public string? LastSignedIn { get; private set; }
     public string? CreatedOn { get; private set; }
-    public List<KindeOrganization>? Organizations { get; private set; }
+    public List<string>? Organizations { get; private set; }
     
 internal static KindeUser FromUserResponse(UsersResponseUsersInner user)
     {
@@ -33,8 +33,7 @@ internal static KindeUser FromUserResponse(UsersResponseUsersInner user)
             FailedSignIns = user.FailedSignIns,
             LastSignedIn = user.LastSignedIn,
             CreatedOn = user.CreatedOn,
-            Organizations = JsonSerializer.Deserialize<List<KindeOrganization>>(
-                user.Organizations.Select(x => x).ToString() ?? string.Empty)
+            Organizations = user.Organizations
         };
     }
 
