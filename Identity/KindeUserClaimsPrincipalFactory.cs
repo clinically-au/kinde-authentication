@@ -32,12 +32,12 @@ public class AdditionalUserClaimsPrincipalFactory(
         // Add additional claims here
         if (user.GivenName != null)
         {
-            claims.Add(new Claim(ClaimTypes.GivenName, user.GivenName));
+            claims.Add(new Claim(KindeClaimTypes.GivenName, user.GivenName));
         }
 
         if (user.FamilyName != null)
         {
-            claims.Add(new Claim(ClaimTypes.Surname, user.FamilyName));
+            claims.Add(new Claim(KindeClaimTypes.FamilyName, user.FamilyName));
         }
 
         if (user.Picture != null)

@@ -29,10 +29,10 @@ public static class ClaimsPrincipalExtensions
         principal?.FindFirstValue(KindeClaimTypes.Picture);
 
     public static string? GetGivenName(this ClaimsPrincipal? principal) =>
-        principal?.FindFirstValue(ClaimTypes.GivenName);
+        principal?.FindFirstValue(KindeClaimTypes.GivenName);
 
     public static string? GetFamilyName(this ClaimsPrincipal? principal) =>
-        principal?.FindFirstValue(ClaimTypes.Surname);    
+        principal?.FindFirstValue(KindeClaimTypes.FamilyName);    
     
     public static string? GetEmail(this ClaimsPrincipal? principal) =>
         principal?.FindFirstValue(ClaimTypes.Email);

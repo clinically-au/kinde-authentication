@@ -126,6 +126,8 @@ public class KindeUserStore(KindeManagementClient client, IHttpContextAccessor h
     {
         cancellationToken.ThrowIfCancellationRequested();
         ThrowIfDisposed();
+        ArgumentException.ThrowIfNullOrEmpty(userId, nameof(userId));
+        
         var result = await client.Users.GetUsersAsync(userId: userId, expand: "organizations", cancellationToken: cancellationToken).ConfigureAwait(false);
         var first = result.Users.FirstOrDefault();
         return first is null ? null : KindeUser.FromUserResponse(first);
@@ -135,6 +137,8 @@ public class KindeUserStore(KindeManagementClient client, IHttpContextAccessor h
     {
         cancellationToken.ThrowIfCancellationRequested();
         ThrowIfDisposed();
+        ArgumentException.ThrowIfNullOrEmpty(normalizedUserName, nameof(normalizedUserName));
+        
         var result = await client.Users.GetUsersAsync(email: normalizedUserName, expand:"organizations", cancellationToken: cancellationToken).ConfigureAwait(false);
         var first = result.Users.FirstOrDefault();
         return first is null ? null : KindeUser.FromUserResponse(first);
