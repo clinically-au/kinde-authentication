@@ -17,7 +17,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace Clinically.Kinde.Authentication;
 
-public static class KindeAuthenticationBuilderExtension
+public static class KindeAuthenticationBuilderExtensions
 {
     private static string GetRequiredConfiguration(string key, IConfiguration configuration)
     {
@@ -58,10 +58,12 @@ public static class KindeAuthenticationBuilderExtension
 
         builder.AddJwtBearer(opt =>
         {
+            opt.SaveToken = true;
             opt.Authority = configOptions.Authority;
             opt.Audience = configOptions.JwtAudience;
             opt.TokenValidationParameters = new TokenValidationParameters
             {
+                SaveSigninToken = true,
                 ValidIssuer = configOptions.Authority,
                 ValidAudience = configOptions.JwtAudience,
                 IssuerSigningKeyResolver = (token, securityToken, kid, parameters) =>

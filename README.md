@@ -1,4 +1,4 @@
-# Integrating Kinde Auth with .NET8 Blazor Apps
+# Integrating Kinde Auth with .NET8 Apps (including Blazor)
 
 This library assists with integrating Kinde with .NET applications. It is still in development but usable. There may be breaking changes from version to version for now.
 
@@ -8,17 +8,19 @@ Add the following NuGet package:
 The following needs to be in your ```appSettings.json``` on the server:
 
 ```json
-"Kinde": {
-  "Authority": "<From Kinde>",
-  "ClientId": "<From Kinde>",
-  "ClientSecret": "<From Kinde>",
-  "ManagementApiClientId": "<From Kinde>",
-  "ManagementApiClientSecret": "<From Kinde>",
-  "SignedOutRedirectUri": "https://localhost:5001/signout-callback-oidc",
-  "JwtAudience": "<From Kinde - Audience for API, if using JWT Bearer Auth in addition to Identity>",
-},
-"AppConfig": {
-  "BaseUrl": "https://localhost:5001"
+{
+  "Kinde": {
+    "Authority": "<From Kinde>",
+    "ClientId": "<From Kinde>",
+    "ClientSecret": "<From Kinde>",
+    "ManagementApiClientId": "<From Kinde>",
+    "ManagementApiClientSecret": "<From Kinde>",
+    "SignedOutRedirectUri": "https://localhost:5001/signout-callback-oidc",
+    "JwtAudience": "<From Kinde - Audience for API, if using JWT Bearer Auth in addition to Identity>"
+  },
+  "AppConfig": {
+    "BaseUrl": "https://localhost:5001"
+  }
 }
 ```
 
