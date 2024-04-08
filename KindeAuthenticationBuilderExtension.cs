@@ -163,6 +163,14 @@ public static class KindeAuthenticationBuilderExtension
             };
         });
 
+        builder.Services.AddIdentityCore<KindeUser>()
+            .AddUserManager<KindeUserManager>()
+            .AddUserStore<KindeUserStore>()
+            .AddRoles<KindeRole>()
+            .AddRoleManager<KindeRoleManager>()
+            .AddRoleStore<KindeRoleStore>()
+            .AddSignInManager();
+
         builder.Services.AddScoped<KindeManagementClient>(x => ActivatorUtilities
             .CreateInstance<KindeManagementClient>(x, configOptions));
 

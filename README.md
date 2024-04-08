@@ -1,6 +1,6 @@
 # Integrating Kinde Auth with .NET8 Blazor Apps
 
-This library assists with integrating Kinde with .NET applications. It is still in development but usable.
+This library assists with integrating Kinde with .NET applications. It is still in development but usable. There may be breaking changes from version to version for now.
 
 Add the following NuGet package:
 ```Clinically.Kinde.Authentication```
@@ -22,17 +22,30 @@ The following needs to be in your ```appSettings.json``` on the server:
 }
 ```
 
-You then need the following in your server-side ```Program.cs```:
+You can omit ```JwtAudience``` if you are not using JWT Bearer Authentication.
+
+If you want users to log in to your MVC / Razor Page / Blazor app, add then need the following to your ```Program.cs```:
 
 ```csharp 
-builder.Services.AddKindeAuthentication(opt =>
+builder.Services.AddKindeIdentityAuthentication(opt =>
 {
-    opt.UseJwtBearerValidation = false; // default to false
-    opt.UseMemoryCacheTicketStore = false; // default to false
+    opt.UseMemoryCacheTicketStore = false; // optional - default to false
 }); 
 ```
 
-For Blazor WASM, you also need to add this to ```Program.cs``` on the client:
+If you want to add JwtBearer Authentication to your API, add this to your ```Program.cs``` (remember to add the JwtAudience to your appSettings.json):
+
+```csharp
+builder.Services.AddKindeJwtBearerAuthentication();
+```
+
+Then add the standard authorization services:
+    
+  ```csharp
+  builder.Services.AddAuthorization();
+  ```
+
+For Blazor WASM, you also need to add this to ```Program.cs``` on the **client**:
 ```csharp
 builder.Services.AddKindeWebAssemblyAuthentication();
 ```
@@ -79,8 +92,7 @@ Then you can use the permissions in your controllers or Razor pages:
   methods.
 - Inject ```BlazorUserAccessor``` to get access to the current user in your Blazor components.
 
-I've only just recently worked out how to tie all this together, so some bits may not be entirely required etc. Take
-this as a proof of concept at the moment :-)
+I've only recently worked out how to tie all this together, so some bits may not be entirely required etc. Raise an issue if you notice any problems.
 
 ### To Do List:
 
