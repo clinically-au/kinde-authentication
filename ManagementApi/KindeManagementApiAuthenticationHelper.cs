@@ -26,7 +26,7 @@ public class KindeManagementApiAuthenticationHelper(IConfiguration config, ILogg
         content.Headers.Clear();
         content.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
 
-        var response = await client.PostAsync(Path.Combine(options.Domain, "/oauth2/token"), content).ConfigureAwait(false);
+        var response = await client.PostAsync(Path.Combine(options.Domain, "oauth2/token"), content).ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
         {
             logger.LogCritical(@"Unable to authenticate with Kinde Management API {StatusCode} {Error}",
