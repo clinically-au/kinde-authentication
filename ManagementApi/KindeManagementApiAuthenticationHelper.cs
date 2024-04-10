@@ -18,15 +18,15 @@ public class KindeManagementApiAuthenticationHelper(IConfiguration config, ILogg
         var content = new FormUrlEncodedContent(new[]
         {
             new KeyValuePair<string, string>("grant_type", "client_credentials"),
-            new KeyValuePair<string, string>("client_id", options.ManagementApiClientId),
-            new KeyValuePair<string, string>("client_secret", options.ManagementApiClientSecret),
-            new KeyValuePair<string, string>("audience", $"{options.Authority}/api"),
+            new KeyValuePair<string, string>("client_id", options.ClientId),
+            new KeyValuePair<string, string>("client_secret", options.ClientSecret),
+            new KeyValuePair<string, string>("audience", $"{options.ManagementApiAudience}"),
         });
 
         content.Headers.Clear();
         content.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
 
-        var response = await client.PostAsync($"{options.Authority}/oauth2/token", content).ConfigureAwait(false);
+        var response = await client.PostAsync($"{options.Domain}/oauth2/token", content).ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
         {
             logger.LogCritical(@"Unable to authenticate with Kinde Management API {StatusCode} {Error}",

@@ -34,21 +34,14 @@ public static class KindeAuthenticationBuilderExtensions
         var configOptions = new KindeAuthenticationOptions();
         kindeAuthenticationOptions(configOptions);
 
-        if (string.IsNullOrEmpty(configOptions.Authority))
-            configOptions.Authority = GetRequiredConfiguration("Kinde:Authority", configuration);
+        if (string.IsNullOrEmpty(configOptions.Domain))
+            configOptions.Domain = GetRequiredConfiguration("Kinde:Domain", configuration);
         if (string.IsNullOrEmpty(configOptions.ClientId))
             configOptions.ClientId = GetRequiredConfiguration("Kinde:ClientId", configuration);
         if (string.IsNullOrEmpty(configOptions.ClientSecret))
             configOptions.ClientSecret = GetRequiredConfiguration("Kinde:ClientSecret", configuration);
-        if (string.IsNullOrEmpty(configOptions.SignedOutRedirectUri))
-            configOptions.SignedOutRedirectUri = GetRequiredConfiguration("Kinde:SignedOutRedirectUri", configuration);
-        if (string.IsNullOrEmpty(configOptions.ManagementApiClientId))
-            configOptions.ManagementApiClientId = GetRequiredConfiguration("Kinde:ManagementApiClientId",
-                configuration);
-        if (string.IsNullOrEmpty(configOptions.ManagementApiClientSecret))
-            configOptions.ManagementApiClientSecret =
-                GetRequiredConfiguration("Kinde:ManagementApiClientSecret", configuration);
-
+        if (string.IsNullOrEmpty(configOptions.ManagementApiAudience))
+            configOptions.ManagementApiAudience = Path.Combine(configOptions.Domain, "api");
         if (string.IsNullOrEmpty(configOptions.JwtAudience))
             configOptions.JwtAudience = GetRequiredConfiguration("Kinde:JwtAudience", configuration);
 
@@ -59,18 +52,17 @@ public static class KindeAuthenticationBuilderExtensions
         builder.AddJwtBearer(opt =>
         {
             opt.SaveToken = true;
-            opt.Authority = configOptions.Authority;
+            opt.Authority = configOptions.Domain;
             opt.Audience = configOptions.JwtAudience;
             opt.TokenValidationParameters = new TokenValidationParameters
             {
                 SaveSigninToken = true,
-                ValidIssuer = configOptions.Authority,
+                ValidIssuer = configOptions.Domain,
                 ValidAudience = configOptions.JwtAudience,
                 IssuerSigningKeyResolver = (token, securityToken, kid, parameters) =>
                 {
                     var client = new HttpClient();
-                    var response = client.GetAsync(new Uri($"{configOptions.Authority}/.well-known/jwks"))
-                        .Result;
+                    var response = client.GetAsync(new Uri(Path.Combine(configOptions.Domain, ".well-known/jwks"))).Result;
                     var responseString = response.Content.ReadAsStringAsync().Result;
                     return JwksHelper.LoadKeysFromJson(responseString);
                 }
@@ -92,74 +84,87 @@ public static class KindeAuthenticationBuilderExtensions
                     return;
                 }
 
-                var orgCode = claims
-                    .FirstOrDefault(x => x.Type == KindeClaimTypes.OrganizationCode)
-                    ?.Value;
-                if (orgCode is null)
-                {
-                    context.Fail("No organization code found in the token");
-                    return;
-                }
-
-                var userManager = context.HttpContext.RequestServices.GetRequiredService<
-                    UserManager<KindeUser>
-                >();
                 var userId = claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
                 if (userId is null)
                 {
                     context.Fail("No user id found in the token");
                     return;
                 }
-
-                var user = await userManager.FindByIdAsync(userId);
-                if (user is null)
+                
+                var orgCode = claims
+                    .FirstOrDefault(x => x.Type == KindeClaimTypes.OrganizationCode)
+                    ?.Value;
+                if (configOptions.UsersMustHaveOrganization && orgCode is null)
                 {
-                    context.Fail("User not found");
+                    context.Fail("No organization code found in the token");
                     return;
                 }
+
+                // The following extracts roles, permissions, and organizations - all of which require
+                // the user to be part of an organization
+                if (string.IsNullOrEmpty(orgCode)) return;
+
+                var newClaims = new List<Claim>();
 
                 var kindeClient =
                     context.HttpContext.RequestServices.GetRequiredService<KindeManagementClient>();
 
-                var newClaims = new List<Claim>();
-
-                var permissions =
-                    kindeClient
-                        .Organizations.GetOrganizationUserPermissions(orgCode, userId)
+                // Retrieves the claims from the authToken if they exist, otherwise fetches them using the 
+                // Management API. This is done to avoid making unnecessary calls to the Management API.
+                // However, if the user does not have roles or permissions, then these calls become 
+                // unnecessary.
+                // TODO: make this configurable or add caching
+                if (configOptions.UsersMustHaveOrganization && claims.All(clm => clm.Type != KindeClaimTypes.Permissions))
+                {
+                    var permissions =
+                        (await kindeClient
+                            .Organizations.GetOrganizationUserPermissionsAsync(orgCode!, userId).ConfigureAwait(false))
                         .Permissions ?? [];
-                if (permissions.Count != 0)
-                {
-                    var permissionNames = permissions.Select(perm => perm.Name).ToList();
-                    newClaims.AddRange(
-                        permissionNames.Select(perm => new Claim(KindeClaimTypes.Permissions, perm))
-                    );
+                    if (permissions.Count != 0)
+                    {
+                        var permissionNames = permissions.Select(perm => perm.Name).ToList();
+                        newClaims.AddRange(
+                            permissionNames.Select(perm => new Claim(KindeClaimTypes.Permissions, perm))
+                        );
+                    }
                 }
 
-                var organizations = user.Organizations ?? new List<string>();
-                if (organizations.Count != 0)
+                if (claims.All(clm => clm.Type != KindeClaimTypes.Organizations))
                 {
-                    newClaims.AddRange(
-                        organizations.Select(org => new Claim(KindeClaimTypes.Organizations, org))
-                    );
+                    var organizations = (await kindeClient.Users.GetUsersAsync(userId: userId)
+                        .ConfigureAwait(false)).Users.First().Organizations;
+                    
+                    if (organizations.Count != 0)
+                    {
+                        newClaims.AddRange(
+                            organizations.Select(org => new Claim(KindeClaimTypes.Organizations, org))
+                        );
+                    }
                 }
 
-                var roles =
-                    kindeClient.Organizations.GetOrganizationUserRoles(orgCode, userId).Roles ?? [];
-                if (roles.Count != 0)
+                if (claims.Any(clm => clm.Type == KindeClaimTypes.Roles))
                 {
-                    newClaims.AddRange(
-                        roles.Select(role => new Claim(
-                            KindeClaimTypes.Roles,
-                            JsonSerializer.Serialize(role)
-                        ))
-                    );
-                    newClaims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role.Name)));
+                    var claimRoles = claims.Where(clm => clm.Type == KindeClaimTypes.Roles).Select(
+                        clm => JsonSerializer.Deserialize<KindeRole>(clm.Value));
+                    newClaims.AddRange(claimRoles.Select(role => new Claim(ClaimTypes.Role, role!.Name)));
                 }
-
-                newClaims.Add(new Claim(KindeClaimTypes.GivenName, user.GivenName ?? string.Empty));
-                newClaims.Add(new Claim(KindeClaimTypes.FamilyName, user.FamilyName ?? string.Empty));
-                newClaims.Add(new Claim(KindeClaimTypes.Picture, user.Picture ?? string.Empty));
-
+                else
+                {
+                    var roles =
+                        (await kindeClient.Organizations.GetOrganizationUserRolesAsync(orgCode!, userId).ConfigureAwait(false))
+                        .Roles ?? [];
+                    if (roles.Count != 0)
+                    {
+                        newClaims.AddRange(
+                            roles.Select(role => new Claim(
+                                KindeClaimTypes.Roles,
+                                JsonSerializer.Serialize(role)
+                            ))
+                        );
+                        newClaims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role.Name)));
+                    }
+                }
+                
                 context.Principal!.AddIdentity(new ClaimsIdentity(newClaims));
             }
             };
@@ -191,21 +196,17 @@ public static class KindeAuthenticationBuilderExtensions
         var configOptions = new KindeAuthenticationOptions();
         kindeAuthenticationOptions(configOptions);
 
-        if (string.IsNullOrEmpty(configOptions.Authority))
-            configOptions.Authority = GetRequiredConfiguration("Kinde:Authority", configuration);
+        if (string.IsNullOrEmpty(configOptions.Domain))
+            configOptions.Domain = GetRequiredConfiguration("Kinde:Domain", configuration);
         if (string.IsNullOrEmpty(configOptions.ClientId))
             configOptions.ClientId = GetRequiredConfiguration("Kinde:ClientId", configuration);
         if (string.IsNullOrEmpty(configOptions.ClientSecret))
             configOptions.ClientSecret = GetRequiredConfiguration("Kinde:ClientSecret", configuration);
         if (string.IsNullOrEmpty(configOptions.SignedOutRedirectUri))
             configOptions.SignedOutRedirectUri = GetRequiredConfiguration("Kinde:SignedOutRedirectUri", configuration);
-        if (string.IsNullOrEmpty(configOptions.ManagementApiClientId))
-            configOptions.ManagementApiClientId = GetRequiredConfiguration("Kinde:ManagementApiClientId",
-                configuration);
-        if (string.IsNullOrEmpty(configOptions.ManagementApiClientSecret))
-            configOptions.ManagementApiClientSecret =
-                GetRequiredConfiguration("Kinde:ManagementApiClientSecret", configuration);
-
+        if (string.IsNullOrEmpty(configOptions.ManagementApiAudience))
+            configOptions.ManagementApiAudience = Path.Combine(configOptions.Domain, "api");
+        
         services.AddHttpClient();
         services.AddHttpContextAccessor();
 
@@ -226,7 +227,7 @@ public static class KindeAuthenticationBuilderExtensions
 
         builder.AddOpenIdConnect("OpenIdConnect", options =>
         {
-            var authority = configOptions.Authority;
+            var authority = configOptions.Domain;
             options.Authority = authority;
             options.ClientId = configOptions.ClientId;
             options.ClientSecret = configOptions.ClientSecret;

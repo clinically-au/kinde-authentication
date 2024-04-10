@@ -18,14 +18,14 @@ public class KindeManagementClient(
     private async Task<Configuration> GetConfiguration()
     {
         if (_clientConfiguration is not null) return _clientConfiguration;
-        ArgumentException.ThrowIfNullOrEmpty(options.Authority, nameof(options.Authority));
+        ArgumentException.ThrowIfNullOrEmpty(options.Domain, nameof(options.Domain));
         
         if (string.IsNullOrEmpty(_authToken)) _authToken = await authenticationHelper.GetAuthTokenAsync().ConfigureAwait(false);
         ArgumentException.ThrowIfNullOrEmpty(_authToken, nameof(_authToken));
         
         _clientConfiguration = new Configuration
         {
-            BasePath = options.Authority,
+            BasePath = options.Domain,
             AccessToken = _authToken
         };
         
