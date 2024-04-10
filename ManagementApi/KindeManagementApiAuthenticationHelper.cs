@@ -26,7 +26,7 @@ public class KindeManagementApiAuthenticationHelper(IConfiguration config, ILogg
         content.Headers.Clear();
         content.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
 
-        var response = await client.PostAsync($"{options.Domain}/oauth2/token", content).ConfigureAwait(false);
+        var response = await client.PostAsync(Path.Combine(options.Domain, "/oauth2/token"), content).ConfigureAwait(false);
         if (!response.IsSuccessStatusCode)
         {
             logger.LogCritical(@"Unable to authenticate with Kinde Management API {StatusCode} {Error}",
@@ -39,7 +39,7 @@ public class KindeManagementApiAuthenticationHelper(IConfiguration config, ILogg
         var jsonDocument = JsonDocument.Parse(json);
         _authToken = jsonDocument.RootElement.GetProperty("access_token").GetString();
         var expClaim = jsonDocument.RootElement.GetProperty("expires_in").GetInt64();
-        _authTokenExpiry = DateTimeOffset.FromUnixTimeSeconds(expClaim).DateTime;
+        _authTokenExpiry = DateTime.Now.AddSeconds(expClaim);
         
         if (!string.IsNullOrEmpty(_authToken)) return _authToken;
         

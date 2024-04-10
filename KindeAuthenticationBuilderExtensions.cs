@@ -131,7 +131,7 @@ public static class KindeAuthenticationBuilderExtensions
 
                 if (claims.All(clm => clm.Type != KindeClaimTypes.Organizations))
                 {
-                    var organizations = (await kindeClient.Users.GetUsersAsync(userId: userId)
+                    var organizations = (await kindeClient.Users.GetUsersAsync(userId: userId, expand:"organizations")
                         .ConfigureAwait(false)).Users.First().Organizations;
                     
                     if (organizations.Count != 0)

@@ -3,29 +3,37 @@ using Clinically.Kinde.Authentication.ManagementApi.Client;
 
 namespace Clinically.Kinde.Authentication.ManagementApi;
 
-public class KindeManagementClient(
-    IHttpClientFactory httpClientFactory,
-    KindeManagementApiAuthenticationHelper authenticationHelper,
-    KindeAuthenticationOptions options
-    )
-    : IDisposable
+public class KindeManagementClient : IDisposable
 {
     private Configuration? _clientConfiguration;
     private string? _authToken;
     private HttpClient? _client;
     private HttpClientHandler? _clientHandler;
+    private readonly IHttpClientFactory _httpClientFactory;
+    private readonly KindeManagementApiAuthenticationHelper _authenticationHelper;
+    private readonly KindeAuthenticationOptions _options;
+
+    public KindeManagementClient(IHttpClientFactory httpClientFactory,
+        KindeManagementApiAuthenticationHelper authenticationHelper,
+        KindeAuthenticationOptions options)
+    {
+        _httpClientFactory = httpClientFactory;
+        _authenticationHelper = authenticationHelper;
+        _options = options;
+        _ = authenticationHelper.GetAuthTokenAsync().Result; // Load when created so it is available
+    }
 
     private async Task<Configuration> GetConfiguration()
     {
         if (_clientConfiguration is not null) return _clientConfiguration;
-        ArgumentException.ThrowIfNullOrEmpty(options.Domain, nameof(options.Domain));
+        ArgumentException.ThrowIfNullOrEmpty(_options.Domain, nameof(_options.Domain));
         
-        if (string.IsNullOrEmpty(_authToken)) _authToken = await authenticationHelper.GetAuthTokenAsync().ConfigureAwait(false);
+        if (string.IsNullOrEmpty(_authToken)) _authToken = await _authenticationHelper.GetAuthTokenAsync().ConfigureAwait(false);
         ArgumentException.ThrowIfNullOrEmpty(_authToken, nameof(_authToken));
         
         _clientConfiguration = new Configuration
         {
-            BasePath = options.Domain,
+            BasePath = _options.Domain,
             AccessToken = _authToken
         };
         
@@ -36,7 +44,7 @@ public class KindeManagementClient(
     {
         if (_client is not null) return _client;
 
-        _client = httpClientFactory.CreateClient();
+        _client = _httpClientFactory.CreateClient();
 
         return _client;
     }
@@ -137,7 +145,9 @@ public class KindeManagementClient(
         }
     }
 
+
     private SubscribersApi? _subscribersApi;
+
     public SubscribersApi Subscribers
     {
         get

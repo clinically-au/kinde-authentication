@@ -13,7 +13,7 @@ The following needs to be in your ```appSettings.json``` on the server:
     "Domain": "<From Kinde>",
     "ClientId": "<From Kinde>",
     "ClientSecret": "<From Kinde>",
-    "ManagementApiAudience": "<From Kinde>",
+    "ManagementApiAudience": "<From Kinde>", // Optional - only need to set this if using custom domains
     "SignedOutRedirectUri": "https://localhost:5001/signout-callback-oidc",
     "JwtAudience": "<From Kinde - Audience for API, if using JWT Bearer Auth in addition to Identity>"
   },
