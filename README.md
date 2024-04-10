@@ -10,11 +10,10 @@ The following needs to be in your ```appSettings.json``` on the server:
 ```json
 {
   "Kinde": {
-    "Authority": "<From Kinde>",
+    "Domain": "<From Kinde>",
     "ClientId": "<From Kinde>",
     "ClientSecret": "<From Kinde>",
-    "ManagementApiClientId": "<From Kinde>",
-    "ManagementApiClientSecret": "<From Kinde>",
+    "ManagementApiAudience": "<From Kinde>", // Optional - only need to set this if using custom domains
     "SignedOutRedirectUri": "https://localhost:5001/signout-callback-oidc",
     "JwtAudience": "<From Kinde - Audience for API, if using JWT Bearer Auth in addition to Identity>"
   },
@@ -24,9 +23,11 @@ The following needs to be in your ```appSettings.json``` on the server:
 }
 ```
 
+Remember to give your app access to the Kinde Management API!
+
 You can omit ```JwtAudience``` if you are not using JWT Bearer Authentication.
 
-If you want users to log in to your MVC / Razor Page / Blazor app, add then need the following to your ```Program.cs```:
+If you want users to log in to your MVC / Razor Page / Blazor app, you need to add this to your ```Program.cs```:
 
 ```csharp 
 builder.Services.AddKindeIdentityAuthentication(opt =>
@@ -43,13 +44,18 @@ builder.Services.AddKindeJwtBearerAuthentication();
 
 Then add the standard authorization services:
     
-  ```csharp
-  builder.Services.AddAuthorization();
-  ```
+```csharp
+builder.Services.AddAuthorization();
+```
+
+And:
+```csharp
+app.MapKindeIdentityEndpoints();
+```
 
 For Blazor WASM, you also need to add this to ```Program.cs``` on the **client**:
 ```csharp
-builder.Services.AddKindeWebAssemblyAuthentication();
+builder.Services.AddKindeWebAssemblyClient();
 ```
 
 ## Roles
@@ -68,7 +74,7 @@ In order to add authorization policies for your Kinde permissions:
 builder.Services
     .AddAuthorizationBuilder()
     .AddKindePermissionPolicies<Permissions>();
-``` 
+```
 
 Then create a Permissions class that contains all the Kinde permissions you want to use:
 
@@ -96,7 +102,11 @@ Then you can use the permissions in your controllers or Razor pages:
 
 I've only recently worked out how to tie all this together, so some bits may not be entirely required etc. Raise an issue if you notice any problems.
 
-### To Do List:
+## Example Projects
+- [JWT Bearer Authentication with Web API and React Client](https://github.com/clinically-au/KindeJwtExample)
+- [Blazor App](https://github.com/clinically-au/BlazorAppWithKindeAuthentication)
+
+## To Do List:
 
 - Feature flags not currently implemented (but will work the same way as Permissions)
 - Support more claims/properties in the strongly typed user objects
