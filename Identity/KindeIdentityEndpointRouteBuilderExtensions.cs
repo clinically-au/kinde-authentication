@@ -42,10 +42,12 @@ public static class KindeIdentityEndpointRouteBuilderExtensions
         accountGroup.MapGet("/LoginCallback",
             new Func<HttpContext, SignInManager<KindeUser>, string?, string?, Task<RedirectHttpResult>>(async (context,
                 [FromServices] signInManager,
-                [FromQuery] ReturnUrl,
-                [FromQuery] RemoteError) =>
+                [FromQuery] returnUrl,
+                [FromQuery] remoteError) =>
             {
-                if (RemoteError is not null)
+                ArgumentException.ThrowIfNullOrEmpty(returnUrl);
+                
+                if (remoteError is not null)
                 {
                     return TypedResults.Redirect("/Error");
                 }
@@ -64,7 +66,7 @@ public static class KindeIdentityEndpointRouteBuilderExtensions
                     return TypedResults.Redirect("/Error");
                 }
 
-                return TypedResults.Redirect(ReturnUrl);
+                return TypedResults.Redirect(returnUrl);
             }));
 
         accountGroup.MapPost("/Logout", async (
@@ -74,9 +76,9 @@ public static class KindeIdentityEndpointRouteBuilderExtensions
             [FromForm] string returnUrl) =>
         {
             await signInManager.SignOutAsync();
-            var authority = config.GetRequiredSection("Kinde:Authority").Value;
-            var baseUrl = config.GetRequiredSection("AppConfig:BaseUrl").Value ?? string.Empty;
-            var logoutUri = $"{authority}/logout?redirect={Uri.EscapeDataString(baseUrl)}";
+            var authority = config.GetRequiredSection("Kinde:Domain").Value;
+            var baseUrl = config.GetRequiredSection("AppConfig:BaseUrl").Value;
+            var logoutUri = $"{authority}/logout?redirect={Uri.EscapeDataString(baseUrl!)}";
             return TypedResults.Redirect(logoutUri);
         });
 
