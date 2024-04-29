@@ -62,6 +62,7 @@ public static class KindeAuthenticationBuilderExtensions
                 IssuerSigningKeyResolver = (token, securityToken, kid, parameters) =>
                 {
                     var client = new HttpClient();
+                    // TODO: cache this?
                     var response = client.GetAsync(new Uri(Path.Combine(configOptions.Domain, ".well-known/jwks"))).Result;
                     var responseString = response.Content.ReadAsStringAsync().Result;
                     return JwksHelper.LoadKeysFromJson(responseString);
@@ -177,7 +178,9 @@ public static class KindeAuthenticationBuilderExtensions
             .AddRoleManager<KindeRoleManager>()
             .AddRoleStore<KindeRoleStore>()
             .AddSignInManager();
-
+        
+        builder.Services.AddScoped<IUserClaimsPrincipalFactory<KindeUser>, AdditionalUserClaimsPrincipalFactory>();
+        
         builder.Services.AddScoped<KindeManagementClient>(x => ActivatorUtilities
             .CreateInstance<KindeManagementClient>(x, configOptions));
 
