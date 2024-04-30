@@ -25,6 +25,8 @@ public static class KindeAuthenticationBuilderExtensions
                throw new ArgumentException($"{key} not found in configuration");
     }
 
+    private static KindeManagementClient? Client;
+
     public static AuthenticationBuilder AddKindeJwtBearerAuthentication(this IServiceCollection services,
         IConfiguration configuration, Action<KindeAuthenticationOptions>? kindeAuthenticationOptions = null)
     {
@@ -107,9 +109,6 @@ public static class KindeAuthenticationBuilderExtensions
 
                 var newClaims = new List<Claim>();
 
-                var kindeClient =
-                    context.HttpContext.RequestServices.GetRequiredService<KindeManagementClient>();
-
                 // Retrieves the claims from the authToken if they exist, otherwise fetches them using the 
                 // Management API. This is done to avoid making unnecessary calls to the Management API.
                 // However, if the user does not have roles or permissions, then these calls become 
@@ -117,8 +116,10 @@ public static class KindeAuthenticationBuilderExtensions
                 // TODO: make this configurable or add caching
                 if (configOptions.UsersMustHaveOrganization && claims.All(clm => clm.Type != KindeClaimTypes.Permissions))
                 {
+                    Client ??= context.HttpContext.RequestServices.GetRequiredService<KindeManagementClient>();
+
                     var permissions =
-                        (await kindeClient
+                        (await Client
                             .Organizations.GetOrganizationUserPermissionsAsync(orgCode!, userId).ConfigureAwait(false))
                         .Permissions ?? [];
                     if (permissions.Count != 0)
@@ -132,7 +133,9 @@ public static class KindeAuthenticationBuilderExtensions
 
                 if (claims.All(clm => clm.Type != KindeClaimTypes.Organizations))
                 {
-                    var organizations = (await kindeClient.Users.GetUsersAsync(userId: userId, expand:"organizations")
+                    Client ??= context.HttpContext.RequestServices.GetRequiredService<KindeManagementClient>();
+
+                    var organizations = (await Client.Users.GetUsersAsync(userId: userId, expand:"organizations")
                         .ConfigureAwait(false)).Users.First().Organizations;
                     
                     if (organizations.Count != 0)
@@ -151,8 +154,10 @@ public static class KindeAuthenticationBuilderExtensions
                 }
                 else
                 {
+                    Client ??= context.HttpContext.RequestServices.GetRequiredService<KindeManagementClient>();
+
                     var roles =
-                        (await kindeClient.Organizations.GetOrganizationUserRolesAsync(orgCode!, userId).ConfigureAwait(false))
+                        (await Client.Organizations.GetOrganizationUserRolesAsync(orgCode!, userId).ConfigureAwait(false))
                         .Roles ?? [];
                     if (roles.Count != 0)
                     {
