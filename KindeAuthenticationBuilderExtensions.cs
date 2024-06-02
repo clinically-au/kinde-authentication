@@ -37,13 +37,13 @@ public static class KindeAuthenticationBuilderExtensions
         kindeAuthenticationOptions(configOptions);
 
         if (string.IsNullOrEmpty(configOptions.Domain))
-            configOptions.Domain = GetRequiredConfiguration("Kinde:Domain", configuration);
+            configOptions.Domain = GetRequiredConfiguration("Kinde:Domain", configuration).TrimEnd('/');
         if (string.IsNullOrEmpty(configOptions.ClientId))
             configOptions.ClientId = GetRequiredConfiguration("Kinde:ClientId", configuration);
         if (string.IsNullOrEmpty(configOptions.ClientSecret))
             configOptions.ClientSecret = GetRequiredConfiguration("Kinde:ClientSecret", configuration);
         if (string.IsNullOrEmpty(configOptions.ManagementApiAudience))
-            configOptions.ManagementApiAudience = Path.Combine(configOptions.Domain, "api");
+            configOptions.ManagementApiAudience = $"{configOptions.Domain}/api";
         if (string.IsNullOrEmpty(configOptions.JwtAudience))
             configOptions.JwtAudience = GetRequiredConfiguration("Kinde:JwtAudience", configuration);
 
@@ -65,7 +65,7 @@ public static class KindeAuthenticationBuilderExtensions
                 {
                     var client = new HttpClient();
                     // TODO: cache this?
-                    var response = client.GetAsync(new Uri(Path.Combine(configOptions.Domain, ".well-known/jwks"))).Result;
+                    var response = client.GetAsync(new Uri($"{configOptions.Domain}/.well-known/jwks")).Result;
                     var responseString = response.Content.ReadAsStringAsync().Result;
                     return JwksHelper.LoadKeysFromJson(responseString);
                 }
@@ -205,7 +205,7 @@ public static class KindeAuthenticationBuilderExtensions
         kindeAuthenticationOptions(configOptions);
 
         if (string.IsNullOrEmpty(configOptions.Domain))
-            configOptions.Domain = GetRequiredConfiguration("Kinde:Domain", configuration);
+            configOptions.Domain = GetRequiredConfiguration("Kinde:Domain", configuration).TrimEnd('/');
         if (string.IsNullOrEmpty(configOptions.ClientId))
             configOptions.ClientId = GetRequiredConfiguration("Kinde:ClientId", configuration);
         if (string.IsNullOrEmpty(configOptions.ClientSecret))
@@ -213,7 +213,7 @@ public static class KindeAuthenticationBuilderExtensions
         if (string.IsNullOrEmpty(configOptions.SignedOutRedirectUri))
             configOptions.SignedOutRedirectUri = GetRequiredConfiguration("Kinde:SignedOutRedirectUri", configuration);
         if (string.IsNullOrEmpty(configOptions.ManagementApiAudience))
-            configOptions.ManagementApiAudience = Path.Combine(configOptions.Domain, "api");
+            configOptions.ManagementApiAudience = $"{configOptions.Domain}/api";
         
         services.AddHttpClient();
         services.AddHttpContextAccessor();
